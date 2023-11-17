@@ -1,7 +1,7 @@
 # Employee-Intranet
 This an employee management intranet that will manage employees and their leave
 
-Write a company intranet to manage employees and their leave.
+We will be creating a company intranet to manage employees and their leave.
 
 Below are the basic required functions, but is not limited only to below. If you think something can be added additionally then you are more than welcome to add it.
 
