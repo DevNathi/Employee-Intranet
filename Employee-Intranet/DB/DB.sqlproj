@@ -10,8 +10,7 @@
     <ProjectGuid>{e0a8087a-5d37-4a3c-a72e-2823e23c4ffd}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
-    <RootPath>
-    </RootPath>
+    <RootPath />
     <RootNamespace>DB</RootNamespace>
     <AssemblyName>DB</AssemblyName>
     <ModelCollation>1033, CI</ModelCollation>
@@ -23,6 +22,7 @@
     <SqlServerVerification>False</SqlServerVerification>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
+    <IncludeSchemaNameInFileName>True</IncludeSchemaNameInFileName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -49,7 +49,6 @@
   </PropertyGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
-    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
     <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
     <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
   </PropertyGroup>
@@ -58,5 +57,16 @@
   <ItemGroup>
     <Folder Include="Properties" />
     <Folder Include="Tables" />
+    <Folder Include="Stored Procedures" />
+    <Folder Include="Schemas" />
+    <Folder Include="Publish" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Schemas\user.sql" />
+    <Build Include="Schemas\leave.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DB.publish.xml" />
+    <None Include="Publish\Emp_Intra-DB.publish.publish.xml" />
   </ItemGroup>
 </Project>

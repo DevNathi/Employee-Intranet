@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27428.2005
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.34301.259
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DB", "DB\DB.sqlproj", "{E0A8087A-5D37-4A3C-A72E-2823E23C4FFD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emp_Intranet-UI", "Emp_Intranet-UI\Emp_Intranet-UI.csproj", "{8641AA7C-81CF-4EE5-9C5A-D653ADDAE35E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emp_Intranet-Api", "Emp_Intranet-Api\Emp_Intranet-Api.csproj", "{BE1D94E9-651A-41B3-803B-7E4FE0E15F8B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,6 +21,14 @@ Global
 		{E0A8087A-5D37-4A3C-A72E-2823E23C4FFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0A8087A-5D37-4A3C-A72E-2823E23C4FFD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E0A8087A-5D37-4A3C-A72E-2823E23C4FFD}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{8641AA7C-81CF-4EE5-9C5A-D653ADDAE35E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8641AA7C-81CF-4EE5-9C5A-D653ADDAE35E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8641AA7C-81CF-4EE5-9C5A-D653ADDAE35E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8641AA7C-81CF-4EE5-9C5A-D653ADDAE35E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE1D94E9-651A-41B3-803B-7E4FE0E15F8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE1D94E9-651A-41B3-803B-7E4FE0E15F8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE1D94E9-651A-41B3-803B-7E4FE0E15F8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE1D94E9-651A-41B3-803B-7E4FE0E15F8B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
