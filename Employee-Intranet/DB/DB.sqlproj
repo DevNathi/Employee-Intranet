@@ -64,9 +64,24 @@
   <ItemGroup>
     <Build Include="Schemas\user.sql" />
     <Build Include="Schemas\leave.sql" />
+    <Build Include="Schemas\stuff.sql" />
+    <Build Include="Tables\user.user.sql" />
+    <Build Include="Tables\user.profile.sql" />
+    <Build Include="Tables\user.roles.sql" />
+    <Build Include="Tables\stuff.employee.sql" />
+    <Build Include="Tables\stuff.management.sql" />
+    <Build Include="Tables\stuff.permissions.sql" />
+    <Build Include="Tables\stuff.department.sql" />
+    <Build Include="Tables\leave.leave.sql" />
+    <Build Include="Tables\leave.approval.sql" />
+    <Build Include="Tables\leave.approver.sql" />
+    <Build Include="Tables\leave.type.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DB.publish.xml" />
     <None Include="Publish\Emp_Intra-DB.publish.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="DB.refactorlog" />
   </ItemGroup>
 </Project>
