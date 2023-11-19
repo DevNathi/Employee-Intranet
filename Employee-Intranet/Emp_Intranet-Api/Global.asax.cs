@@ -21,14 +21,14 @@ namespace Emp_Intranet_Api
                 .EnableSwagger(c =>
                 {
                     c.SingleApiVersion("v1", "Employee Intranet API");
-                    c.PrettyPrint();
-                    c.DescribeAllEnumsAsStrings();
+                   
                 })
                 .EnableSwaggerUi(c => 
                 {
+                    
                     c.DocumentTitle("Intranet API");
                 });
-            //GlobalConfiguration.Configure(WebApiConfig.Register);
+            GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);

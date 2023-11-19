@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <Name>DB</Name>
+    <Name>Emp-Intranet-DB</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{e0a8087a-5d37-4a3c-a72e-2823e23c4ffd}</ProjectGuid>
@@ -76,6 +76,7 @@
     <Build Include="Tables\leave.approval.sql" />
     <Build Include="Tables\leave.approver.sql" />
     <Build Include="Tables\leave.type.sql" />
+    <Build Include="Stored Procedures\leave.sp_FIndLeavebyId.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DB.publish.xml" />

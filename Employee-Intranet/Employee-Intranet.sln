@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.34301.259
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DB", "DB\DB.sqlproj", "{E0A8087A-5D37-4A3C-A72E-2823E23C4FFD}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Emp-Intranet-DB", "DB\Emp-Intranet-DB.sqlproj", "{E0A8087A-5D37-4A3C-A72E-2823E23C4FFD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emp_Intranet-UI", "Emp_Intranet-UI\Emp_Intranet-UI.csproj", "{8641AA7C-81CF-4EE5-9C5A-D653ADDAE35E}"
 EndProject
