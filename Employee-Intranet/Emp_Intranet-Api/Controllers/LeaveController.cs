@@ -24,8 +24,8 @@ namespace Emp_Intranet_Api.Controllers
         public IHttpActionResult GetById(int id)
         {
             LeaveData leave = new LeaveData();
-
-            var output = leave.GetLeaveById(id);
+       
+             var output = leave.GetLeaveById(id);
 
             if (output == null)
             {
