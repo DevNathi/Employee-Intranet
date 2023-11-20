@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Emp_Intranet_Api.DataAccess;
+using Emp_Intranet_Api.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
