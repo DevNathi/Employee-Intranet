@@ -15,8 +15,16 @@ Below are the basic required functions, but is not limited only to below. If you
 - Error when trying to apply for days not available etc..
 - Employee should be able to cancel leave request.
 
-## Database Design using Entity Relationship Diagram
-Below is the ERD diagram for the Project which will be managing our data that will be passed from an API and processed by SQL.
-- the database is a SQL data bae that is stored on a MYSQL server
-![image](https://github.com/DevNathi/Employee-Intranet/assets/53449551/cb118d95-cb73-4168-b996-2a40c70b8276)
+## Database
+- !DB needs to be published before running the project.
+- the database is a SQL database that is stored on a MYSQL server.
+- We use Stored Procedures to execute SQL queries on the DB.
+
+## RestFul API
+### Nuget Packages
+- Swagger - to document and test the API (!Note - This needs to be removed for Production )
+- SQL Client - to open the connection to the DB and execute queries.
+- Dapper - to map our Model properties with the query parameters instead of passing Primitive Data types.
+
+
 
