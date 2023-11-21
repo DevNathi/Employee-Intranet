@@ -22,7 +22,7 @@ Below are the basic required functions, but is not limited only to below. If you
 
 ## RestFul API
 ### Nuget Packages
-- Swagger - to document and test the API (!Note - This needs to be removed for Production )
+- Swagger - to document and test the API (!Note - This needs to be disabled for Production )
 - SQL Client - to open the connection to the DB and execute queries.
 - Dapper - to map our Model properties with the query parameters instead of passing Primitive Data types.
 
