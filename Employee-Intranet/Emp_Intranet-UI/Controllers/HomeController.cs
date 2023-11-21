@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Emp_Intranet_UI.Controllers.LeaveHelpers;
+using Emp_Intranet_UI.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -8,9 +11,20 @@ namespace Emp_Intranet_UI.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        private ILeaveLoader _leaveLoader;
+
+        public HomeController(ILeaveLoader leaveLoader)
         {
-            return View();
+            _leaveLoader = leaveLoader ?? throw new ArgumentNullException(nameof(leaveLoader));
+        }
+
+        public async Task<ActionResult> Index()
+        {
+            
+            IEnumerable<LeaveModel> leaveDisplay = await _leaveLoader.GetLeaves();
+
+            return View(leaveDisplay);
+
         }
 
         public ActionResult About()

@@ -34,6 +34,18 @@ namespace Emp_Intranet_Api.Controllers
 
             return Ok(output); // 200 status code with the leave model
         }
+        [HttpGet]
+        [Route("api/leaves")]
+        public IHttpActionResult GetAll()
+        {
+            LeaveData leave = new LeaveData();
+            var output = leave.GetAllLeave();
+            if (output == null)
+            {
+                return NotFound();
+            }
+            return Ok(output);
+        }
 
     }
 }

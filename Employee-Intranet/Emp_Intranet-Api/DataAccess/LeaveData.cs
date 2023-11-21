@@ -18,5 +18,14 @@ namespace Emp_Intranet_Api.DataAccess
             return output;
            
         }
+        public List<LeaveModel> GetAllLeave()
+        {
+            SqlDataAccess sql = new SqlDataAccess();
+
+            var output = sql.LoadData<LeaveModel, dynamic>("leave.sp_FIndLeaves", new { }, "Emp_Intranet-DB");
+
+            return output;
+
+        }
     }
 }

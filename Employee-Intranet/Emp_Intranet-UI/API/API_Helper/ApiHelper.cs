@@ -8,7 +8,7 @@ using System.Web;
 
 namespace Emp_Intranet_UI.API.API_Helper
 {
-    public class ApiHelper
+    public class ApiHelper : IApiHelper
     {
         private HttpClient _apiClient;
 

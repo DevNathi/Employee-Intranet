@@ -11,10 +11,10 @@ namespace Emp_Intranet_UI.API
 {
     public class LeaveEndPoint
     {
-       private ApiHelper _apiHelper;
-        public LeaveEndPoint(ApiHelper apiHelper)
+       private IApiHelper _apiHelper;
+        public LeaveEndPoint(IApiHelper apiHelper)
         {
-            apiHelper = _apiHelper;
+            _apiHelper = apiHelper;
         }
 
         public async Task<LeaveModel> GetLeaveBYId(int Id)
@@ -32,6 +32,21 @@ namespace Emp_Intranet_UI.API
                 }
             }
             
+        }
+        public async Task<List<LeaveModel>> GetAllLeaves()
+        {
+            using (HttpResponseMessage httpResponseMessage = await _apiHelper.ApiClient.GetAsync($"api/Leaves/"))
+            {
+                if (httpResponseMessage.IsSuccessStatusCode)
+                {
+                    var results = await httpResponseMessage.Content.ReadAsAsync<List<LeaveModel>>();
+                    return results;
+                }
+                else
+                {
+                    throw new Exception(httpResponseMessage.ReasonPhrase);
+                }
+            }
         }
     }
 }

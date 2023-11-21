@@ -1,9 +1,11 @@
-﻿@{
+﻿@model  IEnumerable<Emp_Intranet_UI.Models.LeaveModel>
+
+@{
     ViewBag.Title = "Home Page";
 }
 
 <div class="profile-card">
-
+    
 </div>
 <div class="leave-card">
     <h2>Annual Leave</h2>
@@ -49,19 +51,22 @@
     <div class="leave-history">
         <table>
             <thead>
-            <th colspan="6">name</th>
-            <th colspan="4">surname</th>
-            <th colspan="4">Leave</th>
+            <th colspan="6">@Html.DisplayNameFor(model => model.employeeID)</th>
+            <th colspan="4">@Html.DisplayNameFor(model => model.leave_reason)</th>
+            <th colspan="4">@Html.DisplayNameFor(model => model.leave_comment)</th>
             <th colspan="4">Taken</th>
             <th colspan="4">Outstanding</th>
             </thead>
-            <tbody>
-            <td colspan="6">John</td>
-            <td colspan="4">Doe</td>
-            <td colspan="4">Sick</td>
-            <td colspan="4">2</td>
-            <td colspan="4">8</td>
-            </tbody>
+            @foreach (var item in Model)
+            {
+                <tbody>
+                <td colspan="6">@Html.DisplayFor(model => item.employeeID)</td>
+                <td colspan="4">@Html.DisplayFor(model => item.leave_reason)</td>
+                <td colspan="4">@Html.DisplayFor(model => item.leave_comment)</td>
+                <td colspan="4">2</td>
+                <td colspan="4">8</td>
+                </tbody>
+            }
             <tbody>
             <td colspan="6">John</td>
             <td colspan="4">Doe</td>
