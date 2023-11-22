@@ -91,5 +91,7 @@
     <PostDeploy Include="Post Deployment Scripts\User_30reocrds.sql" />
     <None Include="Post Deployment Scripts\Profile-30records.sql" />
     <None Include="Post Deployment Scripts\Roles-populate.sql" />
+    <None Include="Post Deployment Scripts\Departments-3records.sql" />
+    <None Include="Post Deployment Scripts\Permissions.sql" />
   </ItemGroup>
 </Project>
