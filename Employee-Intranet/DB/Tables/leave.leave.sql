@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [leave].[leave]
 (
-	[Id] INT NOT NULL PRIMARY KEY, 
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
     [leave_startdate] DATE NOT NULL, 
     [leave_enddate] DATE NOT NULL, 
     [leave_reason] VARCHAR(50) NOT NULL, 
