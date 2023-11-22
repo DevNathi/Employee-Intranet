@@ -1,0 +1,25 @@
+﻿@model Emp_Intranet_UI.Models.UserModel
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutAuth.cshtml";
+}
+<div class="auth">
+    <div class="login-info">
+        <h2>Welcome Back</h2>
+        <p>
+            Sign in or create an account.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit consectetur adipisci repudiandae, distinctio, est amet voluptatum expedita blanditiis facere officia reprehenderit veritatis! A vel quis obcaecati quo deserunt nemo. Corporis.
+        </p>
+
+    </div>
+    <form action="Index.html" class="login-form">
+        <h2>Sign In</h2>
+        <span>Username/Email</span>
+        <input type="email" placeholder="janed@company.co" id="email" required>
+        <span>Password</span>
+        <input type="password" placeholder="*******" name="password" id="password" required>
+        <button type="button">Login</button>
+
+    </form>
+</div>

@@ -23,7 +23,8 @@ namespace Emp_Intranet_UI
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/Dashboard.css"));
+                      "~/Content/Dashboard.css",
+                      "~/Content/Login.css"));
         }
     }
 }
