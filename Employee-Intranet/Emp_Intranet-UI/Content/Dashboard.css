@@ -99,7 +99,89 @@ section {
     width: 420px;
     height: 550px;
     flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px;
+    gap: 8px 0px;
 }
+
+    .profile-card h2 {
+        color: #000;
+        font-family: Italiana;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    .profile-card img {
+        width: 80px;
+        height: 80px;
+        flex-shrink: 0;
+        border-radius: 50px;
+        background: url(<path-to-image>), lightgray 50% / cover no-repeat, #D9D9D9;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    }
+
+.personal-info {
+    display: grid;
+    grid-auto-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0px 5px;
+    grid-template-areas:
+        ". ."
+        ". ."
+        ". .";
+}
+
+    .personal-info p {
+        justify-self: end;
+        color: #262626;
+        text-align: right;
+        font-family: Inter;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    .personal-info span {
+        justify-self: start;
+        color: #9D9D9D;
+        font-family: Inter;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+.active-leave {
+    display: flex;
+}
+
+.card-grid-leave {
+    display: grid;
+    grid-auto-rows: 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0px 30%;
+    grid-template-areas:
+        ". . ."
+        ". . ."
+        ". . .";
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+}
+
+    .card-grid-leave span {
+        font-size: 10px;
+        font-family: Italiana;
+    }
 
 .leave-card {
     border-radius: 10px;
@@ -110,10 +192,10 @@ section {
     box-shadow: 4px 4px 4px 0px rgb(20 20 20 / 44%);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    gap: 10px;
-    padding: 20px;
+    gap: 5px;
+    padding: 10px 20px 20px 20px;
 }
 
 .leave-cards {
@@ -128,7 +210,7 @@ section {
 
 .card {
     width: 40%;
-    height: 86%;
+    height: 80%;
     background: var(--bg-cards);
     border-radius: 10px;
     box-shadow: 4px 4px 4px 0px rgb(20 20 20 / 44%);
@@ -138,11 +220,13 @@ section {
     align-content: stretch;
     justify-content: flex-start;
     align-items: center;
+    padding: 10px;
 }
 
     .card h3 {
-        font-size: 14px;
+        font-size: 16px;
         justify-self: center;
+        font-family: Italiana;
     }
 
 .card-grid {
@@ -162,7 +246,13 @@ section {
 }
 
     .card-grid span {
-        font-size: 9px;
+        font-size: 10px;
+        font-family: Italiana;
+    }
+
+    .card-grid p {
+        font-size: 14px;
+        font-weight: lighter;
     }
 
 .card button {
@@ -206,14 +296,14 @@ section {
         overflow-x: hidden;
         /* max-width: 80vw; */
         width: 100%;
-        border: #000 2px solid;
+        border: #00000038 2px solid;
         border-radius: 10px;
         padding: 4px;
     }
 
         .leave-history table thead th {
             padding: 6px 5px;
-            background: #2e2e2e6c;
+            background: rgba(206, 206, 206, 0.4);
         }
 
             .leave-history table thead th:first-child {
@@ -246,4 +336,5 @@ footer {
     box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.33);
     font-size: small;
     color: black;
+    font-family: Italiana;
 }
