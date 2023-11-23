@@ -13,19 +13,19 @@ namespace Emp_Intranet_Api.DataAccess.InternalDataAccess
     /// In this class handles the SQL connection string using the SQL client
     /// We us Dapper to Map models as we will be passing generics as our parameters 
     /// </summary>
-    internal class SqlDataAccess
+    public class SqlDataAccess : ISqlDataAccess
     {
         // We store the connection string on the Configurations Files as a security measure.
         public String GetConnectionString(string name)
         {
             return ConfigurationManager.ConnectionStrings[name].ConnectionString;
         }
-       //this is how we load data to the DB 
-        public List<T> LoadData <T,U> (string storedProcedure, U parameters, string connectionStringName)
+        //this is how we load data to the DB 
+        public List<T> LoadData<T, U>(string storedProcedure, U parameters, string connectionStringName)
         {
             string connectionString = GetConnectionString(connectionStringName);
 
-            using(IDbConnection connection = new SqlConnection(connectionString))
+            using (IDbConnection connection = new SqlConnection(connectionString))
             {
                 List<T> rows = connection.Query<T>(storedProcedure, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return rows;

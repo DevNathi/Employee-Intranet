@@ -79,6 +79,7 @@
     <Build Include="Tables\leave.type.sql" />
     <Build Include="Stored Procedures\leave.sp_FIndLeavebyId.sql" />
     <Build Include="Stored Procedures\leave.sp_FindLeaves.sql" />
+    <Build Include="Stored Procedures\user.sp_FindUser.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DB.publish.xml" />
