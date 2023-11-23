@@ -11,10 +11,6 @@ namespace Emp_Intranet_Api.Controllers
 {
     public class UserController : ApiController
     {
-        public UserController()
-        {
-        }
-
         /// <summary>
         /// This Endpoint handles the log in for the system.
         /// </summary>

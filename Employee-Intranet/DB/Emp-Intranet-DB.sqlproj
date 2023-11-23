@@ -63,6 +63,7 @@
     <Folder Include="Post Deployment Scripts" />
     <Folder Include="Stored Procedures\SP_Leave" />
     <Folder Include="Stored Procedures\SP_User" />
+    <Folder Include="Stored Procedures\SP_Stuff" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Schemas\user.sql" />
@@ -83,6 +84,9 @@
     <Build Include="Stored Procedures\SP_Leave\leave.sp_FindLeaves.sql" />
     <Build Include="Stored Procedures\SP_User\user.sp_FindUser.sql" />
     <Build Include="Stored Procedures\SP_User\user.sp_FindProfileByUserID.sql" />
+    <Build Include="Stored Procedures\SP_Stuff\stuff.sp_Find DepartmentById.sql" />
+    <Build Include="Stored Procedures\SP_Stuff\stuff.sp_FIndEmployeeByUserId.sql" />
+    <Build Include="Stored Procedures\SP_Stuff\stuff.sp_FindPermissionsByUserId.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DB.publish.xml" />

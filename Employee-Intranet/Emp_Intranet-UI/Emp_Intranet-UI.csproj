@@ -154,6 +154,7 @@
     <Compile Include="API\API_Helper\ApiHelper.cs" />
     <Compile Include="API\API_Helper\IApiHelper.cs" />
     <Compile Include="API\LeaveEndPoint.cs" />
+    <Compile Include="API\StuffEndPoint.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
