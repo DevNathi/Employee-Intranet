@@ -61,6 +61,8 @@
     <Folder Include="Schemas" />
     <Folder Include="Publish" />
     <Folder Include="Post Deployment Scripts" />
+    <Folder Include="Stored Procedures\SP_Leave" />
+    <Folder Include="Stored Procedures\SP_User" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Schemas\user.sql" />
@@ -77,9 +79,10 @@
     <Build Include="Tables\leave.approval.sql" />
     <Build Include="Tables\leave.approver.sql" />
     <Build Include="Tables\leave.type.sql" />
-    <Build Include="Stored Procedures\leave.sp_FIndLeavebyId.sql" />
-    <Build Include="Stored Procedures\leave.sp_FindLeaves.sql" />
-    <Build Include="Stored Procedures\user.sp_FindUser.sql" />
+    <Build Include="Stored Procedures\SP_Leave\leave.sp_FIndLeavebyId.sql" />
+    <Build Include="Stored Procedures\SP_Leave\leave.sp_FindLeaves.sql" />
+    <Build Include="Stored Procedures\SP_User\user.sp_FindUser.sql" />
+    <Build Include="Stored Procedures\SP_User\user.sp_FindProfileByUserID.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DB.publish.xml" />

@@ -15,8 +15,12 @@ namespace Emp_Intranet_Api.Controllers
         {
         }
 
-
-        // GET: api/User
+        /// <summary>
+        /// This Endpoint handles the log in for the system.
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns>User Model with a JWT Token</returns>
+      
         [HttpPost]
         [Route("api/Login")]
         public IHttpActionResult Login([FromBody]loginModel login)
@@ -38,8 +42,11 @@ namespace Emp_Intranet_Api.Controllers
                 throw new Exception(ex.Message);
             }
         }
-
-        // GET: api/Profile/Id
+        /// <summary>
+        /// This Endpoint handles the fetching of the Profile based on the ID passed
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns>"Profile"</returns>
         [HttpGet]
         [Route("api/Profile/{id}")]
         public IHttpActionResult GetProfile(int Id)

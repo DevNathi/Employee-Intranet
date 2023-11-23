@@ -23,7 +23,7 @@ Post-Deployment Script Template
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
-Use [Emp_Intranet-DB]
+Use [Emp-Intranet-DB]
 GO
 
 INSERT INTO [user].[profile] ([profile_title],[profile_name],[profile_surname],[user], [role])

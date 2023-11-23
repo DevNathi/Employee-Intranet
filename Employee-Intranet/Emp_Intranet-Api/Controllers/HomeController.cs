@@ -12,7 +12,7 @@ namespace Emp_Intranet_Api.Controllers
         {
             ViewBag.Title = "Home Page";
 
-            return View();
+            return Redirect($"/swagger"); //This is cheat to redirect to Swagger instead of the .Net api UI
         }
     }
 }

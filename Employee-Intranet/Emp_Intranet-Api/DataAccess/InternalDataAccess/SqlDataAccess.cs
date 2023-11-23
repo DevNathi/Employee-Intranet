@@ -20,7 +20,15 @@ namespace Emp_Intranet_Api.DataAccess.InternalDataAccess
         {
             return ConfigurationManager.ConnectionStrings[name].ConnectionString;
         }
-        //this is how we load data to the DB 
+        /// <summary>
+        /// this is how we load data to the DB 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="U"></typeparam>
+        /// <param name="storedProcedure"></param>
+        /// <param name="parameters"></param>
+        /// <param name="connectionStringName"></param>
+        /// <returns></returns>
         public List<T> LoadData<T, U>(string storedProcedure, U parameters, string connectionStringName)
         {
             string connectionString = GetConnectionString(connectionStringName);
@@ -31,7 +39,13 @@ namespace Emp_Intranet_Api.DataAccess.InternalDataAccess
                 return rows;
             }
         }
-        //this is how we save data to the DB 
+        /// <summary>
+        /// this is how we save data to the DB 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="storedProcedure"></param>
+        /// <param name="parameters"></param>
+        /// <param name="connectionStringName"></param>
         public void SaveData<T>(string storedProcedure, T parameters, string connectionStringName)
         {
             string connectionString = GetConnectionString(connectionStringName);
