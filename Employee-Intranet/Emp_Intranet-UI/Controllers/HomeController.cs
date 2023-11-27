@@ -27,26 +27,22 @@ namespace Emp_Intranet_UI.Controllers
         }
         public async Task<ActionResult> Login(loginModel loginModel)
         {
-
-            if (loginModel != null)
+            if (loginModel != null && !string.IsNullOrEmpty(loginModel.user_email) && !string.IsNullOrEmpty(loginModel.user_password))
             {
-
-                if (loginModel.user_email?.Length > 0 && loginModel.user_password?.Length > 0)
+                var canLogin = true;
+                if (!canLogin)
                 {
-                    var canLogin = true;
-                    if (canLogin == false)
-                    {
-                        // Need to handle this 
-                    }
-                    var profile = await _user.Login(loginModel);
-                    if (profile != null && profile.Id > 0)
-                    {
-                        ViewBag.User = profile.Id;
-                        return Redirect("Index");
-                    }
+                    // Need to handle this 
                 }
-
+                var profile = await _user.Login(loginModel);
+                if (profile != null && profile.Id > 0)
+                {
+                    TempData["LoginModel"] = loginModel;
+                    TempData["ProfileModel"] = profile;
+                    return RedirectToAction("Index");
+                }
             }
+
             return View();
         }
         //public new ActionResult Profile()
@@ -61,10 +57,17 @@ namespace Emp_Intranet_UI.Controllers
         //}
         public ActionResult Index()
         {
+            var loginModel = TempData["LoginModel"] as loginModel;
+            var profile = TempData["ProfileModel"] as ProfileModel;
 
-            ViewBag.Message = "Welcome to your Dashboard";
-            return View();
+            if (loginModel != null && profile != null)
+            {
+            
 
+                return View(profile);
+            }
+
+            return View(); 
         }
 
         public ActionResult About()

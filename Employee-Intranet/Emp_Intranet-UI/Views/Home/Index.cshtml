@@ -1,5 +1,4 @@
 ﻿@model  Emp_Intranet_UI.Models.ProfileModel
-
 @{
     ViewBag.Title = "Home Page";
 }
@@ -8,10 +7,14 @@
     <h2>My profile</h2>
     <img src="#" alt="profile-picture">
     <div class="personal-info">
-        
-        <p>Title: </p><span>@Html.DisplayFor(model => model.profile_title)</span>
-        <p>Name: </p><span> @Html.DisplayFor(model => model.profile_name)  @Html.DisplayFor(model => model.profile_surname) </span>
-        <p>Job Title: </p><span> Digital Analyst</span>
+        @if (Model != null)
+        {
+            
+            <p>Title: </p><span> @Model.profile_title </span>
+            <p>Name: </p><span>@Model.profile_name @Model.profile_surname</span>
+            <p>Job Title: </p><span> Digital Analyst</span>
+        }
+
     </div>
     <h2>Work Space</h2>
     <div class="personal-info">
