@@ -9,20 +9,13 @@
 </head>
 <body>
     <main>
-
-                    @*<ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("About", "About", "Home")</li>
-                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    </ul>*@
-
         <!--* Header for the navigation-->
         <nav>
             <div class="logo"><img src="#" alt=""></div>
             <ul>
                 <li>@Html.ActionLink("Home", "Index", "Home")</li>
                 <li>@Html.ActionLink("Leave", "Leave", "Leave")</li>
-                <li>@Html.ActionLink("LogOut", "Login", "Authentication")</li>
+                <li>@Html.ActionLink("LogOut", "Login", "Home")</li>
             </ul>
         </nav>
         <section>

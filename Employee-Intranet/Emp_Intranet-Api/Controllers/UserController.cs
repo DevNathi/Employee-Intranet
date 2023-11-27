@@ -11,26 +11,29 @@ namespace Emp_Intranet_Api.Controllers
 {
     public class UserController : ApiController
     {
+        UserData _userData = new UserData();
+
         /// <summary>
         /// This Endpoint handles the log in for the system.
         /// </summary>
         /// <param name="login"></param>
         /// <returns>User Model with a JWT Token</returns>
-      
+
         [HttpPost]
         [Route("api/Login")]
-        public IHttpActionResult Login([FromBody]loginModel login)
+        public IHttpActionResult Login(loginModel login)
         {
-            UserData userData = new UserData();
+           
             
             try
             {
-                var output = userData.Login(login);
+                var output = _userData.Login(login);
                 if (output == null)
                 {
                     return NotFound();
                 }
-                return Ok(output);
+                var profile = _userData.GetProfile(output.Id);
+                return Ok(profile);
             }
             catch (Exception ex)
             {
@@ -47,9 +50,9 @@ namespace Emp_Intranet_Api.Controllers
         [Route("api/Profile/{id}")]
         public IHttpActionResult GetProfile(int Id)
         {
-            UserData _user = new UserData();
+
    
-            var output = _user.GetProfile(Id);
+            var output = _userData.GetProfile(Id);
             if (output == null)
             {
                 return NotFound();

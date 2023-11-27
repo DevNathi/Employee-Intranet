@@ -9,8 +9,10 @@ using System.Web.Http;
 
 namespace Emp_Intranet_Api.Controllers
 {
+
     public class StuffController : ApiController
     {
+        
         /// <summary>
         /// This is an endpoint to get a Employee from the Employees table
         /// </summary>
@@ -21,8 +23,9 @@ namespace Emp_Intranet_Api.Controllers
         [Route("api/employee")]
         public IHttpActionResult GetEmployeeByUser(int userId)
         {
-            StuffData stuff = new StuffData();
-            var output = stuff.GetEmployeeByUserId(userId);
+            StuffData _stuffData = new StuffData();
+
+            var output = _stuffData.GetEmployeeByUserId(userId);
             if (output != null)
             {
                 return Ok(output);
@@ -38,9 +41,10 @@ namespace Emp_Intranet_Api.Controllers
        [Route("api/department")]
         public IHttpActionResult GetDepartmentById(int depId)
         {
-            StuffData stuff = new StuffData();
 
-            var department = stuff.GetDepartmentById(depId);
+            StuffData _stuffData = new StuffData();
+
+            var department = _stuffData.GetDepartmentById(depId);
             if (department != null)
             {
                 return Ok(department);
@@ -51,8 +55,9 @@ namespace Emp_Intranet_Api.Controllers
         [Route("api/permissions")]
         public IHttpActionResult GetPermissionsById(int pemId)
         {
-            StuffData stuff = new StuffData();
-            var permissions = stuff.GetPermissionsById(pemId);
+            StuffData _stuffData = new StuffData();
+
+            var permissions = _stuffData.GetPermissionsById(pemId);
             if (permissions != null && permissions.Count >= 0)
             {
                 return Ok(permissions);

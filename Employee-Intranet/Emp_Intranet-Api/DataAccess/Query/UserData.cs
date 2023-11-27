@@ -7,7 +7,7 @@ using System.Web;
 
 namespace Emp_Intranet_Api.DataAccess
 {
-    public class UserData : IUserData
+    public class UserData
     {
       
         /// <summary>
@@ -26,7 +26,7 @@ namespace Emp_Intranet_Api.DataAccess
                 sp_username = login.user_username,
                 sp_password = login.user_password
             };
-            // This is where we construct the SQL query that we will be passing to the SQL Client.
+            // This is where we put together the SQL query that we will be passing to the SQL Client with out parameters and connection string.
             var loggedInUser = sql.LoadData<UserModel, dynamic>("user.sp_FindUser", user, "Emp_Intranet-DB").FirstOrDefault();
             try
             {
@@ -50,7 +50,7 @@ namespace Emp_Intranet_Api.DataAccess
         public ProfileModel GetProfile(int userId)
         {
             SqlDataAccess sql = new SqlDataAccess();
-            var profile = sql.LoadData<ProfileModel, dynamic>("user.sp_FindProfileByID", new { Id = userId }, "Emp_Intranet-DB").FirstOrDefault();
+            var profile = sql.LoadData<ProfileModel, dynamic>("user.sp_FindProfileByUserID", new { Id = userId }, "Emp_Intranet-DB").FirstOrDefault();
             return profile;
         }
 

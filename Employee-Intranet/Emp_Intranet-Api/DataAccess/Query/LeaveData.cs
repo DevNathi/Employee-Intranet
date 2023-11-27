@@ -7,22 +7,23 @@ using System.Web;
 
 namespace Emp_Intranet_Api.DataAccess
 {
-    public class LeaveData
+    public class LeaveData 
     {
+
+        SqlDataAccess _sql = new SqlDataAccess();
         public LeaveModel GetLeaveById(int leaveID)
         {
-            SqlDataAccess sql = new SqlDataAccess();
 
-            var output = sql.LoadData<LeaveModel, dynamic>("leave.sp_FIndLeavebyId", new { Id = leaveID }, "Emp_Intranet-DB").FirstOrDefault();
+            var output = _sql.LoadData<LeaveModel, dynamic>("leave.sp_FIndLeavebyId", new { Id = leaveID }, "Emp_Intranet-DB").FirstOrDefault();
 
             return output;
-           
+
         }
         public List<LeaveModel> GetAllLeave()
         {
-            SqlDataAccess sql = new SqlDataAccess();
 
-            var output = sql.LoadData<LeaveModel, dynamic>("leave.sp_FIndLeaves", new { }, "Emp_Intranet-DB");
+
+            var output = _sql.LoadData<LeaveModel, dynamic>("leave.sp_FIndLeaves", new { }, "Emp_Intranet-DB");
 
             return output;
 

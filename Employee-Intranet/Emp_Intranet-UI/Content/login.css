@@ -33,6 +33,7 @@
     background: var(--bg-main);
     position: absolute;
     right: 5%;
+    top: 10%;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     flex-direction: column;
     flex-wrap: nowrap;
@@ -74,7 +75,7 @@
     color: var(--primary);
 }
 
-.login-form input {
+.login-form form-control {
     width: 50%;
     height: 7%;
     border-radius: 7px;
@@ -92,10 +93,10 @@
     color: var(--bg-main);
 }
 
-    .login-form button:hover {
-        background: var(--secondary);
-        color: var(--bg-main);
-        cursor: pointer;
-        transition: 700ms smooth;
-        box-shadow: 0px 4px 4px 0px var(--secondary);
-    }
+.login-form button:hover {
+    background: var(--secondary);
+    color: var(--bg-main);
+    cursor: pointer;
+    transition: 700ms smooth ease-in-out all;
+    box-shadow: 0px 4px 4px 0px var(--secondary);
+}

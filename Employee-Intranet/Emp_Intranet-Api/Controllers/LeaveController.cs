@@ -11,6 +11,8 @@ namespace Emp_Intranet_Api.Controllers
 {
     public class LeaveController : ApiController
     {
+
+        LeaveData _leaveData = new LeaveData();
         /// <summary>
         /// Get leave by ID.
         /// </summary>
@@ -23,9 +25,9 @@ namespace Emp_Intranet_Api.Controllers
         
         public IHttpActionResult GetById(int id)
         {
+
             LeaveData leave = new LeaveData();
-       
-             var output = leave.GetLeaveById(id);
+             var output = _leaveData.GetLeaveById(id);
 
             if (output == null)
             {
@@ -38,8 +40,8 @@ namespace Emp_Intranet_Api.Controllers
         [Route("api/leaves")]
         public IHttpActionResult GetAll()
         {
-            LeaveData leave = new LeaveData();
-            var output = leave.GetAllLeave();
+    
+            var output = _leaveData.GetAllLeave();
             if (output == null)
             {
                 return NotFound();

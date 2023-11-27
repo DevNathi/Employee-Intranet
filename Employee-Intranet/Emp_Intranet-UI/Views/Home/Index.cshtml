@@ -1,4 +1,4 @@
-﻿@model  IEnumerable<Emp_Intranet_UI.Models.LeaveModel>
+﻿@model  Emp_Intranet_UI.Models.ProfileModel
 
 @{
     ViewBag.Title = "Home Page";
@@ -8,8 +8,9 @@
     <h2>My profile</h2>
     <img src="#" alt="profile-picture">
     <div class="personal-info">
-        <p>Title: </p><span> Ms</span>
-        <p>Name: </p><span> Jane Doe</span>
+        
+        <p>Title: </p><span>@Html.DisplayFor(model => model.profile_title)</span>
+        <p>Name: </p><span> @Html.DisplayFor(model => model.profile_name)  @Html.DisplayFor(model => model.profile_surname) </span>
         <p>Job Title: </p><span> Digital Analyst</span>
     </div>
     <h2>Work Space</h2>
@@ -87,22 +88,19 @@
     <div class="leave-history">
         <table>
             <thead>
-            <th colspan="6">@Html.DisplayNameFor(model => model.employeeID)</th>
-            <th colspan="4">@Html.DisplayNameFor(model => model.leave_reason)</th>
-            <th colspan="4">@Html.DisplayNameFor(model => model.leave_comment)</th>
+            <th colspan="6">Name</th>
+            <th colspan="4">Surname</th>
+            <th colspan="4">Type</th>
             <th colspan="4">Taken</th>
             <th colspan="4">Outstanding</th>
             </thead>
-            @foreach (var item in Model)
-            {
                 <tbody>
-                <td colspan="6">@Html.DisplayFor(model => item.employeeID)</td>
-                <td colspan="4">@Html.DisplayFor(model => item.leave_reason)</td>
-                <td colspan="4">@Html.DisplayFor(model => item.leave_comment)</td>
+                <td colspan="6">John</td>
+                <td colspan="4">Doe</td>
+                <td colspan="4">Annual</td>
                 <td colspan="4">2</td>
                 <td colspan="4">8</td>
                 </tbody>
-            }
             <tbody>
             <td colspan="6">John</td>
             <td colspan="4">Doe</td>
