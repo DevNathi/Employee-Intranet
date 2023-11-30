@@ -193,6 +193,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\HomeDisplayModel.cs" />
+    <Compile Include="Models\IHomeDisplayModel.cs" />
     <Compile Include="Models\LeaveModel.cs" />
     <Compile Include="Models\StuffModel.cs" />
     <Compile Include="Models\UserModel.cs" />

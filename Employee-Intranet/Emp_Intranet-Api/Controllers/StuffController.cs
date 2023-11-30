@@ -20,12 +20,12 @@ namespace Emp_Intranet_Api.Controllers
         /// <returns></returns>
         // GET: api/Stuff
         [HttpGet]
-        [Route("api/employee")]
-        public IHttpActionResult GetEmployeeByUser(int userId)
+        [Route("api/Employee/{id}")]
+        public IHttpActionResult GetEmployeeByUser(int id)
         {
             StuffData _stuffData = new StuffData();
 
-            var output = _stuffData.GetEmployeeByUserId(userId);
+            var output = _stuffData.GetEmployeeByUserId(id);
             if (output != null)
             {
                 return Ok(output);

@@ -15,23 +15,31 @@ namespace Emp_Intranet_UI.Controllers
     {
       
         UserEndPoint _user;
+        StuffEndPoint _stuff;
+        IHomeDisplayModel _UserDisplayModel;
 
-        public HomeController(ILeaveLoader leaveLoader, UserEndPoint user)
+        public HomeController(UserEndPoint user, StuffEndPoint stuff, IHomeDisplayModel UserDisplayModel)
         {
 
             _user = user ?? throw new ArgumentNullException(nameof(user));
+            _stuff = stuff ?? throw new ArgumentException(nameof(stuff));
+            _UserDisplayModel = UserDisplayModel;
+            
         }
       
         public async Task<ActionResult> Index()
         {
+            //TODO - need another way to keep data on the UI 
             var loggedInUser = TempData["LoggedInUser"] as UserModel;
-
             if (loggedInUser != null && loggedInUser.Id > 0)
             {
                 var profile = await _user.GetProfileByUser(loggedInUser.Id);
-                if (profile != null && profile.Id > 0)
+                var employee = await _stuff.GetEmployeeByUserId(loggedInUser.Id);
+                if (profile != null && employee != null)
                 {
-                    return View(profile);
+                    _UserDisplayModel.Profile = profile;
+                    _UserDisplayModel.employee = employee;
+                    return View(_UserDisplayModel);
                 }
 
             }

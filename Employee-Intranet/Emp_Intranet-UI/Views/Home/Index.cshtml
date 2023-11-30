@@ -1,102 +1,99 @@
-﻿@model  Emp_Intranet_UI.Models.ProfileModel
+﻿@model  Emp_Intranet_UI.Models.HomeDisplayModel
 @{
     ViewBag.Title = "Home Page";
 }
+@if (Model != null)
+{
 
-<div class="profile-card">
-    <h2>My profile</h2>
-    <img src="#" alt="profile-picture">
-    <div class="personal-info">
-        @if (Model != null)
-        {
-            
-            <p>Title: </p><span> @Model.profile_title </span>
-            <p>Name: </p><span>@Model.profile_name @Model.profile_surname</span>
-            <p>Job Title: </p><span> Digital Analyst</span>
-        }
-
-    </div>
-    <h2>Work Space</h2>
-    <div class="personal-info">
-        <p>Start Date: </p><span>2022/01/20</span>
-        <p>Employment Type: </p><span>Permanent</span>
-        <p>Department: </p><span>Marketing</span>
-        <p>Location: </p><span>Sandton</span>
-        <p>Reports To: </p><span>John Doe</span>
-        <p>Same Department As:</p>
-        <div class="list">
-            <span>John Doe</span>
-            <span>John Doe</span>
+    <div class="profile-card">
+        <h2>My profile</h2>
+        <img src="#" alt="profile-picture">
+        <div class="personal-info">
+            <p>Title: </p><span> @Model.Profile.profile_name </span>
+            <p>Name: </p><span>@Model.Profile.profile_name @Model.Profile.profile_surname</span>
+            <p>Job Title: </p><span> @Model.employee.employee_jobtitle</span>
         </div>
+        <h2>Work Space</h2>
+        <div class="personal-info">
+            <p>Start Date: </p><span>@Model.employee.employee_startdate</span>
+            <p>Employment Type: </p><span>@Model.employee.employee_contract</span>
+            <p>Department: </p><span>@Model.employee.department_name</span>
+            <p>Location: </p><span>@Model.employee.department_location</span>
+            <p>Reports To: </p><span>John Doe</span>
+            <p>Same Department As:</p>
+            <div class="list">
+                <span>John Doe</span>
+                <span>John Doe</span>
+            </div>
 
-    </div>
-    <h2>Active Leave</h2>
-    <div class="active-leave">
-        <div class="card-grid-leave">
-            <span>Applied</span>
-            <span>Approved</span>
-            <span>Taken</span>
-            <p>25</p>
-            <p>15</p>
-            <p>10</p>
-            <span>days</span>
-            <span>days</span>
-            <span>days</span>
+        </div>
+        <h2>Active Leave</h2>
+        <div class="active-leave">
+            <div class="card-grid-leave">
+                <span>Applied</span>
+                <span>Approved</span>
+                <span>Taken</span>
+                <p>25</p>
+                <p>15</p>
+                <p>10</p>
+                <span>days</span>
+                <span>days</span>
+                <span>days</span>
+            </div>
         </div>
     </div>
-</div>
 
 
-<div class="leave-card">
-    <h2>Annual Leave</h2>
-    <div class="leave-cards">
-        <div class="card">
-            <h3>Annual Leave</h3>
-            <div class="card-grid">
-                <span>Entitled</span><span>Taken</span><span>Remaining</span>
-                <p>15</p><p>8</p><p>7</p>
-                <span>days</span><span>days</span><span>days</span>
+    <div class="leave-card">
+        <h2>Annual Leave</h2>
+        <div class="leave-cards">
+            <div class="card">
+                <h3>Annual Leave</h3>
+                <div class="card-grid">
+                    <span>Entitled</span><span>Taken</span><span>Remaining</span>
+                    <p>15</p><p>8</p><p>7</p>
+                    <span>days</span><span>days</span><span>days</span>
+                </div>
+                <button><span>+</span></button>
             </div>
-            <button><span>+</span></button>
-        </div>
-        <div class="card">
-            <h3>Maternity Leave</h3>
-            <div class="card-grid">
-                <span>Entitled</span><span>Taken</span><span>Remaining</span>
-                <p>90</p><p>0</p><p>90</p>
-                <span>days</span><span>days</span><span>days</span>
+            <div class="card">
+                <h3>Maternity Leave</h3>
+                <div class="card-grid">
+                    <span>Entitled</span><span>Taken</span><span>Remaining</span>
+                    <p>90</p><p>0</p><p>90</p>
+                    <span>days</span><span>days</span><span>days</span>
+                </div>
+                <button><span>+</span></button>
             </div>
-            <button><span>+</span></button>
-        </div>
-        <div class="card">
-            <h3>Sick Leave</h3>
-            <div class="card-grid">
-                <span>Entitled</span><span>Taken</span><span>Remaining</span>
-                <p>30</p><p>0</p><p>15</p>
-                <span>days</span><span>days</span><span>days</span>
+            <div class="card">
+                <h3>Sick Leave</h3>
+                <div class="card-grid">
+                    <span>Entitled</span><span>Taken</span><span>Remaining</span>
+                    <p>30</p><p>0</p><p>15</p>
+                    <span>days</span><span>days</span><span>days</span>
+                </div>
+                <button><span>+</span></button>
             </div>
-            <button><span>+</span></button>
-        </div>
-        <div class="card">
-            <h3>Study Leave</h3>
-            <div class="card-grid">
-                <span>Entitled</span><span>Taken</span><span>Remaining</span>
-                <p>5</p><p>1</p><p>4</p>
-                <span>days</span><span>days</span><span>days</span>
+            <div class="card">
+                <h3>Study Leave</h3>
+                <div class="card-grid">
+                    <span>Entitled</span><span>Taken</span><span>Remaining</span>
+                    <p>5</p><p>1</p><p>4</p>
+                    <span>days</span><span>days</span><span>days</span>
+                </div>
+                <button><span><img src="#" alt=""></span></button>
             </div>
-            <button><span><img src="#" alt=""></span></button>
         </div>
-    </div>
-    <h2>Annual Leave History</h2>
-    <div class="leave-history">
-        <table>
-            <thead>
-            <th colspan="6">Name</th>
-            <th colspan="4">Surname</th>
-            <th colspan="4">Type</th>
-            <th colspan="4">Taken</th>
-            <th colspan="4">Outstanding</th>
-            </thead>
+        <h2>Annual Leave History</h2>
+        <div class="leave-history">
+            <table>
+                <thead>
+                <th colspan="6">Name</th>
+                <th colspan="4">Surname</th>
+                <th colspan="4">Type</th>
+                <th colspan="4">Taken</th>
+                <th colspan="4">Outstanding</th>
+                </thead>
                 <tbody>
                 <td colspan="6">John</td>
                 <td colspan="4">Doe</td>
@@ -104,49 +101,50 @@
                 <td colspan="4">2</td>
                 <td colspan="4">8</td>
                 </tbody>
-            <tbody>
-            <td colspan="6">John</td>
-            <td colspan="4">Doe</td>
-            <td colspan="4">Annual</td>
-            <td colspan="4">2</td>
-            <td colspan="4">8</td>
-            </tbody>
-            <tbody>
-            <td colspan="6">John</td>
-            <td colspan="4">Doe</td>
-            <td colspan="4">Study</td>
-            <td colspan="4">2</td>
-            <td colspan="4">8</td>
-            </tbody>
-            <tbody>
-            <td colspan="6">John</td>
-            <td colspan="4">Doe</td>
-            <td colspan="4">Sick</td>
-            <td colspan="4">2</td>
-            <td colspan="4">8</td>
-            </tbody>
-            <tbody>
-            <td colspan="6">John</td>
-            <td colspan="4">Doe</td>
-            <td colspan="4">Annual</td>
-            <td colspan="4">2</td>
-            <td colspan="4">8</td>
-            </tbody>
-            <tbody>
-            <td colspan="6">John</td>
-            <td colspan="4">Doe</td>
-            <td colspan="4">Parental</td>
-            <td colspan="4">2</td>
-            <td colspan="4">8</td>
-            </tbody>
-            <tfoot>
-            <td colspan="6"></td>
-            <td colspan="4"></td>
-            <td colspan="4">Total</td>
-            <td colspan="4">50</td>
-            <td colspan="4">12</td>
-            </tfoot>
-        </table>
-    </div>
+                <tbody>
+                <td colspan="6">John</td>
+                <td colspan="4">Doe</td>
+                <td colspan="4">Annual</td>
+                <td colspan="4">2</td>
+                <td colspan="4">8</td>
+                </tbody>
+                <tbody>
+                <td colspan="6">John</td>
+                <td colspan="4">Doe</td>
+                <td colspan="4">Study</td>
+                <td colspan="4">2</td>
+                <td colspan="4">8</td>
+                </tbody>
+                <tbody>
+                <td colspan="6">John</td>
+                <td colspan="4">Doe</td>
+                <td colspan="4">Sick</td>
+                <td colspan="4">2</td>
+                <td colspan="4">8</td>
+                </tbody>
+                <tbody>
+                <td colspan="6">John</td>
+                <td colspan="4">Doe</td>
+                <td colspan="4">Annual</td>
+                <td colspan="4">2</td>
+                <td colspan="4">8</td>
+                </tbody>
+                <tbody>
+                <td colspan="6">John</td>
+                <td colspan="4">Doe</td>
+                <td colspan="4">Parental</td>
+                <td colspan="4">2</td>
+                <td colspan="4">8</td>
+                </tbody>
+                <tfoot>
+                <td colspan="6"></td>
+                <td colspan="4"></td>
+                <td colspan="4">Total</td>
+                <td colspan="4">50</td>
+                <td colspan="4">12</td>
+                </tfoot>
+            </table>
+        </div>
 
-</div>
+    </div>
+}

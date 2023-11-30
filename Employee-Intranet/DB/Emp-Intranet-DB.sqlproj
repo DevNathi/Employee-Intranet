@@ -74,7 +74,6 @@
     <Build Include="Tables\user.roles.sql" />
     <Build Include="Tables\stuff.employee.sql" />
     <Build Include="Tables\stuff.management.sql" />
-    <Build Include="Tables\stuff.permissions.sql" />
     <Build Include="Tables\stuff.department.sql" />
     <Build Include="Tables\leave.leave.sql" />
     <Build Include="Tables\leave.approval.sql" />

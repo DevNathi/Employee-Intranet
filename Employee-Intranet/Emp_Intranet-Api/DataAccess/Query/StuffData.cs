@@ -10,10 +10,10 @@ namespace Emp_Intranet_Api.DataAccess.Query
     public class StuffData
     {
         SqlDataAccess _sql = new SqlDataAccess();
-        public List<EmployeeModel> GetEmployeeByUserId(int userID)
+        public EmployeeModel GetEmployeeByUserId(int userID)
         {
 
-            var employee = _sql.LoadData<EmployeeModel, dynamic>("stuff.sp_FIndEmployeeByUserId", new { userId = userID }, "Emp_Intranet-DB");
+            var employee = _sql.LoadData<EmployeeModel, dynamic>("stuff.sp_FIndEmployeeByUserId", new { userId = userID }, "Emp_Intranet-DB").FirstOrDefault();
             return employee;
         }
         public List<DepartmentModel> GetDepartmentById(int depID)

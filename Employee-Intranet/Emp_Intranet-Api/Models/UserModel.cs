@@ -32,5 +32,6 @@ namespace Emp_Intranet_Api.Models
         public int role { get; set; }
         public string role_name { get; set; }
 
+
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Emp_Intranet_Api.Models
+namespace Emp_Intranet_UI.Models
 {
     public class StuffModel
     {
@@ -16,8 +16,10 @@ namespace Emp_Intranet_Api.Models
         public string employee_contract { get; set; }
         public string employee_jobtitle { get; set; }
         public int userid { get; set; }
-        public int permissionid { get; set; }
         public int departmentid { get; set; }
+        public string department_name { get; set; }
+        public string department_size { get; set; }
+        public string department_location { get; set; }
     }
 
     public class DepartmentModel

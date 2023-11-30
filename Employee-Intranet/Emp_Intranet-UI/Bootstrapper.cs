@@ -1,6 +1,7 @@
 ﻿using Emp_Intranet_UI.API.API_Helper;
 using Emp_Intranet_UI.Controllers.AuthHelpers;
 using Emp_Intranet_UI.Controllers.LeaveHelpers;
+using Emp_Intranet_UI.Models;
 using Microsoft.Practices.Unity;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,7 @@ namespace Emp_Intranet_UI
             // it is NOT necessary to register your controllers
             container.RegisterType<ILeaveLoader, LeaveLoader>();
             container.RegisterType<IApiHelper, ApiHelper>();
-    
+            container.RegisterType<IHomeDisplayModel, HomeDisplayModel>();
 
             return container;
         }
