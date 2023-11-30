@@ -13,63 +13,31 @@ namespace Emp_Intranet_UI.Controllers
 {
     public class HomeController : Controller
     {
-        private ILeaveLoader _leaveLoader;
-        private IProfileLoader _profileLoader;
-        private UserModel _loggedInUser;
+      
         UserEndPoint _user;
 
-        public HomeController(ILeaveLoader leaveLoader, IProfileLoader profileLoader, UserModel loggedInUser, UserEndPoint user)
+        public HomeController(ILeaveLoader leaveLoader, UserEndPoint user)
         {
-            _leaveLoader = leaveLoader ?? throw new ArgumentNullException(nameof(leaveLoader));
-            _profileLoader = profileLoader ?? throw new ArgumentNullException(nameof(profileLoader));
-            _loggedInUser = loggedInUser ?? throw new ArgumentNullException(nameof(loggedInUser));
+
             _user = user ?? throw new ArgumentNullException(nameof(user));
         }
-        public async Task<ActionResult> Login(loginModel loginModel)
+      
+        public async Task<ActionResult> Index()
         {
-            if (loginModel != null && !string.IsNullOrEmpty(loginModel.user_email) && !string.IsNullOrEmpty(loginModel.user_password))
+            var loggedInUser = TempData["LoggedInUser"] as UserModel;
+
+            if (loggedInUser != null && loggedInUser.Id > 0)
             {
-                var canLogin = true;
-                if (!canLogin)
-                {
-                    // Need to handle this 
-                }
-                var profile = await _user.Login(loginModel);
+                var profile = await _user.GetProfileByUser(loggedInUser.Id);
                 if (profile != null && profile.Id > 0)
                 {
-                    TempData["LoginModel"] = loginModel;
-                    TempData["ProfileModel"] = profile;
-                    return RedirectToAction("Index");
+                    return View(profile);
                 }
+
             }
 
-            return View();
+            return View(string.Empty); 
         }
-        //public new ActionResult Profile()
-        //{
-        //    int userId = ViewBag.User;
-        //    var loggedInUser =  _user.GetProfileByUser(userId);
-        //    if (loggedInUser is null)
-        //    {
-        //        return RedirectToAction("Login");
-        //    }
-        //    return ViewBag;
-        //}
-        public ActionResult Index()
-        {
-            var loginModel = TempData["LoginModel"] as loginModel;
-            var profile = TempData["ProfileModel"] as ProfileModel;
-
-            if (loginModel != null && profile != null)
-            {
-            
-
-                return View(profile);
-            }
-
-            return View(); 
-        }
-
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

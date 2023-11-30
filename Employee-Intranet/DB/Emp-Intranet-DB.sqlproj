@@ -87,6 +87,7 @@
     <Build Include="Stored Procedures\SP_Stuff\stuff.sp_Find DepartmentById.sql" />
     <Build Include="Stored Procedures\SP_Stuff\stuff.sp_FIndEmployeeByUserId.sql" />
     <Build Include="Stored Procedures\SP_Stuff\stuff.sp_FindPermissionsByUserId.sql" />
+    <Build Include="Stored Procedures\SP_User\user.FIndProfileandRoleAfterLogin.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DB.publish.xml" />
@@ -101,5 +102,10 @@
     <None Include="Post Deployment Scripts\Roles-populate.sql" />
     <None Include="Post Deployment Scripts\Departments-3records.sql" />
     <None Include="Post Deployment Scripts\Permissions.sql" />
+    <None Include="Post Deployment Scripts\Employees-10Records.sql" />
+    <None Include="Post Deployment Scripts\Management-5Records.sql" />
+    <None Include="Post Deployment Scripts\Leave-15Records.sql" />
+    <None Include="Post Deployment Scripts\Approvals-20Records.sql" />
+    <None Include="Post Deployment Scripts\LeaveType-20Records.sql" />
   </ItemGroup>
 </Project>

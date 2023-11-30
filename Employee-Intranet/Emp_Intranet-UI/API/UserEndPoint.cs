@@ -22,11 +22,10 @@ namespace Emp_Intranet_UI.API
         /// </summary>
         /// <param name="login"></param>
         /// <returns>User Model/ Logged In user</returns>
-        public async Task<ProfileModel> Login(loginModel login)
+        public async Task<UserModel> Login(loginModel login)
         {
             var p = new
             {
-                user_username = login.user_email,
                 user_email = login.user_email,
                 user_password = login.user_password
             };
@@ -37,7 +36,7 @@ namespace Emp_Intranet_UI.API
                 {
                     if (httpResponseMessage.IsSuccessStatusCode)
                     {
-                        var results = await httpResponseMessage.Content.ReadAsAsync<ProfileModel>();
+                        var results = await httpResponseMessage.Content.ReadAsAsync<UserModel>();
                         return results;
                     }
                 }
@@ -46,29 +45,29 @@ namespace Emp_Intranet_UI.API
 
                     throw new Exception(httpResponseMessage.ReasonPhrase);
                 }
-                return new ProfileModel();
+                return new UserModel();
             }
 
         }
-        //public async Task<ProfileModel> GetProfileByUser(int userId)
-        //{
-        //    using (HttpResponseMessage httpResponse = await _apiHelper.ApiClient.GetAsync($"api/Profile/{userId}"))
-        //    {
-        //        try
-        //        {
-        //            if (httpResponse.IsSuccessStatusCode)
-        //            {
-        //                var profile = await httpResponse.Content.ReadAsAsync<ProfileModel>();
-        //                return profile;
-        //            }
-        //        }
-        //        catch (Exception)
-        //        {
+        public async Task<ProfileModel> GetProfileByUser(int userId)
+        {
+            using (HttpResponseMessage httpResponse = await _apiHelper.ApiClient.GetAsync($"api/Profile/{userId}"))
+            {
+                try
+                {
+                    if (httpResponse.IsSuccessStatusCode)
+                    {
+                        var profile = await httpResponse.Content.ReadAsAsync<ProfileModel>();
+                        return profile;
+                    }
+                }
+                catch (Exception)
+                {
 
-        //            throw new Exception(httpResponse.ReasonPhrase);
-        //        }
-        //        return new ProfileModel();
-        //    }
-        //}
+                    throw new Exception(httpResponse.ReasonPhrase);
+                }
+                return new ProfileModel();
+            }
+        }
     }
 }

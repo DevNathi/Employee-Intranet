@@ -28,7 +28,7 @@ namespace Emp_Intranet_UI
             // it is NOT necessary to register your controllers
             container.RegisterType<ILeaveLoader, LeaveLoader>();
             container.RegisterType<IApiHelper, ApiHelper>();
-            container.RegisterType<IProfileLoader, ProfileLoader>();
+    
 
             return container;
         }

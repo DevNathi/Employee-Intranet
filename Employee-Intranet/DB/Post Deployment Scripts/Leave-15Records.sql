@@ -9,13 +9,3 @@ Post-Deployment Script Template
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
-
-
-INSERT INTO [stuff].[permissions]([permission_name],[permission_type])
-VALUES
-  ('general','non-approver'),
-  ('level-1','approver'),
-  ('level-2','non-approver'),
-  ('general','approver'),
-  ('level-1','non-approver');
-  GO

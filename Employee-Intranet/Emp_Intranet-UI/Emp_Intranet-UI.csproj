@@ -185,8 +185,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="Controllers\AuthHelpers\IProfileLoader.cs" />
-    <Compile Include="Controllers\AuthHelpers\ProfileLoader.cs" />
+    <Compile Include="Controllers\AuthHelpers\AuthController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LeaveHelpers\LeaveController.cs" />
     <Compile Include="Controllers\LeaveHelpers\ILeaveLoader.cs" />
@@ -234,7 +233,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_LayoutAuth.cshtml" />
-    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Auth\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Emp_Intranet-Api\Emp_Intranet-Api.csproj">

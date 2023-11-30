@@ -9,13 +9,9 @@ Post-Deployment Script Template
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
-
-
-INSERT INTO [stuff].[permissions]([permission_name],[permission_type])
+INSERT INTO [Employee] (management_level,employeeid)
 VALUES
-  ('general','non-approver'),
-  ('level-1','approver'),
-  ('level-2','non-approver'),
-  ('general','approver'),
-  ('level-1','non-approver');
-  GO
+  ('Manager',1),
+  ('Supervisor',2),
+  ('Executive',3);
+

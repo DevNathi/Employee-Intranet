@@ -32,8 +32,8 @@ namespace Emp_Intranet_Api.Controllers
                 {
                     return NotFound();
                 }
-                var profile = _userData.GetProfile(output.Id);
-                return Ok(profile);
+                
+                return Ok(output);
             }
             catch (Exception ex)
             {

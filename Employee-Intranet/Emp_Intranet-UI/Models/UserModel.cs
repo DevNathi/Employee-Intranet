@@ -5,6 +5,7 @@ using System.Web;
 
 namespace Emp_Intranet_UI.Models
 {
+   
     public class UserModel
     {
         public int Id { get; set; }
@@ -13,15 +14,13 @@ namespace Emp_Intranet_UI.Models
     }
     public class loginModel
     {
-        public string user_username { get; set; }
         public string user_email { get; set; }
         public string user_password { get; set; }
 
     }
     public class RolesModel
     {
-        public int Id { get; set; }
-        public string role_name { get; set; }
+
        
     }
     public class ProfileModel
@@ -32,6 +31,7 @@ namespace Emp_Intranet_UI.Models
         public string profile_surname { get; set; }
         public int user { get; set; }
         public int role { get; set; }
+        public string role_name { get; set; }
 
     }
 }

@@ -23,7 +23,6 @@ namespace Emp_Intranet_Api.DataAccess
             var user = new
             {
                 sp_email = login.user_email,
-                sp_username = login.user_username,
                 sp_password = login.user_password
             };
             // This is where we put together the SQL query that we will be passing to the SQL Client with out parameters and connection string.
@@ -47,10 +46,10 @@ namespace Emp_Intranet_Api.DataAccess
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public ProfileModel GetProfile(int userId)
+        public ProfileModel GetProfile(int userID)
         {
             SqlDataAccess sql = new SqlDataAccess();
-            var profile = sql.LoadData<ProfileModel, dynamic>("user.sp_FindProfileByUserID", new { Id = userId }, "Emp_Intranet-DB").FirstOrDefault();
+            var profile = sql.LoadData<ProfileModel, dynamic>("user.FIndProfileandRoleAfterLogin", new { sp_userID = userID}, "Emp_Intranet-DB").FirstOrDefault();
             return profile;
         }
 

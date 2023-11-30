@@ -6,6 +6,6 @@ begin
 
 SELECT TOP 1 *
   FROM [user].[profile]
-  where @Id = [user]
+  where [user] =@Id;
 
 end
