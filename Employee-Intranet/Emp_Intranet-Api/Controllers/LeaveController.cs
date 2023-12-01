@@ -48,6 +48,16 @@ namespace Emp_Intranet_Api.Controllers
             }
             return Ok(output);
         }
-
+        [HttpGet]
+        [Route("api/LeaveTypes")]
+        public IHttpActionResult GetAllLeaveTypes()
+        {
+            var output = _leaveData.GetAllLeaveTypes();
+            if (output == null)
+            {
+                return NotFound();
+            }
+            return Ok(output);
+        }
     }
 }

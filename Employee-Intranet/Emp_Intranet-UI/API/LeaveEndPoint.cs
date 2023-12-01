@@ -48,5 +48,20 @@ namespace Emp_Intranet_UI.API
                 }
             }
         }
+        public  async Task<List<TypeModel>> GetAllLeaveType()
+        {
+            using (HttpResponseMessage responseMessage = await _apiHelper.ApiClient.GetAsync($"api/LeaveTypes"))
+            {
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    var results = await responseMessage.Content.ReadAsAsync<List<TypeModel>>();
+                    return results;
+                }
+                else
+                {
+                    throw new Exception(responseMessage.ReasonPhrase);
+                }
+            }
+        }
     }
 }

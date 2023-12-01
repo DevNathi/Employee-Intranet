@@ -15,5 +15,16 @@ namespace Emp_Intranet_Api.Models
         public string leave_comment { get; set; }
         public int employeeID { get; set; }
         public int leavetypeid { get; set; }
+        public string type_name { get; set; }
+        public string type_cycle { get; set; }
+        public int type_days { get; set; }
+    }
+    public class TypeModel
+    {
+        public int Id { get; set; }
+        public string type_name { get; set; }
+        public string type_cycle { get; set; }
+        public int type_days { get; set; }
+
     }
 }

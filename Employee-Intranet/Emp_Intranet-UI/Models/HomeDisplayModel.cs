@@ -11,5 +11,6 @@ namespace Emp_Intranet_UI.Models
         public ProfileModel Profile { get; set; }
         public EmployeeModel employee { get; set; }
         public LeaveModel leave { get; set; }
+        public List<TypeModel> LeaveTypes { get; set; }
     }
 }

@@ -33,9 +33,9 @@ VALUES
   ('Analyst','Contract','04-03-2023',2,2),
   ('Driver','Permanent','04-03-2023',3,3),
   ('Security','Contract','04-03-2023',4,4),
-  ('Cleaner','Permanent','04-03-2023',5,5),
-  ('Developer','Contract','04-03-2023',6,6),
-  ('Analyst','Permanent','04-03-2023',7,7),
-  ('Driver','Contract','04-03-2023',8,8),
-  ('Security','Permanent','04-03-2023',9,9),
-  ('Cleaner','Contract','04-03-2023',10,10);
+  ('Cleaner','Permanent','04-03-2023',5,1),
+  ('Developer','Contract','04-03-2023',6,2),
+  ('Analyst','Permanent','04-03-2023',7,3),
+  ('Driver','Contract','04-03-2023',8,4),
+  ('Security','Permanent','04-03-2023',9,3),
+  ('Cleaner','Contract','04-03-2023',10,1);

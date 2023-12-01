@@ -28,5 +28,10 @@ namespace Emp_Intranet_Api.DataAccess
             return output;
 
         }
+        public List<TypeModel> GetAllLeaveTypes()
+        {
+            var output = _sql.LoadData<TypeModel, dynamic>("leave.sp_FindAllLeaveTypes", new { }, "Emp_Intranet-DB");
+            return output;
+        }
     }
 }

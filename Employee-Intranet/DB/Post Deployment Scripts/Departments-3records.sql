@@ -9,13 +9,11 @@ Post-Deployment Script Template
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
-Use [Emp-Intranet-DB]
-GO
 
-INSERT INTO [stuff].[department]([department_name],[department_size],[department_location])
+INSERT INTO [stuff].[department]([department_name],[department_size],[department_location],[department_manager])
 VALUES
-  ('Marketing',21,'Parys'),
-  ('Sales',5,'Secunda'),
-  ('HR',15,'Polokwane'),
-  ('Accounting',18,'Bethlehem');
+  ('Marketing',21,'Parys','John Doe'),
+  ('Sales',5,'Secunda','Jane Doey'),
+  ('HR',15,'Polokwane','Man of the Match'),
+  ('Accounting',18,'Bethlehem', 'Jack Sparow');
 GO

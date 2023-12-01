@@ -9,3 +9,10 @@ Post-Deployment Script Template
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
+
+INSERT INTO [leave].[type] ([type_name],[type_cycle],[type_days])
+VALUES
+    ('Sick','Jan-Dec',30),
+    ('Annual','Jan-Dec',15),
+    ('Parental','Jan-Dec',20),
+    ('Family','Jan-Dec',10)

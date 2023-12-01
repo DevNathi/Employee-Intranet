@@ -26,7 +26,7 @@ namespace Emp_Intranet_Api
                 .EnableSwaggerUi(c => 
                 {
                     
-                    c.DocumentTitle("Intranet API");
+                    c.DocumentTitle("Employee Intranet API");
                 });
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

@@ -20,6 +20,7 @@ namespace Emp_Intranet_Api.Models
         public string department_name { get; set; }
         public string department_size { get; set; }
         public string department_location { get; set; }
+        public string department_manager { get; set; }
     }
 
     public class DepartmentModel

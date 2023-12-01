@@ -28,4 +28,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="type_duration" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="e9028d9c-32b7-4bd2-8f62-77467e9fd46d" ChangeDateTime="11/30/2023 14:00:43">
+    <Property Name="ElementName" Value="[leave].[leave].[permissionid]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[leave].[leave]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="approverid" />
+  </Operation>
 </Operations>
