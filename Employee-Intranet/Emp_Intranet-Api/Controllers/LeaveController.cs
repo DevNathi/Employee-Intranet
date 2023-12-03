@@ -21,13 +21,13 @@ namespace Emp_Intranet_Api.Controllers
         /// <response code="200">Returns the leave model if found.</response>
         /// <response code="404">If the leave with the specified ID is not found.</response>
         [HttpGet]
-        [Route("api/Leave/{id}")]
+        [Route("api/MyLeaves/{id}")]
         
-        public IHttpActionResult GetById(int id)
+        public IHttpActionResult GetLeavesByUser(int id)
         {
 
             LeaveData leave = new LeaveData();
-             var output = _leaveData.GetLeaveById(id);
+             var output = _leaveData.GetLeavesByUser(id);
 
             if (output == null)
             {

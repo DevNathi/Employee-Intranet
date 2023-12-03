@@ -11,10 +11,10 @@ namespace Emp_Intranet_Api.DataAccess
     {
 
         SqlDataAccess _sql = new SqlDataAccess();
-        public LeaveModel GetLeaveById(int leaveID)
+        public List<LeaveModel> GetLeavesByUser(int userId)
         {
 
-            var output = _sql.LoadData<LeaveModel, dynamic>("leave.sp_FIndLeavebyId", new { Id = leaveID }, "Emp_Intranet-DB").FirstOrDefault();
+            var output = _sql.LoadData<LeaveModel, dynamic>("leave.sp_FIndLeavebyId", new { Id = userId }, "Emp_Intranet-DB");
 
             return output;
 

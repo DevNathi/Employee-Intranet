@@ -38,14 +38,18 @@ namespace Emp_Intranet_UI.Controllers
             var loggedInUser = Session["LoggedInUser"] as UserModel;
             if (loggedInUser != null && loggedInUser.Id > 0)
             {
-                var profile = await _user.GetProfileByUser(Id);
-                var employee = await _stuff.GetEmployeeByUserId(Id);
+                var profile = await _user.GetProfileByUser(loggedInUser.Id);
+                var employee = await _stuff.GetEmployeeByUserId(loggedInUser.Id);
                 var leaveType = await _leave.GetAllLeaveType();
+                var leaves = await _leave.GetLeavesByUserId(loggedInUser.Id);
+
                 if (profile != null && employee != null)
                 {
+                    //populate the Display Model for the View
                     _UserDisplayModel.Profile = profile;
                     _UserDisplayModel.employee = employee;
                     _UserDisplayModel.LeaveTypes = leaveType;
+                    _UserDisplayModel.leave = leaves;
 
 
                     return View(_UserDisplayModel);

@@ -41,7 +41,7 @@ namespace Emp_Intranet_UI.Controllers.AuthHelpers
                 
             }
 
-            ModelState.AddModelError(string.Empty, "Invalid login attempt");
+            
             return View(loginModel);
         }
 
@@ -58,10 +58,11 @@ namespace Emp_Intranet_UI.Controllers.AuthHelpers
             // Your custom logic to validate the user
             // Example: Check credentials against a database
             // Return true if the user is valid, false otherwise
-            if (loginModel != null && !string.IsNullOrEmpty(loginModel.user_email) && !string.IsNullOrEmpty(loginModel.user_password))
+            if (ModelState.IsValid)
             {
                 return true;
             }
+            ModelState.AddModelError(string.Empty, "Invalid login attempt");
             return false;
         }
     }

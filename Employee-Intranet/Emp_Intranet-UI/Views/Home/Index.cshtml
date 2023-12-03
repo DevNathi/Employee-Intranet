@@ -2,9 +2,6 @@
 @{
     ViewBag.Title = "Home Page";
 }
-@if (Model != null)
-{
-
     <div class="profile-card">
         <h2>My profile</h2>
         <img src="#" alt="profile-picture">
@@ -66,65 +63,32 @@
                 <thead>
                 <th colspan="6">Name</th>
                 <th colspan="4">Surname</th>
-                <th colspan="4">Type</th>
+                <th colspan="4">start's'</th>
                 <th colspan="4">Taken</th>
-                <th colspan="4">Outstanding</th>
+                <th colspan="4">Reason</th>
                 </thead>
                 <tbody>
-                <td colspan="6">John</td>
-                <td colspan="4">Doe</td>
-                <td colspan="4">Annual</td>
-                <td colspan="4">2</td>
-                <td colspan="4">8</td>
-                </tbody>
-                <tbody>
-                <td colspan="6">John</td>
-                <td colspan="4">Doe</td>
-                <td colspan="4">Annual</td>
-                <td colspan="4">2</td>
-                <td colspan="4">8</td>
-                </tbody>
-                <tbody>
-                <td colspan="6">John</td>
-                <td colspan="4">Doe</td>
-                <td colspan="4">Study</td>
-                <td colspan="4">2</td>
-                <td colspan="4">8</td>
-                </tbody>
-                <tbody>
-                <td colspan="6">John</td>
-                <td colspan="4">Doe</td>
-                <td colspan="4">Sick</td>
-                <td colspan="4">2</td>
-                <td colspan="4">8</td>
-                </tbody>
-                <tbody>
-                <td colspan="6">John</td>
-                <td colspan="4">Doe</td>
-                <td colspan="4">Annual</td>
-                <td colspan="4">2</td>
-                <td colspan="4">8</td>
-                </tbody>
-                <tbody>
-                <td colspan="6">John</td>
-                <td colspan="4">Doe</td>
-                <td colspan="4">Parental</td>
-                <td colspan="4">2</td>
-                <td colspan="4">8</td>
+                    @foreach (var item in Model.leave)
+                    {
+                    <tr>
+                        
+                        <td colspan="6">@Model.Profile.profile_title @Model.Profile.profile_name @Model.Profile.profile_surname</td>
+                        <td colspan="4"></td>
+                        <td colspan="4">@Html.DisplayFor(model => item.leave_startdate)</td>
+                        <td colspan="4">@Html.DisplayFor(model => item.leave_daystaken)</td>
+                        <td colspan="4">@Html.DisplayFor(model => item.leave_reason)</td>
+                    </tr>
+                    }
                 </tbody>
                 <tfoot>
+
                 <td colspan="6"></td>
                 <td colspan="4"></td>
                 <td colspan="4">Total</td>
-                <td colspan="4">50</td>
+                <td colspan="4"></td>
                 <td colspan="4">12</td>
                 </tfoot>
             </table>
         </div>
 
     </div>
-}
-else
-{
-    //TODO - Need to handle the case of a user not logged in 
-}

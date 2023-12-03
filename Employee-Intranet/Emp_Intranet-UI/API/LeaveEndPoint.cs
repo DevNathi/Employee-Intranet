@@ -17,13 +17,13 @@ namespace Emp_Intranet_UI.API
             _apiHelper = apiHelper;
         }
 
-        public async Task<LeaveModel> GetLeaveBYId(int Id)
+        public async Task<List<LeaveModel>> GetLeavesByUserId(int userId)
         {
-            using(HttpResponseMessage httpResponseMessage = await _apiHelper.ApiClient.GetAsync($"api/Leave/?Id={Id}"))
+            using(HttpResponseMessage httpResponseMessage = await _apiHelper.ApiClient.GetAsync($"api/MyLeaves/{userId}"))
             {
                 if (httpResponseMessage.IsSuccessStatusCode)
                 {
-                    var results = await httpResponseMessage.Content.ReadAsAsync<LeaveModel>();
+                    var results = await httpResponseMessage.Content.ReadAsAsync<List<LeaveModel>>();
                     return results;
                 }
                 else

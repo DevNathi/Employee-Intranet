@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -14,7 +15,13 @@ namespace Emp_Intranet_UI.Models
     }
     public class loginModel
     {
+        [Required(ErrorMessage = "Email is required.")]
+        [Display(Name = "Email")]
+        [DataType(DataType.EmailAddress)]
         public string user_email { get; set; }
+        [Required(ErrorMessage = "Password is required.")]
+        [Display(Name = "Password")]
+        [DataType(DataType.Password)]
         public string user_password { get; set; }
 
     }

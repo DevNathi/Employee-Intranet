@@ -14,6 +14,7 @@ namespace Emp_Intranet_Api.Models
         public string leave_reason { get; set; }
         public string leave_comment { get; set; }
         public int employeeID { get; set; }
+        public int leave_daystaken { get; set; }
         public int leavetypeid { get; set; }
         public string type_name { get; set; }
         public string type_cycle { get; set; }

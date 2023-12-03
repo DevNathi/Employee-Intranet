@@ -79,7 +79,7 @@
     <Build Include="Tables\leave.approval.sql" />
     <Build Include="Tables\leave.approver.sql" />
     <Build Include="Tables\leave.type.sql" />
-    <Build Include="Stored Procedures\SP_Leave\leave.sp_FIndLeavebyId.sql" />
+    <Build Include="Stored Procedures\SP_Leave\leave.sp_FIndLeavebyUserId.sql" />
     <Build Include="Stored Procedures\SP_Leave\leave.sp_FindLeaves.sql" />
     <Build Include="Stored Procedures\SP_User\user.sp_FindUser.sql" />
     <Build Include="Stored Procedures\SP_User\user.sp_FindProfileByUserID.sql" />
