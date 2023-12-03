@@ -11,6 +11,7 @@ using System.Web.Mvc;
 
 namespace Emp_Intranet_UI.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
       
@@ -34,21 +35,24 @@ namespace Emp_Intranet_UI.Controllers
         {
             //TODO - need another way to keep data on the UI 
 
-            //var loggedInUser = TempData["LoggedInUser"] as UserModel;
-            //if (loggedInUser != null && loggedInUser.Id > 0)
-           // {
+            var loggedInUser = Session["LoggedInUser"] as UserModel;
+            if (loggedInUser != null && loggedInUser.Id > 0)
+            {
                 var profile = await _user.GetProfileByUser(Id);
                 var employee = await _stuff.GetEmployeeByUserId(Id);
-            var leaveType = await _leave.GetAllLeaveType();
+                var leaveType = await _leave.GetAllLeaveType();
                 if (profile != null && employee != null)
                 {
                     _UserDisplayModel.Profile = profile;
                     _UserDisplayModel.employee = employee;
-                _UserDisplayModel.LeaveTypes = leaveType;
+                    _UserDisplayModel.LeaveTypes = leaveType;
+
+
                     return View(_UserDisplayModel);
                 }
-            //}
-            return View(string.Empty); 
+            }
+            ModelState.AddModelError(string.Empty, "Invalid login attempt");
+            return View(loggedInUser); 
         }
         public ActionResult About()
         {

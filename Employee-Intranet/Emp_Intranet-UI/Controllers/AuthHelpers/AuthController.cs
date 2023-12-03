@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace Emp_Intranet_UI.Controllers.AuthHelpers
 {
@@ -18,26 +19,50 @@ namespace Emp_Intranet_UI.Controllers.AuthHelpers
             _user = user;
         }
 
-        // GET: Auth
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
         public async Task<ActionResult> Login(loginModel loginModel)
         {
-            if (loginModel != null && !string.IsNullOrEmpty(loginModel.user_email) && !string.IsNullOrEmpty(loginModel.user_password))
+            if (IsValidUser(loginModel))
             {
-                var canLogin = true;
-                if (!canLogin)
-                {
-                    // Need to handle this 
-                }
                 var authenticatedUser = await _user.Login(loginModel);
                 if (authenticatedUser != null && authenticatedUser.Id > 0)
                 {
-                    // We pass the profile Model as a Temp data to the Index Action
-                    TempData["LoggedInUser"] = authenticatedUser;
+                    // We store the Login Model to a Session data 
+                    Session["LoggedInUser"] = authenticatedUser;
+                    FormsAuthentication.SetAuthCookie(Convert.ToString(authenticatedUser.Id), createPersistentCookie: false);
                     return RedirectToAction("Index", "Home");
                 }
+                
             }
 
-            return View();
+            ModelState.AddModelError(string.Empty, "Invalid login attempt");
+            return View(loginModel);
+        }
+
+        public ActionResult Logout()
+        {
+            Session["LoggedInUser"] = null;
+            Session.Clear();
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
+        }
+
+        private bool IsValidUser(loginModel loginModel)
+        {
+            // Your custom logic to validate the user
+            // Example: Check credentials against a database
+            // Return true if the user is valid, false otherwise
+            if (loginModel != null && !string.IsNullOrEmpty(loginModel.user_email) && !string.IsNullOrEmpty(loginModel.user_password))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }
