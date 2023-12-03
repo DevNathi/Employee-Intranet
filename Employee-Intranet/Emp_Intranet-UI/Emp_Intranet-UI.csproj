@@ -195,6 +195,8 @@
     </Compile>
     <Compile Include="Models\HomeDisplayModel.cs" />
     <Compile Include="Models\IHomeDisplayModel.cs" />
+    <Compile Include="Models\ILeaveDisplayModel.cs" />
+    <Compile Include="Models\LeaveDisplayModel.cs" />
     <Compile Include="Models\LeaveModel.cs" />
     <Compile Include="Models\StuffModel.cs" />
     <Compile Include="Models\UserModel.cs" />
@@ -236,6 +238,7 @@
     <None Include="packages.config" />
     <Content Include="Views\Shared\_LayoutAuth.cshtml" />
     <Content Include="Views\Auth\Login.cshtml" />
+    <Content Include="Views\Home\TakeLeave.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Emp_Intranet-Api\Emp_Intranet-Api.csproj">

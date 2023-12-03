@@ -1,11 +1,11 @@
-﻿namespace Emp_Intranet_UI.Models
+﻿using System.Collections.Generic;
+
+namespace Emp_Intranet_UI.Models
 {
     public interface ILeaveDisplayModel
     {
-        EmployeeModel employee { get; set; }
-        int Id { get; set; }
-        LeaveModel leaves { get; set; }
-        UserModel LoggedInAs { get; set; }
-        ProfileModel Profile { get; set; }
+        HomeDisplayModel user { get; set; }
+        List<LeaveModel> Myleaves { get; set; }
+        List<TypeModel> MyLeaveTypes { get; set; }
     }
 }

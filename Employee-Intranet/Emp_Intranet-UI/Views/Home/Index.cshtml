@@ -52,7 +52,7 @@
                         <p>@Html.DisplayFor(modelItem => type.type_days)</p><p>8</p><p>7</p>
                         <span>days</span><span>days</span><span>days</span>
                     </div>
-                    <button><span> @Html.ActionLink("take", "Take", new { id = type.Id})</span></button>
+                    <button><span> @Html.ActionLink("+", "TakeLeave", new { id = type.Id})</span></button>
                 </div>
             }
         </div>

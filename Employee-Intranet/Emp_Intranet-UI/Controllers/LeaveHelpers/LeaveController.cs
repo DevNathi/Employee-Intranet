@@ -9,12 +9,12 @@ using System.Web.Mvc;
 
 namespace Emp_Intranet_UI.Controllers
 {
-    public class LeaveController: Controller
+    public class LeaveController : Controller
     {
-       public ActionResult Leave()
+        public ActionResult Leave()
         {
             return View();
         }
-
+       
     }
 }

@@ -58,18 +58,10 @@ namespace Emp_Intranet_UI.Controllers
             ModelState.AddModelError(string.Empty, "Invalid login attempt");
             return View(loggedInUser); 
         }
-        public ActionResult About()
+        public ActionResult TakeLeave(int id)
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
     }
 }

@@ -7,12 +7,10 @@ namespace Emp_Intranet_UI.Models
 {
     public class LeaveDisplayModel : ILeaveDisplayModel
     {
-        public int Id { get; set; }
-        public UserModel LoggedInAs { get; set; }
-        public ProfileModel Profile { get; set; }
-        public EmployeeModel employee { get; set; }
-        public LeaveModel leaves { get; set; }
+        public HomeDisplayModel user { get; set; }
+        public List<LeaveModel> Myleaves { get; set; }
+        public List<TypeModel> MyLeaveTypes { get; set; }
 
-
+        
     }
-}
+} 

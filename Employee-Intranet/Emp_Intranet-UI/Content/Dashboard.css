@@ -182,11 +182,69 @@ section {
         font-size: 10px;
         font-family: Italiana;
     }
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: #000000b8;
+    padding-top: 70px;
+    border-radius: 15px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* Style the horizontal ruler */
+hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+}
+
+/* The Modal Close Button (x) */
+.close {
+    position: absolute;
+    right: 35px;
+    top: 15px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #f1f1f1;
+}
+
+    .close:hover,
+    .close:focus {
+        color: #f44336;
+        cursor: pointer;
+    }
+
+/* Clear floats */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Change styles for cancel button and delete button on extra small screens */
+@media screen and (max-width: 300px) {
+    .cancelbtn, .deletebtn {
+        width: 100%;
+    }
+}
 
 .leave-card {
     border-radius: 10px;
     background: #FFF;
-    width: 850px;
+    width: 80%;
     height: 550px;
     flex-shrink: 0;
     box-shadow: 4px 4px 4px 0px rgb(20 20 20 / 44%);
@@ -194,8 +252,8 @@ section {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    gap: 5px;
-    padding: 10px 20px 20px 20px;
+    gap: 0px;
+    padding: 2px 20px 8px 20px;
 }
 
 .leave-cards {

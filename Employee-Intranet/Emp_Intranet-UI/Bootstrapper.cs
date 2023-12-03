@@ -30,6 +30,7 @@ namespace Emp_Intranet_UI
             container.RegisterType<ILeaveLoader, LeaveLoader>();
             container.RegisterType<IApiHelper, ApiHelper>();
             container.RegisterType<IHomeDisplayModel, HomeDisplayModel>();
+            container.RegisterType<ILeaveDisplayModel, LeaveDisplayModel>();
 
             return container;
         }
