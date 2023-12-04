@@ -17,6 +17,7 @@ namespace Emp_Intranet_Api.DataAccess.InternalDataAccess
     /// </summary>
     public class SqlDataAccess 
     {
+
         // We store the connection string on the Configurations Files as a security measure.
         public String GetConnectionString(string name)
         {
@@ -58,79 +59,76 @@ namespace Emp_Intranet_Api.DataAccess.InternalDataAccess
             }
         }
 
-        //private IDbConnection _connection;
-        //private IDbTransaction _transaction;
+        private IDbConnection _connection;
+        private IDbTransaction _transaction;
 
-        ////Start Transaction 
-        ////Open connection 
-        //public void StartTransaction(string connectionStringName)
-        //{
-        //    string connectionString = GetConnectionString(connectionStringName);
-        //    _connection = new SqlConnection(connectionString);
-        //    _connection.Open();
-        //    _transaction = _connection.BeginTransaction();
-        //    IsClosed = false;
-        //}
-        ////Open connect/start transaction
-        ////load using transaction
-        ////save using transaction
-        ////Close connection/stop transtion method!!!
-        ////Dispose
-        ////Save Data Transaction 
-        //public void SaveDataTransaction<T>(string storedProcedure, T parameters)
-        //{
+        //Start Transaction 
+        //Open connection 
+        public void StartTransaction(string connectionStringName)
+        {
+            string connectionString = GetConnectionString(connectionStringName);
+            _connection = new SqlConnection(connectionString);
+            _connection.Open();
+            _transaction = _connection.BeginTransaction();
+            IsClosed = false;
+        }
+        //Open connect/start transaction
+        //load using transaction
+        //save using transaction
+        //Close connection/stop transtion method!!!
+        //Dispose
+        //Save Data Transaction 
+        public void SaveDataTransaction<T>(string storedProcedure, T parameters)
+        {
 
-        //    _connection.Execute(storedProcedure, parameters, commandType: CommandType.StoredProcedure, transaction: _transaction);
-        //}
+            _connection.Execute(storedProcedure, parameters, commandType: CommandType.StoredProcedure, transaction: _transaction);
+        }
 
-        ////Load Data Transattion 
-        //public List<T> LoadDataTransaction<T, U>(string storedProcedure, U parameters)
-        //{
-        //    List<T> rows = _connection.Query<T>(storedProcedure, parameters,
-        //            commandType: CommandType.StoredProcedure, transaction: _transaction).ToList();
-        //    return rows;
-        //}
+        //Load Data Transattion 
+        public List<T> LoadDataTransaction<T, U>(string storedProcedure, U parameters)
+        {
+            List<T> rows = _connection.Query<T>(storedProcedure, parameters,
+                    commandType: CommandType.StoredProcedure, transaction: _transaction).ToList();
+            return rows;
+        }
 
-        //private bool IsClosed = false;
+        private bool IsClosed = false;
 
-        //public SqlDataAccess(IConfiguration configuration)
-        //{
-        //    _configuration = configuration;
-        //}
+ 
 
-        //public void CommitTransation()
-        //{
-        //    _transaction?.Commit();
-        //    _connection?.Close();
-        //    IsClosed = true;
-        //}
+        public void CommitTransation()
+        {
+            _transaction?.Commit();
+            _connection?.Close();
+            IsClosed = true;
+        }
 
-        //public void RollBackTransaction()
-        //{
-        //    _transaction.Rollback();
-        //    _connection?.Close();
-        //    IsClosed = true;
+        public void RollBackTransaction()
+        {
+            _transaction.Rollback();
+            _connection?.Close();
+            IsClosed = true;
 
-        //}
+        }
 
-        //public void Dispose()
-        //{
-        //    if (IsClosed == false)
-        //    {
-        //        try
-        //        {
-        //            CommitTransation();
-        //        }
-        //        catch
-        //        {
+        public void Dispose()
+        {
+            if (IsClosed == false)
+            {
+                try
+                {
+                    CommitTransation();
+                }
+                catch
+                {
 
-        //            //TODO Log issue 
-        //        }
-        //    }
+                    //TODO Log issue 
+                }
+            }
 
-        //    _transaction = null;
-        //    _connection = null;
-        //}
+            _transaction = null;
+            _connection = null;
+        }
 
     }
 }

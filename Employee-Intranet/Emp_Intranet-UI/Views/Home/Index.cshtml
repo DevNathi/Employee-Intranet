@@ -2,6 +2,16 @@
 @{
     ViewBag.Title = "Home Page";
 }
+@if (Model != null)
+{
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeEditModal()">&times;</span>
+            <h2>Edit Job Title</h2>
+            <input type="text" id="editJobTitle" placeholder="New Job Title">
+            <button onclick="saveJobTitleChanges()">Save Changes</button>
+        </div>
+    </div>
     <div class="profile-card">
         <h2>My profile</h2>
         <img src="#" alt="profile-picture">
@@ -9,6 +19,7 @@
             <p>Title: </p><span> @Model.Profile.profile_title</span>
             <p>Name: </p><span>@Model.Profile.profile_name @Model.Profile.profile_surname</span>
             <p>Job Title: </p><span> @Model.employee.employee_jobtitle</span>
+            <button type="button" onclick="openEditModal()">Edit</button>
         </div>
         <h2>Work Space</h2>
         <div class="personal-info">
@@ -52,11 +63,11 @@
                         <p>@Html.DisplayFor(modelItem => type.type_days)</p><p>8</p><p>7</p>
                         <span>days</span><span>days</span><span>days</span>
                     </div>
-                    <button><span> @Html.ActionLink("+", "TakeLeave", new { id = type.Id})</span></button>
+                    <button onclick="openEditModal()">+</button>
                 </div>
             }
         </div>
-        
+
         <h2>Annual Leave History</h2>
         <div class="leave-history">
             <table>
@@ -70,14 +81,14 @@
                 <tbody>
                     @foreach (var item in Model.leave)
                     {
-                    <tr>
-                        
-                        <td colspan="6">@Model.Profile.profile_title @Model.Profile.profile_name @Model.Profile.profile_surname</td>
-                        <td colspan="4"></td>
-                        <td colspan="4">@Html.DisplayFor(model => item.leave_startdate)</td>
-                        <td colspan="4">@Html.DisplayFor(model => item.leave_daystaken)</td>
-                        <td colspan="4">@Html.DisplayFor(model => item.leave_reason)</td>
-                    </tr>
+                        <tr>
+
+                            <td colspan="6">@Model.Profile.profile_title @Model.Profile.profile_name @Model.Profile.profile_surname</td>
+                            <td colspan="4"></td>
+                            <td colspan="4">@Html.DisplayFor(model => item.leave_startdate)</td>
+                            <td colspan="4">@Html.DisplayFor(model => item.leave_daystaken)</td>
+                            <td colspan="4">@Html.DisplayFor(model => item.leave_reason)</td>
+                        </tr>
                     }
                 </tbody>
                 <tfoot>
@@ -92,3 +103,4 @@
         </div>
 
     </div>
+}

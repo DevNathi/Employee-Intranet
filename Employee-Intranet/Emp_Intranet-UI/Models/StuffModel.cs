@@ -36,10 +36,5 @@ namespace Emp_Intranet_UI.Models
         public string management_level { get; set; }
         public int employeeid { get; set; }
     }
-    public class PermissionsModel
-    {
-        public int Id { get; set; }
-        public string permission_type { get; set; }
-        public string permission_name { get; set; }
-    }
+
 }

@@ -21,8 +21,11 @@ namespace Emp_Intranet_UI
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
+            bundles.Add(new ScriptBundle("~/bundles/javascript").Include(
+                 "~/Scripts/Modal.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
+                      "~/Content/Site.css",
                       "~/Content/Dashboard.css",
                       "~/Content/Login.css"));
         }
