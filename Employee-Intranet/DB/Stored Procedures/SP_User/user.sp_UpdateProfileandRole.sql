@@ -6,7 +6,6 @@
 	@newRole NVARCHAR(255),
 	@newRoleId INT,
     @newUser INT
-    -- Add other parameters as needed
 AS
 BEGIN
     SET NOCOUNT ON;

@@ -13,9 +13,13 @@
             @Html.HiddenFor(model => model.Profile.role)
             @Html.HiddenFor(model => model.Profile.user)
 
+            @Html.HiddenFor(model => model.employee.Id)
+            @Html.HiddenFor(model => model.employee.departmentid)
+            @Html.HiddenFor(model => model.employee.userid)
+
             <!-- Display validation errors -->
             @Html.ValidationSummary(true, "ModelOnly", new { @class = "text-danger" })
-
+            <!-- Profile -->
             <div class="form-group">
                 title:
                 @Html.TextBoxFor(model => model.Profile.profile_title, new { @class = "form-control" })
@@ -39,7 +43,43 @@
                 @Html.TextBoxFor(model => model.Profile.role_name, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Profile.role_name)
             </div>
-            
+            <!-- Employee -->
+
+            <div class="form-group">
+                Job Title:
+                @Html.TextBoxFor(model => model.employee.employee_jobtitle, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.employee.employee_jobtitle)
+            </div>
+            <div class="form-group">
+                Contract:
+                @Html.TextBoxFor(model => model.employee.employee_contract, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.employee.employee_contract)
+            </div>
+            <div class="form-group">
+                Start Date:
+                @Html.TextBoxFor(model => model.employee.employee_startdate, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.employee.employee_startdate)
+            </div>
+            <div class="form-group">
+                Department:
+                @Html.TextBoxFor(model => model.employee.department_name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.employee.department_name)
+            </div>
+            <div class="form-group">
+                My Mananger:
+                @Html.TextBoxFor(model => model.employee.department_manager, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.employee.department_manager)
+            </div>
+            <div class="form-group">
+                My Team:
+                @Html.TextBoxFor(model => model.employee.department_size, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.employee.department_size)
+            </div>
+            <div class="form-group">
+                Office:
+                @Html.TextBoxFor(model => model.employee.department_location, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.employee.department_location)
+            </div>
 
             <button type="submit">Update</button>
         }

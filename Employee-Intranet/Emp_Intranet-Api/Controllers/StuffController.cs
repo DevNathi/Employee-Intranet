@@ -64,5 +64,23 @@ namespace Emp_Intranet_Api.Controllers
             }
             return NotFound();
         }
+
+        // PUT: api/User/5
+        [HttpPut]
+        [Route("api/Employee/")]
+        public void Put([FromBody] EmployeeModel employee)
+        {
+            StuffData _stuffData = new StuffData();
+            try
+            {
+                _stuffData.UpdateEmployee(employee);
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
+
     }
 }

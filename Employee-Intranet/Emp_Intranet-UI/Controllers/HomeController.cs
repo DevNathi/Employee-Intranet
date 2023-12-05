@@ -78,7 +78,7 @@ namespace Emp_Intranet_UI.Controllers
                 //// populate the Display Model for the Partial View
                 _UserDisplayModel.Profile = myprofile;
                 _UserDisplayModel.employee = myemployee;
-                return PartialView("UpdateUser", _UserDisplayModel);
+                return RedirectToAction("Index", "Home",_updateUserInfoModel);
             }
 
             return View();
@@ -92,8 +92,8 @@ namespace Emp_Intranet_UI.Controllers
             {
                 // Update user, profile, and roles based on updateUserViewModel
                 var updatedProfile = await _user.UpdateProfileByUser(updateUserModel.Profile);
-                //var updatedEmployee = await _stuff.UpdateEmployee();
-                return View(_UserDisplayModel);
+                var updatedEmployee = await _stuff.UpdateEmployeeByUser(updateUserModel.employee);
+                return RedirectToAction("Index", "Home", _updateUserInfoModel); ;
                 // Handle the updated data as needed
             }
 

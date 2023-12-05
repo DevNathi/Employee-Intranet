@@ -229,7 +229,6 @@
     <Compile Include="Controllers\LeaveController.cs" />
     <Compile Include="Controllers\StuffController.cs" />
     <Compile Include="Controllers\UserController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="DataAccess\InternalDataAccess\SqlDataAccess.cs" />
     <Compile Include="DataAccess\Query\LeaveData.cs" />
     <Compile Include="DataAccess\Query\StuffData.cs" />

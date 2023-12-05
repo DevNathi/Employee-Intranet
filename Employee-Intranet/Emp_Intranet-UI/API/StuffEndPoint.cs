@@ -36,5 +36,25 @@ namespace Emp_Intranet_UI.API
                 return new EmployeeModel();
             }
         }
+        public async Task<EmployeeModel> UpdateEmployeeByUser(EmployeeModel employeeModel)
+        {
+            using (HttpResponseMessage http = await _apiHelper.ApiClient.PutAsJsonAsync($"api/Employee/", employeeModel))
+            { 
+                try
+                {
+                    if (http.IsSuccessStatusCode)
+                    {
+                        var employee = await http.Content.ReadAsAsync<EmployeeModel>();
+                        return employee;
+                    }
+                }
+                catch (Exception)
+                {
+
+                    throw new Exception(http.ReasonPhrase);
+                }
+                return new EmployeeModel();
+            }
+        }
     }
 }

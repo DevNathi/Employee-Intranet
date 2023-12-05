@@ -89,6 +89,7 @@
     <Build Include="Stored Procedures\SP_User\user.FIndProfileandRoleAfterLogin.sql" />
     <Build Include="Stored Procedures\SP_Leave\leave.sp_FindAllLeaveTypes.sql" />
     <Build Include="Stored Procedures\SP_User\user.sp_UpdateProfileandRole.sql" />
+    <Build Include="Stored Procedures\SP_Stuff\stuff.sp_UpdateEmployee.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DB.publish.xml" />
