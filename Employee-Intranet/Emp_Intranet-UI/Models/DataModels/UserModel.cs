@@ -15,20 +15,18 @@ namespace Emp_Intranet_UI.Models
     }
     public class loginModel
     {
-        [Required(ErrorMessage = "Email is required.")]
         [Display(Name = "Email")]
         [DataType(DataType.EmailAddress)]
+        [Required(ErrorMessage = "Email is required.")]
+        [EmailAddress(ErrorMessage = "Invalid email address.")]
         public string user_email { get; set; }
-        [Required(ErrorMessage = "Password is required.")]
+
+        
         [Display(Name = "Password")]
         [DataType(DataType.Password)]
+        [Required(ErrorMessage = "Password is required.")]
         public string user_password { get; set; }
 
-    }
-    public class RolesModel
-    {
-
-       
     }
     public class ProfileModel
     {

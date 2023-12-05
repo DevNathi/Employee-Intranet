@@ -49,6 +49,11 @@ namespace Emp_Intranet_UI.API
             }
 
         }
+        /// <summary>
+        /// We pass in a user ID to get a profile of a user and their roles.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns>Profile Model</returns>
         public async Task<ProfileModel> GetProfileByUser(int userId)
         {
             using (HttpResponseMessage httpResponse = await _apiHelper.ApiClient.GetAsync($"api/Profile/{userId}"))
@@ -65,6 +70,27 @@ namespace Emp_Intranet_UI.API
                 {
 
                     throw new Exception(httpResponse.ReasonPhrase);
+                }
+                return new ProfileModel();
+            }
+        }
+
+        public async Task<ProfileModel> UpdateProfileByUser(ProfileModel profile)
+        {
+            using (HttpResponseMessage http = await _apiHelper.ApiClient.PutAsJsonAsync($"api/Profile/",profile))
+            {
+                try
+                {
+                    if (http.IsSuccessStatusCode)
+                    {
+                        var updatedProfile = await http.Content.ReadAsAsync<ProfileModel>();
+                        return updatedProfile;
+                    }
+                }
+                catch (Exception)
+                {
+
+                    throw new Exception(http.ReasonPhrase);
                 }
                 return new ProfileModel();
             }

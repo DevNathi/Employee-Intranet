@@ -22,7 +22,12 @@ namespace Emp_Intranet_UI.Controllers.AuthHelpers
         [HttpGet]
         public ActionResult Login()
         {
-            return View();
+            if (Session["LoggedInUser"] == null)
+            {
+                return View();
+            }
+            return RedirectToAction("Index", "Home");
+
         }
 
         [HttpPost]
@@ -41,7 +46,7 @@ namespace Emp_Intranet_UI.Controllers.AuthHelpers
                 
             }
 
-            
+            ModelState.AddModelError(string.Empty, "Invalid login attempt");
             return View(loginModel);
         }
 
@@ -60,9 +65,10 @@ namespace Emp_Intranet_UI.Controllers.AuthHelpers
             // Return true if the user is valid, false otherwise
             if (ModelState.IsValid)
             {
+                
                 return true;
             }
-            ModelState.AddModelError(string.Empty, "Invalid login attempt");
+            ModelState.AddModelError(string.Empty, "Invalid Username or password");
             return false;
         }
     }

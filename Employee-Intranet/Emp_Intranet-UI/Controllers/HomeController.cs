@@ -2,6 +2,7 @@
 using Emp_Intranet_UI.Controllers.AuthHelpers;
 using Emp_Intranet_UI.Controllers.LeaveHelpers;
 using Emp_Intranet_UI.Models;
+using Emp_Intranet_UI.Models.DisplayModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,22 +20,25 @@ namespace Emp_Intranet_UI.Controllers
         StuffEndPoint _stuff;
         LeaveEndPoint _leave;
         IHomeDisplayModel _UserDisplayModel;
+        IUpdateUserInfoModel _updateUserInfoModel;
         int Id = 1;
 
-        public HomeController(UserEndPoint user, StuffEndPoint stuff, IHomeDisplayModel UserDisplayModel, LeaveEndPoint leave)
+        public HomeController(UserEndPoint user, StuffEndPoint stuff, IHomeDisplayModel UserDisplayModel, LeaveEndPoint leave, IUpdateUserInfoModel updateUserInfoModel)
         {
 
             _user = user ?? throw new ArgumentNullException(nameof(user));
             _stuff = stuff ?? throw new ArgumentException(nameof(stuff));
             _leave = leave ?? throw new ArgumentException(nameof(leave));
             _UserDisplayModel = UserDisplayModel;
+            _updateUserInfoModel = updateUserInfoModel;
+
             
         }
       
         public async Task<ActionResult> Index()
         {
-            //TODO - need another way to keep data on the UI 
-
+            
+            //We use a session to keep the track oof the logged in user
             var loggedInUser = Session["LoggedInUser"] as UserModel;
             if (loggedInUser != null && loggedInUser.Id > 0)
             {
@@ -55,12 +59,46 @@ namespace Emp_Intranet_UI.Controllers
                     return View(_UserDisplayModel);
                 }
             }
-            ModelState.AddModelError(string.Empty, "Invalid login attempt");
+            ModelState.AddModelError(string.Empty, "You are not logged in!");
             return View(loggedInUser); 
         }
         public ActionResult TakeLeave(int id)
         {
             return View();
+        }
+        [HttpGet]
+        public async Task<ActionResult> UpdateUser()
+        {
+            var loggedInUser = Session["LoggedInUser"] as UserModel;
+            if (loggedInUser != null && loggedInUser.Id > 0)
+            {
+                // Fetch user and profile data based on the logged in userId
+                var myprofile = await _user.GetProfileByUser(loggedInUser.Id);
+                var myemployee = await _stuff.GetEmployeeByUserId(loggedInUser.Id);
+                //// populate the Display Model for the Partial View
+                _UserDisplayModel.Profile = myprofile;
+                _UserDisplayModel.employee = myemployee;
+                return PartialView("UpdateUser", _UserDisplayModel);
+            }
+
+            return View();
+           
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> UpdateUser(HomeDisplayModel updateUserModel)
+        {
+            if (ModelState.IsValid)
+            {
+                // Update user, profile, and roles based on updateUserViewModel
+                var updatedProfile = await _user.UpdateProfileByUser(updateUserModel.Profile);
+                //var updatedEmployee = await _stuff.UpdateEmployee();
+                return View(_UserDisplayModel);
+                // Handle the updated data as needed
+            }
+
+            // If ModelState is not valid, return to the update form with errors
+            return PartialView("UpdateUser", updateUserModel);
         }
 
     }

@@ -1,7 +1,7 @@
 ﻿using Emp_Intranet_UI.API.API_Helper;
 using Emp_Intranet_UI.Controllers.AuthHelpers;
 using Emp_Intranet_UI.Controllers.LeaveHelpers;
-using Emp_Intranet_UI.Models;
+using Emp_Intranet_UI.Models.DisplayModels;
 using Microsoft.Practices.Unity;
 using System;
 using System.Collections.Generic;
@@ -31,6 +31,7 @@ namespace Emp_Intranet_UI
             container.RegisterType<IApiHelper, ApiHelper>();
             container.RegisterType<IHomeDisplayModel, HomeDisplayModel>();
             container.RegisterType<ILeaveDisplayModel, LeaveDisplayModel>();
+            container.RegisterType<IUpdateUserInfoModel, UpdateUserInfoModel>();
 
             return container;
         }

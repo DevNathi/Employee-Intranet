@@ -9,6 +9,8 @@ Post-Deployment Script Template
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
+USE [Emp_Intranet-DB]
+GO
 INSERT INTO [Employee] (management_level,employeeid)
 VALUES
   ('Manager',1),

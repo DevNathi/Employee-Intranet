@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Emp_Intranet_UI.Models
+namespace Emp_Intranet_UI.Models.DisplayModels
 {
     public class HomeDisplayModel : IHomeDisplayModel
     {

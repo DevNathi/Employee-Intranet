@@ -9,7 +9,8 @@ Post-Deployment Script Template
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
-
+USE [Emp_Intranet-DB]
+GO
 INSERT INTO [leave].[type] ([type_name],[type_cycle],[type_days])
 VALUES
     ('Sick','Jan-Dec',30),

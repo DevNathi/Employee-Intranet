@@ -10,7 +10,8 @@ Post-Deployment Script Template
 --------------------------------------------------------------------------------------
 */
 
-
+USE [Emp_Intranet-DB]
+GO
 INSERT INTO [stuff].[permissions]([permission_name],[permission_type])
 VALUES
   ('general','non-approver'),

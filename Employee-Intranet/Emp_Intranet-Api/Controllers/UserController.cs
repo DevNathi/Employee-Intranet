@@ -61,14 +61,33 @@ namespace Emp_Intranet_Api.Controllers
         }
 
         // POST: api/User
+        [HttpPost]
+        [Route("api/Profile/")]
         public void Post([FromBody]string value)
         {
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="profile"></param>
+        // PUT: api/User/5
+        [HttpPut]
+        [Route("api/Profile/")]
+        public void Put([FromBody]ProfileModel profile)
+        {
+            try
+            {
+                _userData.UpdateProfile(profile);
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
         }
 
-        // PUT: api/User/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
 
         // DELETE: api/User/5
         public void Delete(int id)

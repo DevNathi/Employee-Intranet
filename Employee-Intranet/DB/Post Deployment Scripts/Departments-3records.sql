@@ -9,7 +9,8 @@ Post-Deployment Script Template
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
-
+USE [Emp_Intranet-DB]
+GO
 INSERT INTO [stuff].[department]([department_name],[department_size],[department_location],[department_manager])
 VALUES
   ('Marketing',21,'Parys','John Doe'),

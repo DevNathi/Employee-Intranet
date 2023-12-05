@@ -1,17 +1,10 @@
-﻿@model  Emp_Intranet_UI.Models.HomeDisplayModel
+﻿@model  Emp_Intranet_UI.Models.DisplayModels.HomeDisplayModel
 @{
     ViewBag.Title = "Home Page";
+    Html.RenderPartial("UpdateUser");
 }
 @if (Model != null)
 {
-    <div id="editModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeEditModal()">&times;</span>
-            <h2>Edit Job Title</h2>
-            <input type="text" id="editJobTitle" placeholder="New Job Title">
-            <button onclick="saveJobTitleChanges()">Save Changes</button>
-        </div>
-    </div>
     <div class="profile-card">
         <h2>My profile</h2>
         <img src="#" alt="profile-picture">
@@ -56,15 +49,16 @@
         <div class="leave-cards">
             @foreach (var type in Model.LeaveTypes)
             {
-                <div class="card">
-                    <h3>@Html.DisplayFor(modelItem => type.type_name) leave</h3>
-                    <div class="card-grid">
-                        <span>Entitled</span><span>Taken</span><span>Remaining</span>
-                        <p>@Html.DisplayFor(modelItem => type.type_days)</p><p>8</p><p>7</p>
-                        <span>days</span><span>days</span><span>days</span>
-                    </div>
-                    <button onclick="openEditModal()">+</button>
+            <div class="card">
+                <h3>@Html.DisplayFor(modelItem => type.type_name) leave</h3>
+                <div class="card-grid">
+                    <span>Entitled</span><span>Taken</span><span>Remaining</span>
+                    <p>@Html.DisplayFor(modelItem => type.type_days)</p><p>8</p><p>7</p>
+                    <span>days</span><span>days</span><span>days</span>
                 </div>
+                <button onclick="openEditModal()">+</button>
+
+            </div>
             }
         </div>
 
@@ -104,3 +98,4 @@
 
     </div>
 }
+

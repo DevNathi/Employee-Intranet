@@ -1,0 +1,54 @@
+﻿@model Emp_Intranet_UI.Models.DisplayModels.HomeDisplayModel
+@Styles.Render("~/Content/Site.css")
+@Scripts.Render("~/Scripts/Modal.js")
+<div id="editModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeUpdateUserModal()">&times;</span>
+        <h2>Update User</h2>
+
+        @using (Html.BeginForm("UpdateUser", "Home", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.Profile.Id)
+            @Html.HiddenFor(model => model.Profile.role)
+            @Html.HiddenFor(model => model.Profile.user)
+
+            <!-- Display validation errors -->
+            @Html.ValidationSummary(true, "ModelOnly", new { @class = "text-danger" })
+
+            <div class="form-group">
+                title:
+                @Html.TextBoxFor(model => model.Profile.profile_title, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Profile.profile_title)
+            </div>
+
+            <div class="form-group">
+                Name:
+                @Html.TextBoxFor(model => model.Profile.profile_name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Profile.profile_name)
+            </div>
+
+            <div class="form-group">
+                Surname:
+                @Html.TextBoxFor(model => model.Profile.profile_surname, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Profile.profile_surname)
+            </div>
+
+            <div class="form-group">
+                Role:
+                @Html.TextBoxFor(model => model.Profile.role_name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Profile.role_name)
+            </div>
+            
+
+            <button type="submit">Update</button>
+        }
+    </div>
+</div>
+
+
+<script>
+    function closeUpdateUserModal() {
+        document.getElementById('editModal').style.display = 'none';
+    }
+</script>

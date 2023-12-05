@@ -52,6 +52,35 @@ namespace Emp_Intranet_Api.DataAccess
             var profile = sql.LoadData<ProfileModel, dynamic>("user.FIndProfileandRoleAfterLogin", new { sp_userID = userID}, "Emp_Intranet-DB").FirstOrDefault();
             return profile;
         }
+        public void UpdateProfile(ProfileModel profile)
+        {
+            SqlDataAccess sql = new SqlDataAccess();
+
+            if (profile is null) return;
+            try
+            {
+                sql.SaveData("user.sp_UpdateProfileandRole",
+                    new
+                    {
+                        userID = profile.user,
+                        newName = profile.profile_name,
+                        newSurname = profile.profile_surname,
+                        newTitle = profile.profile_title,
+                        newRole = profile.role_name,
+                        newRoleId = profile.role,
+                        newUser = profile.user
+                    },
+                   "Emp_Intranet-DB");
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+
+
+        }
+
 
     }
 }

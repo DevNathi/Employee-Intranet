@@ -8,7 +8,6 @@ BEGIN
           ,[leave_reason]
           ,[leave_comment]
           ,[employeeid]
-          ,[permissionid]
           ,[leavetypeid]
       FROM [Emp_Intranet-DB].[leave].[leave]
 END

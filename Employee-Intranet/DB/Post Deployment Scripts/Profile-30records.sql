@@ -10,7 +10,7 @@ Post-Deployment Script Template
 --------------------------------------------------------------------------------------
 */
 
-Use [Emp-Intranet-DB]
+USE [Emp_Intranet-DB]
 GO
 
 INSERT INTO [user].[profile] ([profile_title],[profile_name],[profile_surname],[user], [role])

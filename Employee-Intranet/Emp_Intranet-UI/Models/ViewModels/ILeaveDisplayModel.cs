@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Emp_Intranet_UI.Models
+namespace Emp_Intranet_UI.Models.DisplayModels
 {
     public interface ILeaveDisplayModel
     {

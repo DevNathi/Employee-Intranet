@@ -9,7 +9,7 @@ Post-Deployment Script Template
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
-Use [Emp_Intranet-DB]
+USE [Emp_Intranet-DB]
 GO
 
 INSERT INTO [user].[roles] ([role_name])

@@ -8,6 +8,7 @@ Post-Deployment Script Template
  Example:      :setvar TableName MyTable							
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
+
 */
 --IF EXISTS(SELECT 1 FROM sys.tables WHERE object_id = OBJECT_ID('Employee'))
 --BEGIN;
@@ -26,7 +27,8 @@ Post-Deployment Script Template
 --);
 --GO
 
-
+USE [Emp_Intranet-DB]
+GO
 INSERT INTO [stuff].[employee] (employee_jobtitle,employee_contract,employee_startdate,userid,departmentid)
 VALUES
   ('Developer','Permanent','04-03-2023',1,1),
