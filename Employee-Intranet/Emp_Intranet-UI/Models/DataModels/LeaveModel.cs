@@ -8,7 +8,6 @@ namespace Emp_Intranet_UI.Models
     public class LeaveModel
     {
         public int Id { get; set; }
-
         public DateTime leave_startdate { get; set; }
         public DateTime leave_enddate { get; set; }
         public string leave_reason { get; set; }
@@ -19,6 +18,7 @@ namespace Emp_Intranet_UI.Models
         public string type_name { get; set; }
         public string type_cycle { get; set; }
         public int type_days { get; set; }
+        public List<EmployeeModel> Applicant { get; set; }
     }
     public class TypeModel
     {

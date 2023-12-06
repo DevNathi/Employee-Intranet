@@ -8,6 +8,7 @@ namespace Emp_Intranet_UI.Models.DisplayModels
         List<LeaveModel> leave { get; set; }
         List<TypeModel> LeaveTypes { get; set; }
         UserModel LoggedInAs { get; set; }
+        LeaveModel MyLeaves { get; set; }
         ProfileModel Profile { get; set; }
     }
 }

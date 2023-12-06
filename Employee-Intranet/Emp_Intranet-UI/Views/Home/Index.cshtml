@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Home Page";
     Html.RenderPartial("UpdateUser");
+    Html.RenderPartial("_NewLeave");
 }
 @if (Model != null)
 {
@@ -12,7 +13,6 @@
             <p>Title: </p><span> @Model.Profile.profile_title</span>
             <p>Name: </p><span>@Model.Profile.profile_name @Model.Profile.profile_surname</span>
             <p>Job Title: </p><span> @Model.employee.employee_jobtitle</span>
-            <button type="button" onclick="openEditModal()">Edit</button>
         </div>
         <h2>Work Space</h2>
         <div class="personal-info">
@@ -26,7 +26,8 @@
                 <span>John Doe</span>
                 <span>John Doe</span>
             </div>
-
+            <!--Open Modal - User Profile and Employee Edit-->
+            <button type="button" onclick="openEditModal()">Edit</button>
         </div>
         <h2>Active Leave</h2>
         <div class="active-leave">
@@ -49,14 +50,20 @@
         <div class="leave-cards">
             @foreach (var type in Model.LeaveTypes)
             {
-            <div class="card">
+            <div class="card"> 
                 <h3>@Html.DisplayFor(modelItem => type.type_name) leave</h3>
                 <div class="card-grid">
-                    <span>Entitled</span><span>Taken</span><span>Remaining</span>
-                    <p>@Html.DisplayFor(modelItem => type.type_days)</p><p>8</p><p>7</p>
-                    <span>days</span><span>days</span><span>days</span>
+                    <span>Entitled</span>
+                    <span>Taken</span>
+                    <span>Remaining</span>
+                    <p>@Html.DisplayFor(modelItem => type.type_days)</p>
+                    <p>8</p>
+                    <p>7</p>
+                    <span>days</span>
+                    <span>days</span>
+                    <span>days</span>
                 </div>
-                <button onclick="openEditModal()">+</button>
+                <button type="button" onclick="openCreateModal()">+</button>
 
             </div>
             }

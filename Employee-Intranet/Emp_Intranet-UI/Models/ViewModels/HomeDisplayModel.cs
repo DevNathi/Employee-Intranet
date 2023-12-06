@@ -12,5 +12,6 @@ namespace Emp_Intranet_UI.Models.DisplayModels
         public EmployeeModel employee { get; set; }
         public List<LeaveModel> leave { get; set; }
         public List<TypeModel> LeaveTypes { get; set; }
+        public LeaveModel MyLeaves { get; set; }
     }
 }

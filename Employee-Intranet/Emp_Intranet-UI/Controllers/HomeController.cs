@@ -100,6 +100,11 @@ namespace Emp_Intranet_UI.Controllers
             // If ModelState is not valid, return to the update form with errors
             return PartialView("UpdateUser", updateUserModel);
         }
+        [HttpPost]
+        public ActionResult NewLeave(HomeDisplayModel newLeaveModel)
+        {
+            return PartialView("_NewLeave",newLeaveModel);
+        }
 
     }
 }

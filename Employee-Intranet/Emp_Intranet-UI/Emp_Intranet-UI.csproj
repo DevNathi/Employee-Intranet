@@ -195,7 +195,6 @@
     </Compile>
     <Compile Include="Models\ViewModels\HomeDisplayModel.cs" />
     <Compile Include="Models\ViewModels\IHomeDisplayModel.cs" />
-    <Compile Include="Models\ViewModels\ILeaveDisplayModel.cs" />
     <Compile Include="Models\ViewModels\IUpdateUserInfoModel.cs" />
     <Compile Include="Models\ViewModels\LeaveDisplayModel.cs" />
     <Compile Include="Models\DataModels\LeaveModel.cs" />
@@ -242,6 +241,8 @@
     <Content Include="Views\Shared\_LayoutAuth.cshtml" />
     <Content Include="Views\Auth\Login.cshtml" />
     <Content Include="Views\Home\UpdateUser.cshtml" />
+    <Content Include="Views\Home\_NewLeave.cshtml" />
+    <Content Include="Views\Home\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Emp_Intranet-Api\Emp_Intranet-Api.csproj">

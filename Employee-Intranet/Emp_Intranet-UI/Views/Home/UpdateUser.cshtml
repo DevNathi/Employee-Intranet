@@ -3,7 +3,7 @@
 @Scripts.Render("~/Scripts/Modal.js")
 <div id="editModal" class="modal">
     <div class="modal-content">
-        <span class="close" onclick="closeUpdateUserModal()">&times;</span>
+        <span class="close" onclick="closeEditModal()">&times;</span>
         <h2>Update User</h2>
 
         @using (Html.BeginForm("UpdateUser", "Home", FormMethod.Post))
@@ -87,8 +87,3 @@
 </div>
 
 
-<script>
-    function closeUpdateUserModal() {
-        document.getElementById('editModal').style.display = 'none';
-    }
-</script>

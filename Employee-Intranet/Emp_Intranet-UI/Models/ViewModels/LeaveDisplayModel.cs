@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Emp_Intranet_UI.Models.DisplayModels
 {
-    public class LeaveDisplayModel : ILeaveDisplayModel
+    public class LeaveDisplayModel 
     {
         public HomeDisplayModel user { get; set; }
         public List<LeaveModel> Myleaves { get; set; }
