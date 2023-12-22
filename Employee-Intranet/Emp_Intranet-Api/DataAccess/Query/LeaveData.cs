@@ -33,5 +33,28 @@ namespace Emp_Intranet_Api.DataAccess
             var output = _sql.LoadData<TypeModel, dynamic>("leave.sp_FindAllLeaveTypes", new { }, "Emp_Intranet-DB");
             return output;
         }
+        public void AddLeaveForUser(LeaveModel NewLeave)
+        {
+            try
+            {
+                _sql.SaveData("leave.sp_CreateNewLeaveForEmployee",
+                    new
+                    {
+                        leave_startdate = NewLeave.leave_startdate,
+                        leave_enddate = NewLeave.leave_enddate,
+                        leave_reason = NewLeave.leave_reason,
+                        leave_comment = NewLeave.leave_comment,
+                        employeeid = NewLeave.employeeID,
+                        leavetypeid = NewLeave.leavetypeid
+                    },
+                    "Emp_Intranet-DB");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+           
+        }
     }
 }

@@ -63,5 +63,22 @@ namespace Emp_Intranet_UI.API
                 }
             }
         }
+        public async Task<bool> CreateNewLeave(LeaveModel newLeave)
+        {
+            using (HttpResponseMessage responseMessage = await _apiHelper.ApiClient.PostAsJsonAsync<LeaveModel>($"api/NewLeave", newLeave))
+            {
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                    throw new Exception(responseMessage.ReasonPhrase);
+                }
+
+               
+            }
+        }
     }
 }

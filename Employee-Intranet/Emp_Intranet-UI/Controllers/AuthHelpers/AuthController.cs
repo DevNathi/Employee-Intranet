@@ -29,7 +29,11 @@ namespace Emp_Intranet_UI.Controllers.AuthHelpers
             return RedirectToAction("Index", "Home");
 
         }
-
+        /// <summary>
+        /// we post the Log in model to the API to log in the user. 
+        /// </summary>
+        /// <param name="loginModel"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult> Login(loginModel loginModel)
         {
@@ -49,7 +53,10 @@ namespace Emp_Intranet_UI.Controllers.AuthHelpers
             ModelState.AddModelError(string.Empty, "Invalid login attempt");
             return View(loginModel);
         }
-
+        /// <summary>
+        /// Log out function - we clear the Session and the Forms authentication
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Logout()
         {
             Session["LoggedInUser"] = null;
@@ -57,12 +64,11 @@ namespace Emp_Intranet_UI.Controllers.AuthHelpers
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
-
+        //User/Account validation before sign in 
         private bool IsValidUser(loginModel loginModel)
         {
-            // Your custom logic to validate the user
-            // Example: Check credentials against a database
-            // Return true if the user is valid, false otherwise
+          
+
             if (ModelState.IsValid)
             {
                 

@@ -59,5 +59,20 @@ namespace Emp_Intranet_Api.Controllers
             }
             return Ok(output);
         }
+        [HttpPost]
+        [Route("api/NewLeave")]
+        public void CreateNewLeave([FromBody] LeaveModel NewLeave)
+        {
+            try
+            {
+               _leaveData.AddLeaveForUser(NewLeave);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

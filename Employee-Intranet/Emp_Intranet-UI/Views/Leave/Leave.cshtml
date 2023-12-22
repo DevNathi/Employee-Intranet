@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Emp_Intranet_UI.Models.DisplayModels.LeaveDisplayModel
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -7,23 +8,24 @@
     <h2>My profile</h2>
     <img src="#" alt="profile-picture">
     <div class="personal-info">
-        <p>Title: </p><span> Ms</span>
-        <p>Name: </p><span> Jane Doe</span>
-        <p>Job Title: </p><span> Digital Analyst</span>
+        <p>Title: </p><span> @Model.Profile.profile_title</span>
+        <p>Name: </p><span>@Model.Profile.profile_name @Model.Profile.profile_surname</span>
+        <p>Job Title: </p><span> @Model.employee.employee_jobtitle</span>
     </div>
     <h2>Work Space</h2>
     <div class="personal-info">
-        <p>Start Date: </p><span>2022/01/20</span>
-        <p>Employment Type: </p><span>Permanent</span>
-        <p>Department: </p><span>Marketing</span>
-        <p>Location: </p><span>Sandton</span>
-        <p>Reports To: </p><span>John Doe</span>
-        <p>Team</p>
+        <p>Start Date: </p><span>@Model.employee.employee_startdate</span>
+        <p>Employment Type: </p><span>@Model.employee.employee_contract</span>
+        <p>Department: </p><span>@Model.employee.department_name</span>
+        <p>Location: </p><span>@Model.employee.department_location</span>
+        <p>Reports To: </p><span>@Model.employee.department_manager</span>
+        <p>Same Department As:</p>
         <div class="list">
             <span>John Doe</span>
             <span>John Doe</span>
         </div>
-
+        <!--Open Modal - User Profile and Employee Edit-->
+        <button type="button" onclick="openEditModal()">Edit</button>
     </div>
     <h2>Active Leave</h2>
     <div class="active-leave">

@@ -188,8 +188,6 @@
     <Compile Include="Controllers\AuthHelpers\AuthController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LeaveHelpers\LeaveController.cs" />
-    <Compile Include="Controllers\LeaveHelpers\ILeaveLoader.cs" />
-    <Compile Include="Controllers\LeaveHelpers\LeaveLoader.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

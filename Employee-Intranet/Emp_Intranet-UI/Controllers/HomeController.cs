@@ -1,6 +1,4 @@
 ﻿using Emp_Intranet_UI.API;
-using Emp_Intranet_UI.Controllers.AuthHelpers;
-using Emp_Intranet_UI.Controllers.LeaveHelpers;
 using Emp_Intranet_UI.Models;
 using Emp_Intranet_UI.Models.DisplayModels;
 using System;
@@ -32,7 +30,6 @@ namespace Emp_Intranet_UI.Controllers
             _UserDisplayModel = UserDisplayModel;
             _updateUserInfoModel = updateUserInfoModel;
 
-            
         }
       
         public async Task<ActionResult> Index()
@@ -62,6 +59,8 @@ namespace Emp_Intranet_UI.Controllers
             ModelState.AddModelError(string.Empty, "You are not logged in!");
             return View(loggedInUser); 
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult TakeLeave(int id)
         {
             return View();
@@ -84,8 +83,8 @@ namespace Emp_Intranet_UI.Controllers
             return View();
            
         }
-
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> UpdateUser(HomeDisplayModel updateUserModel)
         {
             if (ModelState.IsValid)
@@ -100,10 +99,35 @@ namespace Emp_Intranet_UI.Controllers
             // If ModelState is not valid, return to the update form with errors
             return PartialView("UpdateUser", updateUserModel);
         }
-        [HttpPost]
-        public ActionResult NewLeave(HomeDisplayModel newLeaveModel)
+        [HttpGet]
+        public async Task<ActionResult> _NewLeave()
         {
-            return PartialView("_NewLeave",newLeaveModel);
+            var loggedInUser = Session["LoggedInUser"] as UserModel;
+            if (loggedInUser != null && loggedInUser.Id > 0)
+            {
+                // Fetch user and profile data based on the logged in userId
+                var myprofile = await _user.GetProfileByUser(loggedInUser.Id);
+                var myemployee = await _stuff.GetEmployeeByUserId(loggedInUser.Id);
+                //// populate the Display Model for the Partial View
+                _UserDisplayModel.Profile = myprofile;
+                _UserDisplayModel.employee = myemployee;
+                return RedirectToAction("Index", "Home", _updateUserInfoModel);
+            }
+
+            return View();
+
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> _NewLeave(HomeDisplayModel newLeave)
+        {
+            if (ModelState.IsValid)
+            {
+                await _leave.CreateNewLeave(newLeave.MyLeaves);
+                return RedirectToAction("Index");
+            }
+            ModelState.AddModelError(string.Empty, "The information you have provided is not correct!");
+            return PartialView("_NewLeave", newLeave);
         }
 
     }
