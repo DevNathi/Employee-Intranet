@@ -45,7 +45,6 @@ namespace Emp_Intranet_UI.Controllers
                     _LeaveDisplay.employee = employee;
                     
 
-
                     return View(_LeaveDisplay);
                 }
             }

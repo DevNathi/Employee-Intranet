@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Home Page";
     Html.RenderPartial("UpdateUser");
-    Html.RenderPartial("_NewLeave");
+    Html.RenderPartial("_NewLeave", Model);
 }
 @if (Model != null)
 {

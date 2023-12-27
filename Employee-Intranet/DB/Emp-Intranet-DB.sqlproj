@@ -71,14 +71,10 @@
     <Build Include="Schemas\stuff.sql" />
     <Build Include="Tables\user.user.sql" />
     <Build Include="Tables\user.profile.sql" />
-    <Build Include="Tables\user.roles.sql" />
     <Build Include="Tables\stuff.employee.sql" />
-    <Build Include="Tables\stuff.management.sql" />
-    <Build Include="Tables\stuff.department.sql" />
-    <Build Include="Tables\leave.leave.sql" />
-    <Build Include="Tables\leave.approval.sql" />
-    <Build Include="Tables\leave.approver.sql" />
-    <Build Include="Tables\leave.type.sql" />
+    <Build Include="Tables\stuff.manager.sql" />
+    <Build Include="Tables\leave.leave_requests.sql" />
+    <Build Include="Tables\leave.leave_approvals.sql" />
     <Build Include="Stored Procedures\SP_Leave\leave.sp_FIndLeavebyUserId.sql" />
     <Build Include="Stored Procedures\SP_Leave\leave.sp_FindLeaves.sql" />
     <Build Include="Stored Procedures\SP_User\user.sp_FindUser.sql" />
