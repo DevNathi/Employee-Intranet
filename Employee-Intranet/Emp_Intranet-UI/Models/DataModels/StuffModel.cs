@@ -22,11 +22,18 @@ namespace Emp_Intranet_UI.Models
         public int userid { get; set; }
     }
 
-    public class ManagementModel
+    public class MyManagerModel
     {
         public int Id { get; set; }
-        public string management_level { get; set; }
-        public int employeeid { get; set; }
+        public string manager_jobtitle { get; set; }
+        public string manager_department { get; set; }
+        public string manager_contract { get; set; }
+        public DateTime manager_startdate { get; set; }
+        public int userid { get; set; }
+        public string profile_title { get; set; }
+        public string profile_name { get; set; }
+        public string profile_surname { get; set; }
+        public int user { get; set; }
     }
 
 }

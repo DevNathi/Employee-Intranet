@@ -19,7 +19,6 @@ namespace Emp_Intranet_UI.Controllers
         LeaveEndPoint _leave;
         IHomeDisplayModel _UserDisplayModel;
         IUpdateUserInfoModel _updateUserInfoModel;
-        int Id = 1;
 
         public HomeController(UserEndPoint user, StuffEndPoint stuff, IHomeDisplayModel UserDisplayModel, LeaveEndPoint leave, IUpdateUserInfoModel updateUserInfoModel)
         {
@@ -42,6 +41,7 @@ namespace Emp_Intranet_UI.Controllers
 
                 var profile = await _user.GetProfileByUser(loggedInUser.Id);
                 var employee = await _stuff.GetEmployeeByUserId(loggedInUser.Id);
+                var MyManager = await _stuff.GetMyManagerByDepartment(employee.employee_department);
 
                 if (profile != null && employee != null)
                 {
@@ -53,6 +53,7 @@ namespace Emp_Intranet_UI.Controllers
                     ViewData.Add(new KeyValuePair<string, object>("e_contract", employee.employee_contract));
                     ViewData.Add(new KeyValuePair<string, object>("e_startdate", employee.employee_startdate));
                     ViewData.Add(new KeyValuePair<string, object>("e_department", employee.employee_department));
+                    ViewData.Add(new KeyValuePair<string, object>("e_manager",MyManager.profile_name  +  MyManager.profile_surname));
 
                    
                     //_UserDisplayModel.Profile = profile;

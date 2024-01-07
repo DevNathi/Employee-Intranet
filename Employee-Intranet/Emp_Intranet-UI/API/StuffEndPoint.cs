@@ -36,6 +36,26 @@ namespace Emp_Intranet_UI.API
                 return new EmployeeModel();
             }
         }
+        public async Task<MyManagerModel> GetMyManagerByDepartment(string department)
+        {
+            using (HttpResponseMessage http = await _apiHelper.ApiClient.GetAsync($"api/MyManager/{department}"))
+            {
+                try
+                {
+                    if (http.IsSuccessStatusCode)
+                    {
+                        var myManager = await http.Content.ReadAsAsync<MyManagerModel>();
+                        return myManager;
+                    }
+                }
+                catch (Exception)
+                {
+
+                    throw new Exception(http.ReasonPhrase);
+                }
+                return new MyManagerModel();
+            }
+        }
         public async Task<EmployeeModel> UpdateEmployeeByUser(EmployeeModel employeeModel)
         {
             using (HttpResponseMessage http = await _apiHelper.ApiClient.PutAsJsonAsync($"api/Employee/", employeeModel))
