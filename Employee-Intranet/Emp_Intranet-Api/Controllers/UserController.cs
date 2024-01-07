@@ -63,9 +63,17 @@ namespace Emp_Intranet_Api.Controllers
         // POST: api/User
         [HttpPost]
         [Route("api/Profile/")]
-        public void Post([FromBody]string value)
+        public void Post([FromBody]ProfileModel profilee)
         {
+            try
+            {
+                //
+            }
+            catch (Exception ex)
+            {
 
+                throw new Exception(ex.Message);
+            }
         }
         /// <summary>
         /// 

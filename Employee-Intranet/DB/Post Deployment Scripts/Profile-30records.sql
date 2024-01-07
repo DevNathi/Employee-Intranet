@@ -13,40 +13,40 @@ Post-Deployment Script Template
 USE [Emp_Intranet-DB]
 GO
 
-INSERT INTO [user].[profile] ([profile_title],[profile_name],[profile_surname],[user], [role])
+INSERT INTO [user].[profile] ([profile_title],[profile_name],[profile_surname],[user])
 VALUES
-    ('Ms.','Luke','Silva',1,2),
-  ('Dr.','Kaseem','Carr',2,2),
-  ('Mr.','Ursula','Crosby',3,2),
-  ('Dr.','Idona','Buchanan',4,2),
-  ('Mrs.','Jordan','Hurst',5,3),
-  ('Dr.','Illana','Floyd',6,2),
-  ('Ms.','Fiona','Yates',7,1),
-  ('Dr.','Ifeoma','Chandler',8,2),
-  ('Dr.','James','Sexton',9,2),
-  ('Ms.','Aretha','Bartlett',10,2);
-INSERT INTO [user].[profile] ([profile_title],[profile_name],[profile_surname],[user], [role])
+  ('Mr','Lee','Patel',1),
+  ('Mr','Lillith','Nunez',2),
+  ('Mrs','Ivana','Lang',3),
+  ('Mrs','Kyla','Compton',4),
+  ('Miss','Hall','Bond',5),
+  ('Miss','Octavius','Frye',6),
+  ('Dr','Mannix','Cardenas',7),
+  ('Dr','Leandra','Dyer',8),
+  ('Mr','Jakeem','Kent',9),
+  ('Mr','Arthur','Richmond',10);
+INSERT INTO [user].[profile] ([profile_title],[profile_name],[profile_surname],[user])
 VALUES
-  ('Dr.','Tamara','Hutchinson',11,2),
-  ('Mr.','Hope','Wiley',12,3),
-  ('Dr.','Kylynn','Strong',13,3),
-  ('Dr.','Walter','Maldonado',14,1),
-  ('Ms.','Nelle','Alston',15,2),
-  ('Ms.','Aline','Mitchell',16,1),
-  ('Mrs.','Lara','Britt',17,3),
-  ('Mr.','Francis','Slater',18,3),
-  ('Dr.','Inga','Newman',19,2),
-  ('Dr.','Paloma','Carson',20,2);
-INSERT INTO [user].[profile] ([profile_title],[profile_name],[profile_surname],[user], [role])
+  ('Mrs','Brody','Holmes',11),
+  ('Mrs','Byron','Clark',12),
+  ('Miss','Nell','Sears',13),
+  ('Miss','Bernard','Barnes',14),
+  ('Dr','Merritt','Stuart',15),
+  ('Dr','Hamish','Mcleod',16),
+  ('Mr','Madonna','Estrada',17),
+  ('Mr','Ann','Higgins',18),
+  ('Mrs','Dai','Boyer',19),
+  ('Mrs','Herman','Melendez',20);
+INSERT INTO [user].[profile] ([profile_title],[profile_name],[profile_surname],[user])
 VALUES
-  ('Ms.','Kristen','Cole',21,2),
-  ('Mrs.','Dean','Pugh',22,2),
-  ('Mr.','Denton','Pitts',23,1),
-  ('Ms.','May','Butler',24,2),
-  ('Ms.','Linda','Clay',25,2),
-  ('Mr.','Hyatt','Hurst',26,2),
-  ('Mr.','Chantale','Watkins',27,2),
-  ('Dr.','Yolanda','Bowers',28,1),
-  ('Dr.','Kennedy','Keller',29,3),
-  ('Dr.','Cally','Paul',30,1);
+  ('Miss','Clayton','Maldonado',21),
+  ('Miss','Autumn','Nolan',22),
+  ('Dr','Silas','Durham',23),
+  ('Dr','Latifah','Haley',24),
+  ('Mr','Brady','Ballard',25),
+  ('Mr','Sylvester','Bolton',26),
+  ('Mrs','Peter','Phillips',27),
+  ('Mrs','Nissim','Madden',28),
+  ('Miss','Burton','Pruitt',29),
+  ('Miss','Veda','Osborn',30);
 GO

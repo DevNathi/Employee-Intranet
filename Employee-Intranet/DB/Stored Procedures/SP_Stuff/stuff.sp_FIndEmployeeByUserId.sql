@@ -5,7 +5,6 @@ IF EXISTS (SELECT 1 FROM [stuff].[employee] WHERE(userid = @userId))
 BEGIN
    SELECT TOP 1 *
    FROM [stuff].[employee] E
-   LEFT JOIN [stuff].[department] D ON E.departmentid = D.Id
    WHERE E.userid = @userId;
 
 END

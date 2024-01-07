@@ -39,21 +39,25 @@ namespace Emp_Intranet_UI.Controllers
             var loggedInUser = Session["LoggedInUser"] as UserModel;
             if (loggedInUser != null && loggedInUser.Id > 0)
             {
+
                 var profile = await _user.GetProfileByUser(loggedInUser.Id);
                 var employee = await _stuff.GetEmployeeByUserId(loggedInUser.Id);
-                var leaveType = await _leave.GetAllLeaveType();
-                var leaves = await _leave.GetLeavesByUserId(loggedInUser.Id);
 
                 if (profile != null && employee != null)
                 {
-                    //populate the Display Model for the View
-                    _UserDisplayModel.Profile = profile;
-                    _UserDisplayModel.employee = employee;
-                    _UserDisplayModel.LeaveTypes = leaveType;
-                    _UserDisplayModel.leave = leaves;
+                    //populate the  View Data For View
+                    ViewData.Add(new KeyValuePair<string, object>("p_name", profile.profile_name));
+                    ViewData.Add(new KeyValuePair<string, object>("p_surname", profile.profile_surname));
+                    ViewData.Add(new KeyValuePair<string, object>("p_title", profile.profile_title));
+                    ViewData.Add(new KeyValuePair<string, object>("e_jobtitle", employee.employee_jobtitle));
+                    ViewData.Add(new KeyValuePair<string, object>("e_contract", employee.employee_contract));
+                    ViewData.Add(new KeyValuePair<string, object>("e_startdate", employee.employee_startdate));
+                    ViewData.Add(new KeyValuePair<string, object>("e_department", employee.employee_department));
 
-
-                    return View(_UserDisplayModel);
+                   
+                    //_UserDisplayModel.Profile = profile;
+                    //_UserDisplayModel.employee = employee;
+                    return View();
                 }
             }
             ModelState.AddModelError(string.Empty, "You are not logged in!");

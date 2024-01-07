@@ -32,39 +32,23 @@ namespace Emp_Intranet_Api.Controllers
             }
             return NotFound();
         }
+        [HttpGet]
+        [Route("api/MyManager/{department}")]
+        public IHttpActionResult GetMyManagerByDepartment(string department)
+        {
+            StuffData _stuffData = new StuffData();
+            var output = _stuffData.GetMyManangerByDepartment(department);
+            if (output != null)
+            {
+                return Ok(output);
+            }
+            return NotFound();
+        }
         /// <summary>
         /// This endpoint gets the Department 
         /// </summary>
         /// <param name="depId"></param>
         /// <returns></returns>
-       [HttpGet]
-       [Route("api/department")]
-        public IHttpActionResult GetDepartmentById(int depId)
-        {
-
-            StuffData _stuffData = new StuffData();
-
-            var department = _stuffData.GetDepartmentById(depId);
-            if (department != null)
-            {
-                return Ok(department);
-            }
-            return NotFound();
-        }
-        [HttpGet]
-        [Route("api/permissions")]
-        public IHttpActionResult GetPermissionsById(int pemId)
-        {
-            StuffData _stuffData = new StuffData();
-
-            var permissions = _stuffData.GetPermissionsById(pemId);
-            if (permissions != null && permissions.Count >= 0)
-            {
-                return Ok(permissions);
-            }
-            return NotFound();
-        }
-
         // PUT: api/User/5
         [HttpPut]
         [Route("api/Employee/")]

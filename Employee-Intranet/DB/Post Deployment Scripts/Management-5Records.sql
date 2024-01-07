@@ -11,9 +11,11 @@ Post-Deployment Script Template
 */
 USE [Emp_Intranet-DB]
 GO
-INSERT INTO [Employee] (management_level,employeeid)
+INSERT INTO [stuff].[manager] ([manager_startdate],[manager_contract],[manager_jobtitle],[manager_department],[userid])
 VALUES
-  ('Manager',1),
-  ('Supervisor',2),
-  ('Executive',3);
+  ('Jan 22, 2020','Permanent','Marketing Manager','Marketing',10),
+  ('Sep 19, 2019','Contract','IT Manager','IT',9),
+  ('Apr 24, 2021','Fixed-Term','HR Manager','HR',8),
+  ('Feb 16, 2020','Permanent','Sales Manager','Sales',7),
+  ('Sep 6, 2020','Contract','Logistics Manager','Logistics',6);
 

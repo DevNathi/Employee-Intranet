@@ -37,20 +37,27 @@ namespace Emp_Intranet_UI.Controllers.AuthHelpers
         [HttpPost]
         public async Task<ActionResult> Login(loginModel loginModel)
         {
-            if (IsValidUser(loginModel))
+            if (IsValidCredentials(loginModel))
             {
                 var authenticatedUser = await _user.Login(loginModel);
-                if (authenticatedUser != null && authenticatedUser.Id > 0)
+                if (authenticatedUser.Id > 0)
                 {
                     // We store the Login Model to a Session data 
                     Session["LoggedInUser"] = authenticatedUser;
                     FormsAuthentication.SetAuthCookie(Convert.ToString(authenticatedUser.Id), createPersistentCookie: false);
                     return RedirectToAction("Index", "Home");
                 }
-                
+                ModelState.AddModelError(string.Empty, "User not found or password incorrect");
+
+            }
+            else
+            {
+                // Display error message on the login page
+                ViewBag.ErrorMessage = "Invalid username or password";
+                return View("Login");
             }
 
-            ModelState.AddModelError(string.Empty, "Invalid login attempt");
+            ModelState.AddModelError(string.Empty, "ERROR - Invalid login attempt");
             return View(loginModel);
         }
         /// <summary>
@@ -65,16 +72,18 @@ namespace Emp_Intranet_UI.Controllers.AuthHelpers
             return RedirectToAction("Index", "Home");
         }
         //User/Account validation before sign in 
-        private bool IsValidUser(loginModel loginModel)
+        private bool IsValidCredentials(loginModel loginModel)
         {
-          
-
             if (ModelState.IsValid)
-            {
-                
+            { 
                 return true;
+            } 
+            if (string.IsNullOrEmpty(loginModel.user_email) || string.IsNullOrEmpty(loginModel.user_password))
+            {
+                ModelState.AddModelError(string.Empty, "Email or Password is missing");
+                return false;
             }
-            ModelState.AddModelError(string.Empty, "Invalid Username or password");
+            ModelState.AddModelError(string.Empty, "Unknown Error, Please try again");
             return false;
         }
     }

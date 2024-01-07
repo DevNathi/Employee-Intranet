@@ -42,4 +42,39 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="managerid" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="26070ad5-0621-420c-8ecd-34502253d4b4" ChangeDateTime="01/04/2024 16:44:25">
+    <Property Name="ElementName" Value="[stuff].[manager].[department]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[stuff].[manager]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="title" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="60a43410-a0a8-46c9-a79d-bd19c243f3c5" ChangeDateTime="01/04/2024 16:44:48">
+    <Property Name="ElementName" Value="[stuff].[manager].[title]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[stuff].[manager]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="manager_title" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="34169d65-03c7-4967-9172-3904d94d369f" ChangeDateTime="01/04/2024 16:44:52">
+    <Property Name="ElementName" Value="[stuff].[manager].[name]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[stuff].[manager]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="manager_name" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9969e77f-c3fb-4c25-9e02-e17439fdcb69" ChangeDateTime="01/04/2024 16:45:00">
+    <Property Name="ElementName" Value="[stuff].[manager].[surn]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[stuff].[manager]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="manager_surn" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="fc06e1de-2910-4641-9664-46c51fcba04b" ChangeDateTime="01/04/2024 16:46:56">
+    <Property Name="ElementName" Value="[stuff].[manager].[manager_surn]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[stuff].[manager]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="manager_surname" />
+  </Operation>
 </Operations>

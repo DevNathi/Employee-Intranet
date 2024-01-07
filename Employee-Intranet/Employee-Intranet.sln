@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emp_Intranet-UI", "Emp_Intr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emp_Intranet-Api", "Emp_Intranet-Api\Emp_Intranet-Api.csproj", "{BE1D94E9-651A-41B3-803B-7E4FE0E15F8B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emp-Intranet-Manager-UI", "Emp-Intranet-Manager-UI\Emp-Intranet-Manager-UI.csproj", "{60BD9377-4337-4825-AD6A-DAAD84AF0889}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{BE1D94E9-651A-41B3-803B-7E4FE0E15F8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE1D94E9-651A-41B3-803B-7E4FE0E15F8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE1D94E9-651A-41B3-803B-7E4FE0E15F8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60BD9377-4337-4825-AD6A-DAAD84AF0889}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60BD9377-4337-4825-AD6A-DAAD84AF0889}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60BD9377-4337-4825-AD6A-DAAD84AF0889}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60BD9377-4337-4825-AD6A-DAAD84AF0889}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

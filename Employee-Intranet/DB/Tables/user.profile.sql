@@ -5,6 +5,7 @@
     [profile_name] NVARCHAR(50) NOT NULL, 
     [profile_surname] NVARCHAR(50) NOT NULL, 
     [user] INT NOT NULL, 
-    CONSTRAINT [FK_profile_Touser] FOREIGN KEY ([user]) REFERENCES [user].[user]([id])
+    CONSTRAINT [FK_profile_Touser] FOREIGN KEY ([user]) REFERENCES [user].[user]([id]), 
+
    
 )

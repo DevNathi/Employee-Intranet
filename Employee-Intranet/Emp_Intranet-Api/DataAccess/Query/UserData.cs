@@ -31,6 +31,7 @@ namespace Emp_Intranet_Api.DataAccess
             {
                 if (loggedInUser!=null)
                 {
+                    loggedInUser.email = login.user_email;
                     return loggedInUser;
                 }
             }
@@ -49,7 +50,7 @@ namespace Emp_Intranet_Api.DataAccess
         public ProfileModel GetProfile(int userID)
         {
             SqlDataAccess sql = new SqlDataAccess();
-            var profile = sql.LoadData<ProfileModel, dynamic>("user.FIndProfileandRoleAfterLogin", new { sp_userID = userID}, "Emp_Intranet-DB").FirstOrDefault();
+            var profile = sql.LoadData<ProfileModel, dynamic>("user.FIndProfileAfterLogin", new { sp_userID = userID}, "Emp_Intranet-DB").FirstOrDefault();
             return profile;
         }
         public void UpdateProfile(ProfileModel profile)
@@ -66,9 +67,7 @@ namespace Emp_Intranet_Api.DataAccess
                         newName = profile.profile_name,
                         newSurname = profile.profile_surname,
                         newTitle = profile.profile_title,
-                        newRole = profile.role_name,
-                        newRoleId = profile.role,
-                        newUser = profile.user
+                        
                     },
                    "Emp_Intranet-DB");
             }

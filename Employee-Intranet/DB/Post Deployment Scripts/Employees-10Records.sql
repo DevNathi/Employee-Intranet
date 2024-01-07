@@ -29,15 +29,15 @@ Post-Deployment Script Template
 
 USE [Emp_Intranet-DB]
 GO
-INSERT INTO [stuff].[employee] (employee_jobtitle,employee_contract,employee_startdate,userid,departmentid)
+INSERT INTO [stuff].[employee] ([employee_startdate],[employee_contract],[employee_jobtitle],[employee_department],[userid])
 VALUES
-  ('Developer','Permanent','04-03-2023',1,1),
-  ('Analyst','Contract','04-03-2023',2,2),
-  ('Driver','Permanent','04-03-2023',3,3),
-  ('Security','Contract','04-03-2023',4,4),
-  ('Cleaner','Permanent','04-03-2023',5,1),
-  ('Developer','Contract','04-03-2023',6,2),
-  ('Analyst','Permanent','04-03-2023',7,3),
-  ('Driver','Contract','04-03-2023',8,4),
-  ('Security','Permanent','04-03-2023',9,3),
-  ('Cleaner','Contract','04-03-2023',10,1);
+  ('Jan 22, 2020','Permanent','IT Technician','Marketing',1),
+  ('Oct 11, 2019','Permanent','Business Analyst','Marketing',2),
+  ('Mar 17, 2021','Contract','Cleaner','IT',3),
+  ('Sep 19, 2019','Contract','Intern','IT',4),
+  ('Jun 9, 2019','Fixed-Term','Driver','HR',5),
+  ('Apr 24, 2021','Fixed-Term','Hr Payroll','HR',6),
+  ('Feb 16, 2020','Permanent','IT Technician','Sales',7),
+  ('Jan 14, 2019','Permanent','Business Analyst','Sales',8),
+  ('May 3, 2019','Contract','Cleaner','Logistics',9),
+  ('Sep 6, 2020','Contract','Intern','Logistics',10);

@@ -78,15 +78,12 @@
     <Build Include="Stored Procedures\SP_Leave\leave.sp_FIndLeavebyUserId.sql" />
     <Build Include="Stored Procedures\SP_Leave\leave.sp_FindLeaves.sql" />
     <Build Include="Stored Procedures\SP_User\user.sp_FindUser.sql" />
-    <Build Include="Stored Procedures\SP_User\user.sp_FindProfileByUserID.sql" />
-    <Build Include="Stored Procedures\SP_Stuff\stuff.sp_Find DepartmentById.sql" />
     <Build Include="Stored Procedures\SP_Stuff\stuff.sp_FIndEmployeeByUserId.sql" />
-    <Build Include="Stored Procedures\SP_Stuff\stuff.sp_FindPermissionsByUserId.sql" />
-    <Build Include="Stored Procedures\SP_User\user.FIndProfileandRoleAfterLogin.sql" />
-    <Build Include="Stored Procedures\SP_Leave\leave.sp_FindAllLeaveTypes.sql" />
+    <Build Include="Stored Procedures\SP_User\user.FindProfileAfterLogin.sql" />
     <Build Include="Stored Procedures\SP_User\user.sp_UpdateProfileandRole.sql" />
     <Build Include="Stored Procedures\SP_Stuff\stuff.sp_UpdateEmployee.sql" />
     <Build Include="Stored Procedures\SP_Leave\leave.sp_CreateNewLeaveForEmployee.sql" />
+    <Build Include="Stored Procedures\SP_Stuff\stuff.sp_FindMyManangerByDepartment.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DB.publish.xml" />

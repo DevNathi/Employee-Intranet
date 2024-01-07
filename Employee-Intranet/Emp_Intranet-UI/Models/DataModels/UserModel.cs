@@ -35,8 +35,6 @@ namespace Emp_Intranet_UI.Models
         public string profile_name { get; set; }
         public string profile_surname { get; set; }
         public int user { get; set; }
-        public int role { get; set; }
-        public string role_name { get; set; }
 
     }
 }

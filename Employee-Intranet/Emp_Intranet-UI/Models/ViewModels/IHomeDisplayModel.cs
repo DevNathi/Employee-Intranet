@@ -6,7 +6,7 @@ namespace Emp_Intranet_UI.Models.DisplayModels
     {
         EmployeeModel employee { get; set; }
         List<LeaveModel> leave { get; set; }
-        List<TypeModel> LeaveTypes { get; set; }
+        List<LeaveTypes> LeaveTypes { get; set; }
         UserModel LoggedInAs { get; set; }
         LeaveModel MyLeaves { get; set; }
         ProfileModel Profile { get; set; }

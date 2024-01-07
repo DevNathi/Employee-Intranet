@@ -18,13 +18,13 @@
                 <!-- Display validation errors -->
                 @Html.ValidationSummary(true, "All", new { @class = "text-danger" })
                 <!-- New Leave Information -->
-                <div class="form-group">
+                @*<div class="form-group">
                    Choose your Leave: 
                     <div class="col-md-10">
-                        @Html.DropDownListFor(model => model.MyLeaves.type_name, new SelectList(Model.LeaveTypes, "type_name", "type_name"), "-- Select Status --", new { @class = "form-control" })
+                         @Html.DropDownListFor(model => model.MyLeaves, new SelectList(Model.LeaveTypes,"Leave","Leave","--Select Leave--"), new { @class = "form-control", type = "DropdownList" })
                         @Html.ValidationMessageFor(model => model.MyLeaves.type_name, "", new { @class = "text-danger" })
                     </div>
-                </div>
+                </div>*@
                 <div class="form-group">
                     From: 
                     <div class="col-md-10">

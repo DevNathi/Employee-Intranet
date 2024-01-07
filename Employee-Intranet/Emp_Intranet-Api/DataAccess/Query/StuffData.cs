@@ -16,17 +16,18 @@ namespace Emp_Intranet_Api.DataAccess.Query
             var employee = _sql.LoadData<EmployeeModel, dynamic>("stuff.sp_FIndEmployeeByUserId", new { userId = userID }, "Emp_Intranet-DB").FirstOrDefault();
             return employee;
         }
-        public List<DepartmentModel> GetDepartmentById(int depID)
+        public MyManagerModel GetMyManangerByDepartment(string manager_Department)
         {
+            try
+            {
+                var myMananger = _sql.LoadData<MyManagerModel, dynamic>("stuff.sp_FindMyManangerByDepartment", new { department = manager_Department }, "Emp_Intranet-DB").FirstOrDefault();
+                return myMananger;
+            }
+            catch (Exception)
+            {
 
-            var department = _sql.LoadData<DepartmentModel, dynamic>("stuff.sp_Find DepartmentById", new { Id = depID }, "Emp_Intranet-DB");
-            return department;
-        }
-        public List<PermissionsModel> GetPermissionsById(int pemID)
-        {
-
-            var permissions = _sql.LoadData<PermissionsModel, dynamic>("stuff.sp_FindPermissionsByUserId", new { userId = pemID }, "Emp_Intranet-DB");
-            return permissions;
+                throw new Exception("Sorry we did not find your manager");
+            }
         }
         public void UpdateEmployee(EmployeeModel employee)
         {
@@ -38,16 +39,10 @@ namespace Emp_Intranet_Api.DataAccess.Query
                 sql.SaveData("stuff.sp_UpdateEmployee",
                     new
                     {
-
-                        newDepartmentID = employee.departmentid,
                         userID = employee.userid,
                         newJobtitle = employee.employee_jobtitle,
                         newContract = employee.employee_contract,
-                        newStartdate =  employee.employee_startdate,
-                        newDepertment = employee.department_name,
-                        newDepertmentSize = employee.department_size,
-                        newDepertmentManager = employee.department_manager,
-                        newDepertmentLocation = employee.department_location
+                        newStartdate =  employee.employee_startdate
                     },
                    "Emp_Intranet-DB");
             }

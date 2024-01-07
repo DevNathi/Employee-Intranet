@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -12,34 +13,26 @@ namespace Emp_Intranet_Api.Models
     public class EmployeeModel
     {
         public int Id { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime employee_startdate { get; set; }
         public string employee_contract { get; set; }
         public string employee_jobtitle { get; set; }
+        public string employee_department { get; set; }
         public int userid { get; set; }
-        public int departmentid { get; set; }
-        public string department_name { get; set; }
-        public string department_size { get; set; }
-        public string department_location { get; set; }
-        public string department_manager { get; set; }
-    }
 
-    public class DepartmentModel
-    {
-        public int Id { get; set; }
-        public string department_name { get; set; }
-        public string department_size { get; set; }
-        public string department_location { get; set; }
     }
-    public class ManagementModel
+    public class MyManagerModel
     {
         public int Id { get; set; }
-        public string management_level { get; set; }
-        public int employeeid { get; set; }
-    }
-    public class PermissionsModel
-    {
-        public int Id { get; set; }
-        public string permission_type { get; set; }
-        public string permission_name { get; set; }
+        public string manager_jobtitle { get; set; }
+        public string manager_department { get; set; }
+        public string manager_contract { get; set; }
+        public DateTime manager_startdate { get; set; }
+        public int userid { get; set; }
+        public string profile_title { get; set; }
+        public string profile_name { get; set; }
+        public string profile_surname { get; set; }
+        public int user { get; set; }
     }
 }

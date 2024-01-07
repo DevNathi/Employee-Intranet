@@ -8,7 +8,7 @@ namespace Emp_Intranet_Api.Models
     public class UserModel
     {
         public int Id { get; set; }
-        public string Token { get; set; }
+        public string email { get; set; }
 
     }
     public class loginModel
@@ -17,11 +17,7 @@ namespace Emp_Intranet_Api.Models
         public string user_password { get; set; }
 
     }
-    public class RolesModel
-    {
 
-       
-    }
     public class ProfileModel
     {
         public int Id { get; set; }
@@ -29,9 +25,5 @@ namespace Emp_Intranet_Api.Models
         public string profile_name { get; set; }
         public string profile_surname { get; set; }
         public int user { get; set; }
-        public int role { get; set; }
-        public string role_name { get; set; }
-
-
     }
 }

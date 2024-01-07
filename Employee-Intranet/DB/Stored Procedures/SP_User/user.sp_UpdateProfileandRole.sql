@@ -2,10 +2,7 @@
     @userID INT,
     @newName NVARCHAR(255),
     @newSurname NVARCHAR(255),
-    @newTitle NCHAR(10),
-	@newRole NVARCHAR(255),
-	@newRoleId INT,
-    @newUser INT
+    @newTitle NCHAR(10)
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -18,10 +15,6 @@ BEGIN
         SET [profile_name] = @newName, [profile_surname] = @newSurname, [profile_title] = @newTitle
         WHERE [profile].[user] = @userID;
 
-        -- Update ProfileTable
-        UPDATE [user].[roles]
-        SET role_name = @newRole
-        WHERE [Id] = @newRoleId;
 
         -- Commit the transaction if all updates succeed
         COMMIT TRANSACTION;
