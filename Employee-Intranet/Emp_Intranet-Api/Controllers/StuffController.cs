@@ -32,6 +32,11 @@ namespace Emp_Intranet_Api.Controllers
             }
             return NotFound();
         }
+        /// <summary>
+        /// the endpoint gets a manager for an employee
+        /// </summary>
+        /// <param name="department"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("api/MyManager/{department}")]
         public IHttpActionResult GetMyManagerByDepartment(string department)
@@ -44,11 +49,19 @@ namespace Emp_Intranet_Api.Controllers
             }
             return NotFound();
         }
-        /// <summary>
-        /// This endpoint gets the Department 
-        /// </summary>
-        /// <param name="depId"></param>
-        /// <returns></returns>
+        [HttpGet]
+        [Route("api/MyColeagues/{department}")]
+        public IHttpActionResult GetMyColleaguesByDepartment(string department)
+        {
+            StuffData _stuff = new StuffData();
+            var myColleagues = _stuff.GetMycolleague(department);
+            if (myColleagues != null)
+            {
+                return Ok(myColleagues);
+            }
+            return NotFound();
+        }
+    
         // PUT: api/User/5
         [HttpPut]
         [Route("api/Employee/")]

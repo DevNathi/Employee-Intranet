@@ -13,13 +13,13 @@ namespace Emp_Intranet_UI.Models.DisplayModels
         public List<LeaveModel> leave { get; set; }
         public List<LeaveTypes> LeaveTypes { get; set; } //These will be all leave Types
         public LeaveModel MyLeaves { get; set; }
+        public List<MyColleageas> MyColleagues { get; set; }
+        public MyManagerModel MyManager { get; set; }
     }
-    public enum LeaveTypes
+    public class LeaveTypes
     {
-        Sick,
-        Parental,
-        Annual,
-        Meternity
+        public string LeaveName { get; set; }
+        public int LeaveDays { get; set; }
     }
    
 }

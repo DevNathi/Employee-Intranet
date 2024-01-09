@@ -1,109 +1,122 @@
-﻿@{
+﻿@model Emp_Intranet_UI.Models.DisplayModels.HomeDisplayModel
+@{
     ViewBag.Title = "Home Page";
-    //Html.RenderPartial("UpdateUser");
-    //Html.RenderPartial("_NewLeave", Model);
+    Html.RenderPartial("UpdateUser");
+    Html.RenderPartial("_NewLeave", Model);
 
-   
 }
-    <div class="profile-card">
-        <h2>My profile</h2>
-        <img src="#" alt="profile-picture">
-        <div class="personal-info">
-            
-            <p>Title: </p><span> @ViewData["p_title"]</span>
-            <p>Name: </p><span>@ViewData["p_name"] @ViewData["p_surname"]</span>
-            <p>Job Title: </p><span>@ViewData["e_jobtitle"]</span>
-        </div>
-        <h2>Work Space</h2>
-        <div class="personal-info">
-            <p>Start Date: </p><span>@ViewData["e_startdate"]</span>
-            <p>Employment Type: </p><span>@ViewData["e_contract"]</span>
-            <p>Department: </p><span>@ViewData["e_department"]</span>
-            <p>Reports To: </p><span>@ViewData["e_manager"]</span>
-            <p>Same Department As:</p>
-            <div class="list">
-                <span>John Doe</span>
-                <span>John Doe</span>
-            </div>
-            <!--Open Modal - User Profile and Employee Edit-->
-            <button type="button" onclick="openEditModal()">Edit</button>
-        </div>
-        <h2>Active Leave</h2>
-        <div class="active-leave">
-            <div class="card-grid-leave">
-                <span>Applied</span>
-                <span>Approved</span>
-                <span>Taken</span>
-                <p>25</p>
-                <p>15</p>
-                <p>10</p>
-                <span>days</span>
-                <span>days</span>
-                <span>days</span>
-            </div>
+@if (Model != null)
+{
+<div class="profile-card">
+    <h2>My profile</h2>
+    <img src="#" alt="profile-picture">
+    <div class="personal-info">
+
+        <p>Title: </p><span>@Model.Profile.profile_title</span>
+        <p>Name: </p><span>@Model.Profile.profile_name @Model.Profile.profile_surname</span>
+        <p>Job Title: </p><span>@Model.employee.employee_jobtitle</span>
+    </div>
+    <h2>Work Space</h2>
+    <div class="personal-info">
+        <p>Start Date: </p><span>@Model.employee.employee_startdate</span>
+        <p>Employment Type: </p><span>@Model.employee.employee_contract</span>
+        <p>Department: </p><span>@Model.employee.employee_department</span>
+        <p>Reports To: </p><span>@Model.MyManager.profile_name @Model.MyManager.profile_surname</span>
+
+
+    </div>
+    <div class="colleagues">
+        <p>Same Department As:</p>
+        <ul>
+            @foreach (var item in Model.MyColleagues)
+            {
+                <li>@item.profile_name @item.profile_surname</li>
+            }
+        </ul>
+    </div>
+    <!--Open Modal - User Profile and Employee Edit-->
+    <button type="button" onclick="openEditModal()">Edit</button>
+    <h2>Active Leave</h2>
+    <div class="active-leave">
+        <div class="card-grid-leave">
+            <span>Applied</span>
+            <span>Approved</span>
+            <span>Taken</span>
+            <p>25</p>
+            <p>15</p>
+            <p>10</p>
+            <span>days</span>
+            <span>days</span>
+            <span>days</span>
         </div>
     </div>
+</div>
 
-    <div class="leave-card">
-        <h2>Annual Leave</h2>
-        <div class="leave-cards">
-            <!--foreach (var type in ViewData["Leaves"])
-            {
-            <div class="card"> 
-                <h3>Html.DisplayFor(modelItem => type) leave</h3>
-                <div class="card-grid">
-                    <span>Entitled</span>
-                    <span>Taken</span>
-                    <span>Remaining</span>
-                    <p>-->
-                        <!--Html.DisplayFor(modelItem => type.type_days)--><!--</p>
-                        <p>8</p>
-                        <p>7</p>
-                        <span>days</span>
-                        <span>days</span>
-                        <span>days</span>
-                    </div>
-                    <button type="button" onclick="openCreateModal(type.Id)">+</button>
-
-                </div>
-                }-->
-            
+<div class="leave-card">
+    <h2>Annual Leave</h2>
+    <div class="leave-cards">
+        @foreach (var type in Model.LeaveTypes)
+        {
+        <div class="card">
+            <h3>@Html.DisplayFor(model => type.LeaveName) leave</h3>
+            <div class="card-grid">
+                <span>Entitled</span>
+                <span>Taken</span>
+                <span>Remaining</span>
+                <p>
+        @Html.DisplayFor(model => type.LeaveDays)
+        </p>
+                <p>8</p>
+                <p>7</p>
+                <span>days</span>
+                <span>days</span>
+                <span>days</span>
             </div>
-
-            <h2>Annual Leave History</h2>
-            <div class="leave-history">
-                <table>
-                    <thead>
-                    <th colspan="6">Name</th>
-                    <th colspan="4">Surname</th>
-                    <th colspan="4">start's'</th>
-                    <th colspan="4">Taken</th>
-                    <th colspan="4">Reason</th>
-                    </thead>
-                    <tbody>
-                        @*@foreach (var item in Model.leave)
-                        {
-                            <tr>
-
-                                <td colspan="6">@Model.Profile.profile_title @Model.Profile.profile_name @Model.Profile.profile_surname</td>
-                                <td colspan="4"></td>
-                                <td colspan="4">@Html.DisplayFor(model => item.leave_startdate)</td>
-                                <td colspan="4">@Html.DisplayFor(model => item.leave_daystaken)</td>
-                                <td colspan="4">@Html.DisplayFor(model => item.leave_reason)</td>
-                            </tr>
-                        }*@
-                    </tbody>
-                    <tfoot>
-
-                    <td colspan="6"></td>
-                    <td colspan="4"></td>
-                    <td colspan="4">Total</td>
-                    <td colspan="4"></td>
-                    <td colspan="4">12</td>
-                    </tfoot>
-                </table>
-            </div>
+            <button type="button" onclick="openCreateModal(type.Id)">+</button>
 
         </div>
-   
+        }
+
+    </div>
+
+    <h2>Annual Leave History</h2>
+    <div class="leave-history">
+        <table>
+            <thead>
+            <th colspan="6">Name</th>
+            <th colspan="4">Surname</th>
+            <th colspan="4">start's'</th>
+            <th colspan="4">Taken</th>
+            <th colspan="4">Reason</th>
+            </thead>
+            <tbody>
+                @*@foreach (var item in Model.leave)
+                    {
+                        <tr>
+
+                            <td colspan="6">@Model.Profile.profile_title @Model.Profile.profile_name @Model.Profile.profile_surname</td>
+                            <td colspan="4"></td>
+                            <td colspan="4">@Html.DisplayFor(model => item.leave_startdate)</td>
+                            <td colspan="4">@Html.DisplayFor(model => item.leave_daystaken)</td>
+                            <td colspan="4">@Html.DisplayFor(model => item.leave_reason)</td>
+                        </tr>
+                    }*@
+            </tbody>
+            <tfoot>
+
+            <td colspan="6"></td>
+            <td colspan="4"></td>
+            <td colspan="4">Total</td>
+            <td colspan="4"></td>
+            <td colspan="4">12</td>
+            </tfoot>
+        </table>
+    </div>
+
+</div>
+}
+else
+{
+    Response.Redirect("~/Auth/Login");
+}
 

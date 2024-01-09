@@ -29,6 +29,19 @@ namespace Emp_Intranet_Api.DataAccess.Query
                 throw new Exception("Sorry we did not find your manager");
             }
         }
+        public List<MyColleageas> GetMycolleague(string department)
+        {
+            try
+            {
+                var myColleagues = _sql.LoadData<MyColleageas, dynamic>("stuff.sp_FindMyColleageas", new { colleagues = department}, "Emp_Intranet-DB");
+                return myColleagues;
+            }
+            catch (Exception)
+            {
+
+                throw new Exception("Sorry we did not find your manager");
+            }
+        }
         public void UpdateEmployee(EmployeeModel employee)
         {
             SqlDataAccess sql = new SqlDataAccess();

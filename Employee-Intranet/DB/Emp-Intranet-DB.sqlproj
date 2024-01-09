@@ -84,6 +84,7 @@
     <Build Include="Stored Procedures\SP_Stuff\stuff.sp_UpdateEmployee.sql" />
     <Build Include="Stored Procedures\SP_Leave\leave.sp_CreateNewLeaveForEmployee.sql" />
     <Build Include="Stored Procedures\SP_Stuff\stuff.sp_FindMyManangerByDepartment.sql" />
+    <Build Include="Stored Procedures\SP_Stuff\stuff.sp_FindMyColleageas.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DB.publish.xml" />

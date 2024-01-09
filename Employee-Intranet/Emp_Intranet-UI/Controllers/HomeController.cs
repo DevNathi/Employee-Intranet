@@ -34,31 +34,35 @@ namespace Emp_Intranet_UI.Controllers
         public async Task<ActionResult> Index()
         {
             
-            //We use a session to keep the track oof the logged in user
+            //We use a session to keep track of the logged in user
             var loggedInUser = Session["LoggedInUser"] as UserModel;
             if (loggedInUser != null && loggedInUser.Id > 0)
             {
+                //we pull the data from the API using our endpoints that have the API client connec
+                var _profile = await _user.GetProfileByUser(loggedInUser.Id);
+                var _employee = await _stuff.GetEmployeeByUserId(loggedInUser.Id);
+                var _MyManager = await _stuff.GetMyManagerByDepartment(_employee.employee_department);
+                var _myColleagues = await _stuff.GetMyColleageasByDepartment(_employee.employee_department);
 
-                var profile = await _user.GetProfileByUser(loggedInUser.Id);
-                var employee = await _stuff.GetEmployeeByUserId(loggedInUser.Id);
-                var MyManager = await _stuff.GetMyManagerByDepartment(employee.employee_department);
-
-                if (profile != null && employee != null)
+                // Create a list of Employee instances with specific values
+                List<LeaveTypes> _leaveTypes = new List<LeaveTypes>
+                {
+                    new LeaveTypes {LeaveName = "Annual", LeaveDays = 15 },
+                    new LeaveTypes {LeaveName = "Sick", LeaveDays = 30 },
+                    new LeaveTypes {LeaveName = "Study", LeaveDays = 10 },
+                    new LeaveTypes {LeaveName = "Maternity", LeaveDays = 90 },
+                    
+                };
+                if (_profile != null && _employee != null)
                 {
                     //populate the  View Data For View
-                    ViewData.Add(new KeyValuePair<string, object>("p_name", profile.profile_name));
-                    ViewData.Add(new KeyValuePair<string, object>("p_surname", profile.profile_surname));
-                    ViewData.Add(new KeyValuePair<string, object>("p_title", profile.profile_title));
-                    ViewData.Add(new KeyValuePair<string, object>("e_jobtitle", employee.employee_jobtitle));
-                    ViewData.Add(new KeyValuePair<string, object>("e_contract", employee.employee_contract));
-                    ViewData.Add(new KeyValuePair<string, object>("e_startdate", employee.employee_startdate));
-                    ViewData.Add(new KeyValuePair<string, object>("e_department", employee.employee_department));
-                    ViewData.Add(new KeyValuePair<string, object>("e_manager",MyManager.profile_name  +  MyManager.profile_surname));
+                    _UserDisplayModel.Profile = _profile;
+                    _UserDisplayModel.employee = _employee;
+                    _UserDisplayModel.MyColleagues = _myColleagues;
+                    _UserDisplayModel.MyManager = _MyManager;
+                    _UserDisplayModel.LeaveTypes = _leaveTypes;
 
-                   
-                    //_UserDisplayModel.Profile = profile;
-                    //_UserDisplayModel.employee = employee;
-                    return View();
+                    return View(_UserDisplayModel);
                 }
             }
             ModelState.AddModelError(string.Empty, "You are not logged in!");
