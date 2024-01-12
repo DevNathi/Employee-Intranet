@@ -52,10 +52,11 @@ namespace Emp_Intranet_Api.DataAccess.Query
                 sql.SaveData("stuff.sp_UpdateEmployee",
                     new
                     {
-                        userID = employee.userid,
-                        newJobtitle = employee.employee_jobtitle,
-                        newContract = employee.employee_contract,
-                        newStartdate =  employee.employee_startdate
+                        e_userid = employee.userid,
+                        e_jobtitle = employee.employee_jobtitle,
+                        e_contract = employee.employee_contract,
+                        e_startdate =  employee.employee_startdate,
+                        e_department = employee.employee_department
                     },
                    "Emp_Intranet-DB");
             }

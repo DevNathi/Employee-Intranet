@@ -40,14 +40,14 @@ namespace Emp_Intranet_Api.DataAccess
                 _sql.SaveData("leave.sp_CreateNewLeaveForEmployee",
                     new
                     {
-                        leave_startdate = NewLeave.leave_startdate,
-                        leave_enddate = NewLeave.leave_enddate,
-                        leave_reason = NewLeave.leave_reason,
-                        leave_comment = NewLeave.leave_comment,
-                        employeeid = NewLeave.employeeID,
-                        leavetypeid = NewLeave.leavetypeid
+                        leave_name = NewLeave.LeaveName,
+                        leave_startdate = NewLeave.LeaveStartDate,
+                        leave_enddate = NewLeave.LeaveEndDate,
+                        leave_reason = NewLeave.LeaveReason,
+                        employeeid = NewLeave.EmployeeId,
+                        managerid = NewLeave.ManagerId
                     },
-                    "Emp_Intranet-DB");
+                    "Emp_Intranet-DB"); ;;
             }
             catch (Exception)
             {

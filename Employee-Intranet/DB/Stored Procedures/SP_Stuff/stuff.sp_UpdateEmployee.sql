@@ -1,14 +1,11 @@
 ﻿CREATE PROCEDURE [stuff].[sp_UpdateEmployee]
 
-    @newDepartmentID INT,
-    @userID INT,
-    @newJobtitle NVARCHAR(255),
-    @newContract NVARCHAR(255),
-    @newStartdate Datetime,
-    @newDepertment NVARCHAR (255),
-    @newDepertmentSize NVARCHAR(255),
-    @newDepertmentManager NVARCHAR (255),
-    @newDepertmentLocation NVARCHAR (255)
+    @e_userid INT,
+    @e_startdate DATE,
+    @e_contract NVARCHAR(255),
+    @e_jobtitle NVARCHAR(255),
+    @e_department NVARCHAR(255)
+
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -18,13 +15,8 @@ BEGIN
 
         -- Update Employee
         UPDATE [stuff].[employee] 
-        SET [employee_jobtitle] = @newJobtitle,[employee_contract] = @newContract,[employee_startdate] = @newStartdate
-        WHERE [employee].[userid] = @userID;
-
-        -- Update Department
-        UPDATE [stuff].[department]
-        SET [department_name] = @newDepertment,[department_manager] = @newDepertmentManager,[department_location] = @newDepertmentLocation,[department_size] = @newDepertmentSize
-        WHERE [Id] = @newDepartmentID;
+        SET [employee_jobtitle] = @e_jobtitle, [employee_contract] = @e_contract, [employee_department] = @e_department, [employee_startdate] = @e_startdate
+        WHERE [employee].[userid] = @e_userid;
 
         -- Commit the transaction if all updates succeed
         COMMIT TRANSACTION;

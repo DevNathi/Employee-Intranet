@@ -43,6 +43,7 @@ namespace Emp_Intranet_UI.Controllers
                 var _employee = await _stuff.GetEmployeeByUserId(loggedInUser.Id);
                 var _MyManager = await _stuff.GetMyManagerByDepartment(_employee.employee_department);
                 var _myColleagues = await _stuff.GetMyColleageasByDepartment(_employee.employee_department);
+                
 
                 // Create a list of Employee instances with specific values
                 List<LeaveTypes> _leaveTypes = new List<LeaveTypes>
@@ -62,17 +63,15 @@ namespace Emp_Intranet_UI.Controllers
                     _UserDisplayModel.MyManager = _MyManager;
                     _UserDisplayModel.LeaveTypes = _leaveTypes;
 
+
+                    //populate session values for later use
+                    Session["EmployeeId"] = _employee.Id;
+                    Session["MyManagerId"] = _MyManager.Id;
                     return View(_UserDisplayModel);
                 }
             }
             ModelState.AddModelError(string.Empty, "You are not logged in!");
             return View(loggedInUser); 
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult TakeLeave(int id)
-        {
-            return View();
         }
         [HttpGet]
         public async Task<ActionResult> UpdateUser()
@@ -80,9 +79,12 @@ namespace Emp_Intranet_UI.Controllers
             var loggedInUser = Session["LoggedInUser"] as UserModel;
             if (loggedInUser != null && loggedInUser.Id > 0)
             {
+
+
                 // Fetch user and profile data based on the logged in userId
                 var myprofile = await _user.GetProfileByUser(loggedInUser.Id);
                 var myemployee = await _stuff.GetEmployeeByUserId(loggedInUser.Id);
+
                 //// populate the Display Model for the Partial View
                 _UserDisplayModel.Profile = myprofile;
                 _UserDisplayModel.employee = myemployee;
@@ -98,7 +100,7 @@ namespace Emp_Intranet_UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Update user, profile, and roles based on updateUserViewModel
+                // Update user, profile, based on updateUserViewModel
                 var updatedProfile = await _user.UpdateProfileByUser(updateUserModel.Profile);
                 var updatedEmployee = await _stuff.UpdateEmployeeByUser(updateUserModel.employee);
                 return RedirectToAction("Index", "Home", _updateUserInfoModel); ;
@@ -108,30 +110,37 @@ namespace Emp_Intranet_UI.Controllers
             // If ModelState is not valid, return to the update form with errors
             return PartialView("UpdateUser", updateUserModel);
         }
-        [HttpGet]
-        public async Task<ActionResult> _NewLeave()
-        {
-            var loggedInUser = Session["LoggedInUser"] as UserModel;
-            if (loggedInUser != null && loggedInUser.Id > 0)
-            {
-                // Fetch user and profile data based on the logged in userId
-                var myprofile = await _user.GetProfileByUser(loggedInUser.Id);
-                var myemployee = await _stuff.GetEmployeeByUserId(loggedInUser.Id);
-                //// populate the Display Model for the Partial View
-                _UserDisplayModel.Profile = myprofile;
-                _UserDisplayModel.employee = myemployee;
-                return RedirectToAction("Index", "Home", _updateUserInfoModel);
-            }
+        //[HttpGet]
+        //public async Task<ActionResult> _NewLeave()
+        //{
+        //    var loggedInUser = Session["LoggedInUser"] as UserModel;
+        //    if (loggedInUser != null && loggedInUser.Id > 0)
+        //    {
+        //        // Fetch user and profile data based on the logged in userId
+        //        var myprofile = await _user.GetProfileByUser(loggedInUser.Id);
+        //        var myemployee = await _stuff.GetEmployeeByUserId(loggedInUser.Id);
+        //        //// populate the Display Model for the Partial View
+        //        _UserDisplayModel.Profile = myprofile;
+        //        _UserDisplayModel.employee = myemployee;
+        //        return RedirectToAction("Index", "Home", _updateUserInfoModel);
+        //    }
 
-            return View();
+        //    return View();
 
-        }
+        //}
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> _NewLeave(HomeDisplayModel newLeave)
         {
-            if (ModelState.IsValid)
+            if (newLeave.MyLeaves != null)
             {
+                var empId = Convert.ToInt32(Session["EmployeeId"]);
+                var manId = Convert.ToInt32(Session["MyManagerId"]);
+                newLeave.MyLeaves.EmployeeId = empId;
+                newLeave.MyLeaves.ManagerId = manId;
+                newLeave.MyLeaves.EmployeeId = empId;
+                newLeave.MyLeaves.ManagerId = manId;
+
                 await _leave.CreateNewLeave(newLeave.MyLeaves);
                 return RedirectToAction("Index");
             }

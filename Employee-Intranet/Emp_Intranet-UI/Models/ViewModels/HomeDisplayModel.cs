@@ -12,7 +12,7 @@ namespace Emp_Intranet_UI.Models.DisplayModels
         public EmployeeModel employee { get; set; }
         public List<LeaveModel> leave { get; set; }
         public List<LeaveTypes> LeaveTypes { get; set; } //These will be all leave Types
-        public LeaveModel MyLeaves { get; set; }
+        public LeaveModel MyLeaves { get; set; } = new LeaveModel();
         public List<MyColleageas> MyColleagues { get; set; }
         public MyManagerModel MyManager { get; set; }
     }

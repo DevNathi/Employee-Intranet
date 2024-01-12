@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Home Page";
     Html.RenderPartial("UpdateUser");
-    Html.RenderPartial("_NewLeave", Model);
+    Html.RenderPartial("_NewLeave");
 
 }
 @if (Model != null)
@@ -11,7 +11,6 @@
     <h2>My profile</h2>
     <img src="#" alt="profile-picture">
     <div class="personal-info">
-
         <p>Title: </p><span>@Model.Profile.profile_title</span>
         <p>Name: </p><span>@Model.Profile.profile_name @Model.Profile.profile_surname</span>
         <p>Job Title: </p><span>@Model.employee.employee_jobtitle</span>
@@ -22,8 +21,6 @@
         <p>Employment Type: </p><span>@Model.employee.employee_contract</span>
         <p>Department: </p><span>@Model.employee.employee_department</span>
         <p>Reports To: </p><span>@Model.MyManager.profile_name @Model.MyManager.profile_surname</span>
-
-
     </div>
     <div class="colleagues">
         <p>Same Department As:</p>
@@ -51,7 +48,6 @@
         </div>
     </div>
 </div>
-
 <div class="leave-card">
     <h2>Annual Leave</h2>
     <div class="leave-cards">
@@ -76,31 +72,39 @@
 
         </div>
         }
-
     </div>
-
     <h2>Annual Leave History</h2>
     <div class="leave-history">
         <table>
             <thead>
-            <th colspan="6">Name</th>
-            <th colspan="4">Surname</th>
-            <th colspan="4">start's'</th>
-            <th colspan="4">Taken</th>
+            <th colspan="6">Full Name</th>
+            <th colspan="4">Start Date</th>
+            <th colspan="4">End Date</th>
             <th colspan="4">Reason</th>
+            <th colspan="4">Status</th>
             </thead>
             <tbody>
-                @*@foreach (var item in Model.leave)
+                @if (Model.leave != null)
+                {
+                    foreach (var item in Model.leave)
                     {
                         <tr>
-
                             <td colspan="6">@Model.Profile.profile_title @Model.Profile.profile_name @Model.Profile.profile_surname</td>
-                            <td colspan="4"></td>
-                            <td colspan="4">@Html.DisplayFor(model => item.leave_startdate)</td>
-                            <td colspan="4">@Html.DisplayFor(model => item.leave_daystaken)</td>
-                            <td colspan="4">@Html.DisplayFor(model => item.leave_reason)</td>
+                            <td colspan="4">@Html.DisplayFor(model => item.LeaveStartDate)</td>
+                            <td colspan="4">@Html.DisplayFor(model => item.LeaveEndDate)</td>
+                            <td colspan="4">@Html.DisplayFor(model => item.LeaveReason)</td>
+                            <td colspan="4">{PlaceHolder}</td>
                         </tr>
-                    }*@
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <p>You have not taken leave yet!</p>
+                    </tr>
+
+                }
+
             </tbody>
             <tfoot>
 

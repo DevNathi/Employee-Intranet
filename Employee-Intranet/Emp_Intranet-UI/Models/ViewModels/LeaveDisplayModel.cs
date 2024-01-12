@@ -10,7 +10,6 @@ namespace Emp_Intranet_UI.Models.DisplayModels
         public IHomeDisplayModel user { get; set; }
         public List<LeaveModel> Myleaves { get; set; }
         public List<TypeModel> MyLeaveTypes { get; set; }
-
         public ProfileModel Profile { get; set; }
         public EmployeeModel employee { get; set; }
     }

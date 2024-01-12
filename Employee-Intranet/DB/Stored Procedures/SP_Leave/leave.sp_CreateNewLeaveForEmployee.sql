@@ -1,29 +1,36 @@
 ﻿CREATE PROCEDURE [leave].[sp_CreateNewLeaveForEmployee]
+    @leave_name NVARCHAR,
     @leave_startdate DATE, 
     @leave_enddate DATE, 
     @leave_reason VARCHAR(MAX), 
-    @leave_comment VARCHAR(MAX), 
     @employeeid INT , 
-    @approverid INT, 
-    @leavetypeid INT,
-    @returnValue INT OUTPUT
+    @managerid INT
+
 AS
 BEGIN
     SET NOCOUNT ON;
+      
     BEGIN TRY
         BEGIN TRANSACTION;
+        
+            DECLARE @leaveId AS INT;
+            INSERT INTO [leave].[leave_requests] ([leave_name],[leave_startdate],[leave_enddate],[leave_reason],[employeeid],[managerid])
+            VALUES (@leave_name, @leave_startdate, @leave_enddate, @leave_reason, @employeeid, @managerid);
 
-        INSERT INTO [leave].[leave] ([employeeid], [leave_startdate], [leave_enddate], [leave_reason], [leavetypeid], [leave_comment], [approverid])
-        VALUES (@employeeid, @leave_startdate, @leave_enddate, @leave_reason, @leavetypeid, @leave_comment, @approverid);
+            SET @leaveId = SCOPE_IDENTITY();
+
+
+            -- Insert into approval table using the leaveId
+            INSERT INTO [leave].[approval] ([approval_status],[leaveid])
+            VALUES ('Pending', @leaveId);
 
         COMMIT;
-        SET @returnValue = 0; -- Success
     END TRY
     BEGIN CATCH
         IF @@TRANCOUNT > 0
             ROLLBACK;
 
         -- Log or handle the error as needed
-        SET @returnValue = ERROR_NUMBER();
+        SET @leaveId = -1; -- Set to a default value indicating an error
     END CATCH
 END;

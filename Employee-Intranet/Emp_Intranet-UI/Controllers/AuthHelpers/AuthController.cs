@@ -37,6 +37,7 @@ namespace Emp_Intranet_UI.Controllers.AuthHelpers
         [HttpPost]
         public async Task<ActionResult> Login(loginModel loginModel)
         {
+           
             if (IsValidCredentials(loginModel))
             {
                 var authenticatedUser = await _user.Login(loginModel);

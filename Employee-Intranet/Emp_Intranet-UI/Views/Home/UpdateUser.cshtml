@@ -44,6 +44,11 @@
                 @Html.ValidationMessageFor(model => model.employee.employee_jobtitle)
             </div>
             <div class="form-group">
+                Department:
+                @Html.TextBoxFor(model => model.employee.employee_department, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.employee.employee_department)
+            </div>
+            <div class="form-group">
                 Contract:
                 @Html.TextBoxFor(model => model.employee.employee_contract, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.employee.employee_contract)

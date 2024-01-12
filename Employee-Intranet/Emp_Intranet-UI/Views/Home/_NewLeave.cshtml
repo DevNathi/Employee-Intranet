@@ -11,76 +11,46 @@
             @using (Html.BeginForm("_NewLeave", "Home", FormMethod.Post))
             {
                 @Html.AntiForgeryToken()
-
-                @Html.HiddenFor(model => model.MyLeaves.leavetypeid)
-                @Html.HiddenFor(model => model.MyLeaves.employeeID)
-
+               
                 <!-- Display validation errors -->
-                @Html.ValidationSummary(true, "All", new { @class = "text-danger" })
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <!-- New Leave Information -->
-                @*<div class="form-group">
-                   Choose your Leave: 
+                <div class="form-group">
+                    Choose your Leave:
                     <div class="col-md-10">
-                         @Html.DropDownListFor(model => model.MyLeaves, new SelectList(Model.LeaveTypes,"Leave","Leave","--Select Leave--"), new { @class = "form-control", type = "DropdownList" })
-                        @Html.ValidationMessageFor(model => model.MyLeaves.type_name, "", new { @class = "text-danger" })
+                        @if (Model.LeaveTypes != null && Model.LeaveTypes.Any())
+                        {
+                            @Html.DropDownListFor(model => model.MyLeaves.LeaveName, new SelectList(Model.LeaveTypes, "LeaveName", "LeaveName", "--Select Leave--"), new { @class = "form-control", type = "DropdownList" })
+                        }
+                        else
+                        {
+                            <p>No leave types available.</p>
+                        }
                     </div>
-                </div>*@
+                </div>
                 <div class="form-group">
                     From: 
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.MyLeaves.leave_startdate, new { htmlAttributes = new { @class = "form-control", type = "Date" } })
-                        @Html.ValidationMessageFor(model => model.MyLeaves.leave_startdate, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.MyLeaves.LeaveStartDate, new { htmlAttributes = new { @class = "form-control", type = "Date" } })
+                        @Html.ValidationMessageFor(model => model.MyLeaves.LeaveStartDate, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group">
                    End:
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.MyLeaves.leave_enddate, new { htmlAttributes = new { @class = "form-control", type = "Date" } })
-                        @Html.ValidationMessageFor(model => model.MyLeaves.leave_enddate, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.MyLeaves.LeaveEndDate, new { htmlAttributes = new { @class = "form-control", type = "Date" } })
+                        @Html.ValidationMessageFor(model => model.MyLeaves.LeaveEndDate, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group">
                     Reason For Taking Leave:
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.MyLeaves.leave_reason, new { htmlAttributes = new { @class = "form-control", type = "Multiple" } })
-                        @Html.ValidationMessageFor(model => model.MyLeaves.leave_reason, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.MyLeaves.LeaveReason, new { htmlAttributes = new { @class = "form-control", type = "Multiple" } })
+                        @Html.ValidationMessageFor(model => model.MyLeaves.LeaveReason, "", new { @class = "text-danger" })
                     </div>
                 </div>
-
-                <div class="form-group">
-                   Comments for the Leave
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.MyLeaves.leave_comment, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.MyLeaves.leave_comment, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                   How many days are you taking: 
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.MyLeaves.leave_daystaken, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.MyLeaves.leave_daystaken, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.MyLeaves.type_cycle, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.MyLeaves.type_cycle, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.MyLeaves.type_cycle, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.MyLeaves.type_days, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.MyLeaves.type_days, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.MyLeaves.type_days, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <input type="submit" value="Create" class="btn btn-default" />
