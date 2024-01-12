@@ -37,24 +37,33 @@ namespace Emp_Intranet_Api.DataAccess
         {
             try
             {
-                _sql.SaveData("leave.sp_CreateNewLeaveForEmployee",
-                    new
-                    {
-                        leave_name = NewLeave.LeaveName,
-                        leave_startdate = NewLeave.LeaveStartDate,
-                        leave_enddate = NewLeave.LeaveEndDate,
-                        leave_reason = NewLeave.LeaveReason,
-                        employeeid = NewLeave.EmployeeId,
-                        managerid = NewLeave.ManagerId
-                    },
-                    "Emp_Intranet-DB"); ;;
-            }
-            catch (Exception)
-            {
+                var parameters = new
+                {
+                    leave_name = NewLeave.LeaveName,
+                    leave_startdate = NewLeave.LeaveStartDate,
+                    leave_enddate = NewLeave.LeaveEndDate,
+                    leave_reason = NewLeave.LeaveReason,
+                    employeeid = NewLeave.EmployeeId,
+                    managerid = NewLeave.ManagerId
+                };
 
-                throw;
+                int rowsAffected = _sql.SaveData("leave.sp_CreateNewLeaveForEmployee", parameters, "Emp_Intranet-DB");
+
+                if (rowsAffected > 0)
+                {
+                    // Success
+                    Console.WriteLine("Leave created successfully");
+                }
+                else
+                {
+                    // Failure
+                    Console.WriteLine("Failed to create leave");
+                }
             }
-           
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

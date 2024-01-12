@@ -49,13 +49,14 @@ namespace Emp_Intranet_Api.DataAccess.InternalDataAccess
         /// <param name="storedProcedure"></param>
         /// <param name="parameters"></param>
         /// <param name="connectionStringName"></param>
-        public void SaveData<T>(string storedProcedure, T parameters, string connectionStringName)
+        public int SaveData<T>(string storedProcedure, T parameters, string connectionStringName)
         {
             string connectionString = GetConnectionString(connectionStringName);
 
             using (IDbConnection connection = new SqlConnection(connectionString))
             {
-                connection.Execute(storedProcedure, parameters, commandType: CommandType.StoredProcedure);
+                var output = connection.Execute(storedProcedure, parameters, commandType: CommandType.StoredProcedure);
+                return output;
             }
         }
 
