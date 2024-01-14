@@ -10,7 +10,7 @@ namespace Emp_Intranet_UI.Models.DisplayModels
         public UserModel LoggedInAs { get; set; }
         public ProfileModel Profile { get; set; }
         public EmployeeModel employee { get; set; }
-        public List<LeaveModel> leave { get; set; }
+        public List<MyLeaveRecords> MyLeaveRecord { get; set; }
         public List<LeaveTypes> LeaveTypes { get; set; } //These will be all leave Types
         public LeaveModel MyLeaves { get; set; } = new LeaveModel();
         public List<MyColleageas> MyColleagues { get; set; }

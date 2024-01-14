@@ -75,7 +75,6 @@
     <Build Include="Tables\stuff.manager.sql" />
     <Build Include="Tables\leave.leave_requests.sql" />
     <Build Include="Tables\leave.leave_approvals.sql" />
-    <Build Include="Stored Procedures\SP_Leave\leave.sp_FIndLeavebyUserId.sql" />
     <Build Include="Stored Procedures\SP_Leave\leave.sp_FindLeaves.sql" />
     <Build Include="Stored Procedures\SP_User\user.sp_FindUser.sql" />
     <Build Include="Stored Procedures\SP_Stuff\stuff.sp_FIndEmployeeByUserId.sql" />
@@ -85,6 +84,7 @@
     <Build Include="Stored Procedures\SP_Leave\leave.sp_CreateNewLeaveForEmployee.sql" />
     <Build Include="Stored Procedures\SP_Stuff\stuff.sp_FindMyManangerByDepartment.sql" />
     <Build Include="Stored Procedures\SP_Stuff\stuff.sp_FindMyColleageas.sql" />
+    <Build Include="Stored Procedures\SP_Leave\leave.sp_FindAllLeavesByEmployeeId.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DB.publish.xml" />

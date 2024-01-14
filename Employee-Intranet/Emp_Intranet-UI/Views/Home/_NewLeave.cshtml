@@ -20,7 +20,7 @@
                     <div class="col-md-10">
                         @if (Model.LeaveTypes != null && Model.LeaveTypes.Any())
                         {
-                            @Html.DropDownListFor(model => model.MyLeaves.LeaveName, new SelectList(Model.LeaveTypes, "LeaveName", "LeaveName", "--Select Leave--"), new { @class = "form-control", type = "DropdownList" })
+                            @Html.DropDownListFor(model => model.MyLeaves.Leave_Name, new SelectList(Model.LeaveTypes, "LeaveName", "LeaveName", "--Select Leave--"), new { @class = "form-control", type = "DropdownList" })
                         }
                         else
                         {
@@ -31,24 +31,24 @@
                 <div class="form-group">
                     From: 
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.MyLeaves.LeaveStartDate, new { htmlAttributes = new { @class = "form-control", type = "Date" } })
-                        @Html.ValidationMessageFor(model => model.MyLeaves.LeaveStartDate, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.MyLeaves.Leave_StartDate, new { htmlAttributes = new { @class = "form-control", type = "Date" } })
+                        @Html.ValidationMessageFor(model => model.MyLeaves.Leave_StartDate, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group">
                    End:
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.MyLeaves.LeaveEndDate, new { htmlAttributes = new { @class = "form-control", type = "Date" } })
-                        @Html.ValidationMessageFor(model => model.MyLeaves.LeaveEndDate, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.MyLeaves.Leave_EndDate, new { htmlAttributes = new { @class = "form-control", type = "Date" } })
+                        @Html.ValidationMessageFor(model => model.MyLeaves.Leave_EndDate, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group">
                     Reason For Taking Leave:
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.MyLeaves.LeaveReason, new { htmlAttributes = new { @class = "form-control", type = "Multiple" } })
-                        @Html.ValidationMessageFor(model => model.MyLeaves.LeaveReason, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.MyLeaves.Leave_Reason, new { htmlAttributes = new { @class = "form-control", type = "Multiple" } })
+                        @Html.ValidationMessageFor(model => model.MyLeaves.Leave_Reason, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group">

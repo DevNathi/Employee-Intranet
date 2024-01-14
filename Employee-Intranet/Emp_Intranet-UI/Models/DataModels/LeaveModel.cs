@@ -9,19 +9,24 @@ namespace Emp_Intranet_UI.Models
     public class LeaveModel
     {
         public int Id { get; set; }
-        public string LeaveName{ get; set; }
-        public string LeaveReason { get; set; }
-        public DateTime LeaveStartDate{ get; set; }
-        public DateTime LeaveEndDate { get; set; }
+        public string Leave_Name { get; set; }
+        public string Leave_Reason { get; set; }
+        public DateTime Leave_StartDate { get; set; }
+        public DateTime Leave_EndDate { get; set; }
         public int EmployeeId { get; set; }
         public int ManagerId { get; set; }
     }
-    public class TypeModel
+    public class MyLeaveRecords
     {
         public int Id { get; set; }
-        public string type_name { get; set; }
-        public string type_cycle { get; set; }
-        public int type_days { get; set; }
+        public string Leave_Name { get; set; }
+        public string Leave_Reason { get; set; }
+        public DateTime Leave_StartDate { get; set; }
+        public DateTime Leave_EndDate { get; set; }
+        public int EmployeeId { get; set; }
+        public int ManagerId { get; set; }
+        public string Approval_status { get; set; }
+        public int LeaveId { get; set; }
 
     }
 }

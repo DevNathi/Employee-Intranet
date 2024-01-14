@@ -17,13 +17,13 @@ namespace Emp_Intranet_UI.API
             _apiHelper = apiHelper;
         }
 
-        public async Task<List<LeaveModel>> GetLeavesByUserId(int userId)
+        public async Task<List<MyLeaveRecords>> GetLeavesByEmployeeId(int empId)
         {
-            using(HttpResponseMessage httpResponseMessage = await _apiHelper.ApiClient.GetAsync($"api/MyLeaves/{userId}"))
+            using(HttpResponseMessage httpResponseMessage = await _apiHelper.ApiClient.GetAsync($"api/MyLeaves/{empId}"))
             {
                 if (httpResponseMessage.IsSuccessStatusCode)
                 {
-                    var results = await httpResponseMessage.Content.ReadAsAsync<List<LeaveModel>>();
+                    var results = await httpResponseMessage.Content.ReadAsAsync<List<MyLeaveRecords>>();
                     return results;
                 }
                 else
@@ -45,21 +45,6 @@ namespace Emp_Intranet_UI.API
                 else
                 {
                     throw new Exception(httpResponseMessage.ReasonPhrase);
-                }
-            }
-        }
-        public  async Task<List<TypeModel>> GetAllLeaveType()
-        {
-            using (HttpResponseMessage responseMessage = await _apiHelper.ApiClient.GetAsync($"api/LeaveTypes"))
-            {
-                if (responseMessage.IsSuccessStatusCode)
-                {
-                    var results = await responseMessage.Content.ReadAsAsync<List<TypeModel>>();
-                    return results;
-                }
-                else
-                {
-                    throw new Exception(responseMessage.ReasonPhrase);
                 }
             }
         }

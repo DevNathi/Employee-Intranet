@@ -78,22 +78,26 @@
         <table>
             <thead>
             <th colspan="6">Full Name</th>
+            <th colspan="4">Leave</th>
             <th colspan="4">Start Date</th>
             <th colspan="4">End Date</th>
             <th colspan="4">Reason</th>
             <th colspan="4">Status</th>
+
             </thead>
             <tbody>
-                @if (Model.leave != null)
+                @if (Model.MyLeaveRecord != null)
                 {
-                    foreach (var item in Model.leave)
+                    foreach (var item in Model.MyLeaveRecord)
                     {
                         <tr>
                             <td colspan="6">@Model.Profile.profile_title @Model.Profile.profile_name @Model.Profile.profile_surname</td>
-                            <td colspan="4">@Html.DisplayFor(model => item.LeaveStartDate)</td>
-                            <td colspan="4">@Html.DisplayFor(model => item.LeaveEndDate)</td>
-                            <td colspan="4">@Html.DisplayFor(model => item.LeaveReason)</td>
-                            <td colspan="4">{PlaceHolder}</td>
+                            <td colspan="4">@Html.DisplayFor(model => item.Leave_Name) </td>
+                            <td colspan="4">@Html.DisplayFor(model => item.Leave_StartDate)</td>
+                            <td colspan="4">@Html.DisplayFor(model => item.Leave_EndDate)</td>
+                            <td colspan="4">@Html.DisplayFor(model => item.Leave_Reason)</td>
+                            <td colspan="4">@Html.DisplayFor(model => item.Approval_status)</td>
+
                         </tr>
                     }
                 }
@@ -111,6 +115,7 @@
             <td colspan="6"></td>
             <td colspan="4"></td>
             <td colspan="4">Total</td>
+            <td colspan="4"></td>
             <td colspan="4"></td>
             <td colspan="4">12</td>
             </tfoot>

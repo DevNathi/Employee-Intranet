@@ -5,7 +5,7 @@ namespace Emp_Intranet_UI.Models.DisplayModels
     public interface IHomeDisplayModel
     {
         EmployeeModel employee { get; set; }
-        List<LeaveModel> leave { get; set; }
+        List<MyLeaveRecords> MyLeaveRecord { get; set; }
         List<LeaveTypes> LeaveTypes { get; set; }
         UserModel LoggedInAs { get; set; }
         List<MyColleageas> MyColleagues { get; set; }

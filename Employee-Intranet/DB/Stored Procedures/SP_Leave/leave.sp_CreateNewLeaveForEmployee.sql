@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [leave].[sp_CreateNewLeaveForEmployee]
-    @leave_name NVARCHAR,
+    @leave_name NVARCHAR(MAX),
     @leave_startdate DATE, 
     @leave_enddate DATE, 
     @leave_reason VARCHAR(MAX), 

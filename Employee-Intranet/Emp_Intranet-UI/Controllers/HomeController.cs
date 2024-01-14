@@ -43,6 +43,7 @@ namespace Emp_Intranet_UI.Controllers
                 var _employee = await _stuff.GetEmployeeByUserId(loggedInUser.Id);
                 var _MyManager = await _stuff.GetMyManagerByDepartment(_employee.employee_department);
                 var _myColleagues = await _stuff.GetMyColleageasByDepartment(_employee.employee_department);
+                var _myLeaves = await _leave.GetLeavesByEmployeeId(_employee.Id);
                 
 
                 // Create a list of Employee instances with specific values
@@ -62,6 +63,7 @@ namespace Emp_Intranet_UI.Controllers
                     _UserDisplayModel.MyColleagues = _myColleagues;
                     _UserDisplayModel.MyManager = _MyManager;
                     _UserDisplayModel.LeaveTypes = _leaveTypes;
+                    _UserDisplayModel.MyLeaveRecord = _myLeaves;
 
 
                     //populate session values for later use
