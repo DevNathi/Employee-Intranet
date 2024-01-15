@@ -16,6 +16,8 @@ namespace Emp_Intranet_Manager_UI
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            //We initialize the Boostrapper class to hook up Dependency injection
+            Bootstrapper.Initialise();
         }
     }
 }

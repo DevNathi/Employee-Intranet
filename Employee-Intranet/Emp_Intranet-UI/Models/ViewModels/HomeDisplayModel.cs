@@ -15,11 +15,14 @@ namespace Emp_Intranet_UI.Models.DisplayModels
         public LeaveModel MyLeaves { get; set; } = new LeaveModel();
         public List<MyColleageas> MyColleagues { get; set; }
         public MyManagerModel MyManager { get; set; }
+        public List<LeaveStatsPerEmployee> MyLeaveStatsPerLeave { get; set; }
     }
     public class LeaveTypes
     {
         public string LeaveName { get; set; }
         public int LeaveDays { get; set; }
+        public int LeaveDaysTaken { get; set; }
+        public int LeaveDaysRemaining { get; set; }
     }
    
 }

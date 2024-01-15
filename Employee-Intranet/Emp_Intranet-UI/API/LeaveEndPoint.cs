@@ -33,6 +33,22 @@ namespace Emp_Intranet_UI.API
             }
             
         }
+        public async Task<List<LeaveStatsPerEmployee>> GetStatsByEmployeePerLeave(int empId)
+        {
+            using (HttpResponseMessage httpResponseMessage = await _apiHelper.ApiClient.GetAsync($"api/MyLeaveStats/{empId}"))
+            {
+                if (httpResponseMessage.IsSuccessStatusCode)
+                {
+                    var results = await httpResponseMessage.Content.ReadAsAsync<List<LeaveStatsPerEmployee>>();
+                    return results;
+                }
+                else
+                {
+                    throw new Exception(httpResponseMessage.ReasonPhrase);
+                }
+            }
+
+        }
         public async Task<List<LeaveModel>> GetAllLeaves()
         {
             using (HttpResponseMessage httpResponseMessage = await _apiHelper.ApiClient.GetAsync($"api/Leaves/"))

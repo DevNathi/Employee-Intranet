@@ -3,9 +3,8 @@
 AS
 begin
 	
-SELECT *
+SELECT * 
   FROM [Emp_Intranet-DB].[leave].[approval] as a 
   LEFT JOIN [Emp_Intranet-DB].leave.leave_requests AS l on a.leaveid = l.Id
-  WHERE l.employeeid = @employeeId
-
+  WHERE l.employeeid = @employeeId;
 end

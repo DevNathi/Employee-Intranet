@@ -28,6 +28,15 @@ namespace Emp_Intranet_Api.DataAccess
             return output;
 
         }
+        public List<LeaveStatsPerEmployee> GetLeaveStatsForEmployeePerLeave(int employeeId)
+        {
+
+
+            var output = _sql.LoadData<LeaveStatsPerEmployee, dynamic>("leave.sp_CountOfLeaveDaysPerLeave", new { employeeId = employeeId }, "Emp_Intranet-DB");
+
+            return output;
+
+        }
         public void AddLeaveForUser(LeaveModel NewLeave)
         {
             try

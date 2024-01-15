@@ -1,4 +1,5 @@
 ﻿using Emp_Intranet_UI.API;
+using Emp_Intranet_UI.Controllers.LeaveHelpers;
 using Emp_Intranet_UI.Models;
 using Emp_Intranet_UI.Models.DisplayModels;
 using System;
@@ -17,14 +18,16 @@ namespace Emp_Intranet_UI.Controllers
         UserEndPoint _user;
         StuffEndPoint _stuff;
         LeaveEndPoint _leave;
+        LeaveHelper _leaveHelper;
         IHomeDisplayModel _UserDisplayModel;
         IUpdateUserInfoModel _updateUserInfoModel;
 
-        public HomeController(UserEndPoint user, StuffEndPoint stuff, IHomeDisplayModel UserDisplayModel, LeaveEndPoint leave, IUpdateUserInfoModel updateUserInfoModel)
+        public HomeController(UserEndPoint user, StuffEndPoint stuff, IHomeDisplayModel UserDisplayModel, LeaveEndPoint leave,LeaveHelper leaveHelper, IUpdateUserInfoModel updateUserInfoModel)
         {
 
             _user = user ?? throw new ArgumentNullException(nameof(user));
             _stuff = stuff ?? throw new ArgumentException(nameof(stuff));
+            _leaveHelper = leaveHelper ?? throw new ArgumentException(nameof(leave));
             _leave = leave ?? throw new ArgumentException(nameof(leave));
             _UserDisplayModel = UserDisplayModel;
             _updateUserInfoModel = updateUserInfoModel;
@@ -44,19 +47,22 @@ namespace Emp_Intranet_UI.Controllers
                 var _MyManager = await _stuff.GetMyManagerByDepartment(_employee.employee_department);
                 var _myColleagues = await _stuff.GetMyColleageasByDepartment(_employee.employee_department);
                 var _myLeaves = await _leave.GetLeavesByEmployeeId(_employee.Id);
+                var _myStatsPerLeaveType = await _leave.GetStatsByEmployeePerLeave(_employee.Id);
                 
 
-                // Create a list of Employee instances with specific values
+                // Create a list of Employee instances with values
                 List<LeaveTypes> _leaveTypes = new List<LeaveTypes>
                 {
-                    new LeaveTypes {LeaveName = "Annual", LeaveDays = 15 },
-                    new LeaveTypes {LeaveName = "Sick", LeaveDays = 30 },
-                    new LeaveTypes {LeaveName = "Study", LeaveDays = 10 },
-                    new LeaveTypes {LeaveName = "Maternity", LeaveDays = 90 },
+                    new LeaveTypes {LeaveName = "Annual", LeaveDays = 15, LeaveDaysRemaining = 0, LeaveDaysTaken = 0 },
+                    new LeaveTypes {LeaveName = "Sick", LeaveDays = 30, LeaveDaysRemaining = 0, LeaveDaysTaken = 0  },
+                    new LeaveTypes {LeaveName = "Study", LeaveDays = 10, LeaveDaysRemaining = 0, LeaveDaysTaken = 0  },
+                    new LeaveTypes {LeaveName = "Maternity", LeaveDays = 90, LeaveDaysRemaining = 0, LeaveDaysTaken = 0  },
                     
                 };
                 if (_profile != null && _employee != null)
                 {
+                    _leaveHelper.UpdateLeaveTypes(_leaveTypes, _myStatsPerLeaveType);
+
                     //populate the  View Data For View
                     _UserDisplayModel.Profile = _profile;
                     _UserDisplayModel.employee = _employee;
@@ -64,6 +70,7 @@ namespace Emp_Intranet_UI.Controllers
                     _UserDisplayModel.MyManager = _MyManager;
                     _UserDisplayModel.LeaveTypes = _leaveTypes;
                     _UserDisplayModel.MyLeaveRecord = _myLeaves;
+                    _UserDisplayModel.MyLeaveStatsPerLeave = _myStatsPerLeaveType;
 
 
                     //populate session values for later use
@@ -81,8 +88,6 @@ namespace Emp_Intranet_UI.Controllers
             var loggedInUser = Session["LoggedInUser"] as UserModel;
             if (loggedInUser != null && loggedInUser.Id > 0)
             {
-
-
                 // Fetch user and profile data based on the logged in userId
                 var myprofile = await _user.GetProfileByUser(loggedInUser.Id);
                 var myemployee = await _stuff.GetEmployeeByUserId(loggedInUser.Id);

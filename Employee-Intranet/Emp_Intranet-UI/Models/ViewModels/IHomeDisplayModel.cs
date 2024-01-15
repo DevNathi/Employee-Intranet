@@ -12,5 +12,6 @@ namespace Emp_Intranet_UI.Models.DisplayModels
         LeaveModel MyLeaves { get; set; }
         ProfileModel Profile { get; set; }
         MyManagerModel MyManager { get; set; }
+        List<LeaveStatsPerEmployee> MyLeaveStatsPerLeave { get; set; }
     }
 }

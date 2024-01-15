@@ -29,4 +29,10 @@ namespace Emp_Intranet_UI.Models
         public int LeaveId { get; set; }
 
     }
+    public class LeaveStatsPerEmployee
+    {
+        public string Leave_name { get; set; }
+        public int TotalDaysTakenPerLeave { get; set; }
+
+    }
 }

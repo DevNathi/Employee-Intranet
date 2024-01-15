@@ -59,11 +59,9 @@
                 <span>Entitled</span>
                 <span>Taken</span>
                 <span>Remaining</span>
-                <p>
-        @Html.DisplayFor(model => type.LeaveDays)
-        </p>
-                <p>8</p>
-                <p>7</p>
+                <p>@Html.DisplayFor(model => type.LeaveDays)</p>
+                <p>@Html.DisplayFor(model => type.LeaveDaysTaken)</p>
+                <p>@Html.DisplayFor(model => type.LeaveDaysRemaining)</p>
                 <span>days</span>
                 <span>days</span>
                 <span>days</span>

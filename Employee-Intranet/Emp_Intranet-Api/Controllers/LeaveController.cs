@@ -35,6 +35,20 @@ namespace Emp_Intranet_Api.Controllers
             return Ok(output); // 200 status code with the leave model
         }
         [HttpGet]
+        [Route("api/MyLeaveStats/{empId}")]
+
+        public IHttpActionResult GetStatsForEmployeePerLeave(int empId)
+        {
+            var output = _leaveData.GetLeaveStatsForEmployeePerLeave(empId);
+
+            if (output == null)
+            {
+                return NotFound(); // 404 status code if leave is not found
+            }
+
+            return Ok(output); // 200 status code with the leave model
+        }
+        [HttpGet]
         [Route("api/leaves")]
         public IHttpActionResult GetAll()
         {

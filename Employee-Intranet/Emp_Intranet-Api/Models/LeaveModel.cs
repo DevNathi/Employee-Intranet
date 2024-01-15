@@ -28,6 +28,11 @@ namespace Emp_Intranet_Api.Models
         public int ManagerId { get; set; }
         public string Approval_status { get; set; }
         public int LeaveId { get; set; }
+    }
+    public class LeaveStatsPerEmployee
+    {
+        public string Leave_name { get; set; }
+        public int TotalDaysTakenPerLeave { get; set; }
 
     }
 }
