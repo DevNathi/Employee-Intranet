@@ -242,6 +242,7 @@
     <Content Include="Views\Home\UpdateUser.cshtml" />
     <Content Include="Views\Home\_NewLeave.cshtml" />
     <Content Include="Views\Home\View.cshtml" />
+    <Content Include="Views\Home\DeleteLeave.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Emp_Intranet-Api\Emp_Intranet-Api.csproj">

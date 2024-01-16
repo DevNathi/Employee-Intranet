@@ -33,7 +33,6 @@ namespace Emp_Intranet_UI.Controllers
             _updateUserInfoModel = updateUserInfoModel;
 
         }
-      
         public async Task<ActionResult> Index()
         {
             
@@ -61,7 +60,7 @@ namespace Emp_Intranet_UI.Controllers
                 };
                 if (_profile != null && _employee != null)
                 {
-                    _leaveHelper.UpdateLeaveTypes(_leaveTypes, _myStatsPerLeaveType);
+                    _leaveHelper.UpdateLeaveTypes(_leaveTypes, _myStatsPerLeaveType,_employee);
 
                     //populate the  View Data For View
                     _UserDisplayModel.Profile = _profile;
@@ -139,21 +138,79 @@ namespace Emp_Intranet_UI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> _NewLeave(HomeDisplayModel newLeave)
         {
-            if (newLeave.MyLeaves != null)
+            try
             {
-                var empId = Convert.ToInt32(Session["EmployeeId"]);
-                var manId = Convert.ToInt32(Session["MyManagerId"]);
-                newLeave.MyLeaves.EmployeeId = empId;
-                newLeave.MyLeaves.ManagerId = manId;
-                newLeave.MyLeaves.EmployeeId = empId;
-                newLeave.MyLeaves.ManagerId = manId;
+                if (newLeave.MyLeaves != null)
+                {
+                    // Retrieve employee and manager IDs from session
+                    var empId = Convert.ToInt32(Session["EmployeeId"]);
+                    var manId = Convert.ToInt32(Session["MyManagerId"]);
 
-                await _leave.CreateNewLeave(newLeave.MyLeaves);
-                return RedirectToAction("Index");
+                    // Set employee and manager IDs for the new leave
+                    newLeave.MyLeaves.EmployeeId = empId;
+                    newLeave.MyLeaves.ManagerId = manId;
+
+                    // Check if the employee has enough leave days before applying
+                    var daysRequested = CalculateDaysRequested(newLeave.MyLeaves.Leave_StartDate, newLeave.MyLeaves.Leave_EndDate);
+
+                        // Create the new leave record
+                        await _leave.CreateNewLeave(newLeave.MyLeaves);
+
+                        // Redirect to the Index page
+                        return RedirectToAction("Index");
+                    
+                    //else
+                    //{
+                    //    ModelState.AddModelError(string.Empty, "Insufficient leave days.");
+                    //}
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "The information you have provided is not correct!");
+                }
             }
-            ModelState.AddModelError(string.Empty, "The information you have provided is not correct!");
+            catch (Exception ex)
+            {
+                // Log or handle the exception
+                ModelState.AddModelError(string.Empty, "An error occurred while processing the request.");
+            }
+
+            // If there are validation errors or other issues, return to the partial view with the updated model
             return PartialView("_NewLeave", newLeave);
         }
+        public async Task<ActionResult> DeleteLeave(int id)
+        {
+            LeaveModel leaveToDelete = await _leave.FindLeaveById(id);
+            _UserDisplayModel.MyLeaves = leaveToDelete;
+            return PartialView("DeleteLeave", _UserDisplayModel);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ConfirmDeleteLeave(int id)
+        {
+           _leave.DeleteLeave(id);
 
+            return RedirectToAction("Index");
+        }
+        /// <summary>
+        /// Calculate the number of days between the start and end dates
+        /// </summary>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+        /// <returns>Days requested for the leave</returns>
+        private int CalculateDaysRequested(DateTime startDate, DateTime endDate)
+        {
+
+            return (int)(endDate - startDate).TotalDays + 1;
+        }
+
+        private bool IsLeaveDaysAvailable(int availableDays, int requestedDays, int entitledDays)
+        {
+            if (entitledDays >= requestedDays)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

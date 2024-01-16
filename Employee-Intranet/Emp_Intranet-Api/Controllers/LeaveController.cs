@@ -13,6 +13,20 @@ namespace Emp_Intranet_Api.Controllers
     {
 
         LeaveData _leaveData = new LeaveData();
+        [HttpGet]
+        [Route("api/Leave/{leaveID}")]
+
+        public IHttpActionResult GetLeaveByID(int leaveID)
+        {
+            var output = _leaveData.GetLeaveById(leaveID);
+
+            if (output == null)
+            {
+                return NotFound(); // 404 status code if leave is not found
+            }
+
+            return Ok(output); // 200 status code with the leave model
+        }
         /// <summary>
         /// Get leave by ID.
         /// </summary>
@@ -74,6 +88,13 @@ namespace Emp_Intranet_Api.Controllers
 
                 throw new Exception(ex.Message);
             }
+        }
+        [HttpDelete]
+        [Route("api/Leave/{leaveID}")]
+        public void DeleteLeaveByID(int leaveID)
+        {
+            _leaveData.DeleteLeaveById(leaveID);
+
         }
     }
 }

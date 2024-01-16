@@ -20,6 +20,8 @@ namespace Emp_Intranet_UI.Models
         public string employee_jobtitle { get; set; }
         public string employee_department { get; set; }
         public int userid { get; set; }
+        public List<LeaveModel> LeaveHistory { get; set; }
+        public List<LeaveBalanceModel> LeaveBalances { get; set; }
     }
 
     public class MyManagerModel

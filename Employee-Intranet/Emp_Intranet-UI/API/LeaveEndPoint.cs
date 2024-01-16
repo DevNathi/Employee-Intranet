@@ -64,6 +64,21 @@ namespace Emp_Intranet_UI.API
                 }
             }
         }
+        public async Task<LeaveModel> FindLeaveById(int Id)
+        {
+            using (HttpResponseMessage httpResponseMessage = await _apiHelper.ApiClient.GetAsync($"api/Leave/{Id}"))
+            {
+                if (httpResponseMessage.IsSuccessStatusCode)
+                {
+                    var results = await httpResponseMessage.Content.ReadAsAsync<LeaveModel>();
+                    return results;
+                }
+                else
+                {
+                    throw new Exception(httpResponseMessage.ReasonPhrase);
+                }
+            }
+        }
         public async Task<bool> CreateNewLeave(LeaveModel newLeave)
         {
             using (HttpResponseMessage responseMessage = await _apiHelper.ApiClient.PostAsJsonAsync<LeaveModel>($"api/NewLeave", newLeave))
@@ -79,6 +94,21 @@ namespace Emp_Intranet_UI.API
                 }
 
                
+            }
+        }
+        public async Task<bool> DeleteLeave(int Id)
+        {
+            using (HttpResponseMessage httpResponseMessage = await _apiHelper.ApiClient.DeleteAsync($"api/Leave/{Id}"))
+            {
+                if (httpResponseMessage.IsSuccessStatusCode)
+                {
+                    var results = await httpResponseMessage.Content.ReadAsAsync<bool>();
+                    return results;
+                }
+                else
+                {
+                    throw new Exception(httpResponseMessage.ReasonPhrase);
+                }
             }
         }
     }

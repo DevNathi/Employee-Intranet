@@ -3,6 +3,7 @@
     ViewBag.Title = "Home Page";
     Html.RenderPartial("UpdateUser");
     Html.RenderPartial("_NewLeave");
+    Html.RenderPartial("DeleteLeave");
 
 }
 @if (Model != null)
@@ -75,12 +76,13 @@
     <div class="leave-history">
         <table>
             <thead>
-            <th colspan="6">Full Name</th>
-            <th colspan="4">Leave</th>
-            <th colspan="4">Start Date</th>
-            <th colspan="4">End Date</th>
-            <th colspan="4">Reason</th>
-            <th colspan="4">Status</th>
+            <th colspan="2">Full Name</th>
+            <th colspan="2">Leave</th>
+            <th colspan="2">Start Date</th>
+            <th colspan="2">End Date</th>
+            <th colspan="2">Reason</th>
+            <th colspan="2">Status</th>
+            <th colspan="2"></th>
 
             </thead>
             <tbody>
@@ -88,15 +90,16 @@
                 {
                     foreach (var item in Model.MyLeaveRecord)
                     {
-                        <tr>
-                            <td colspan="6">@Model.Profile.profile_title @Model.Profile.profile_name @Model.Profile.profile_surname</td>
-                            <td colspan="4">@Html.DisplayFor(model => item.Leave_Name) </td>
-                            <td colspan="4">@Html.DisplayFor(model => item.Leave_StartDate)</td>
-                            <td colspan="4">@Html.DisplayFor(model => item.Leave_EndDate)</td>
-                            <td colspan="4">@Html.DisplayFor(model => item.Leave_Reason)</td>
-                            <td colspan="4">@Html.DisplayFor(model => item.Approval_status)</td>
-
-                        </tr>
+                <tr>
+                    <td colspan="2">@Model.Profile.profile_title @Model.Profile.profile_surname</td>
+                    <td colspan="2">@Html.DisplayFor(model => item.Leave_Name) </td>
+                    <td colspan="2">@Html.DisplayFor(model => item.Leave_StartDate)</td>
+                    <td colspan="2">@Html.DisplayFor(model => item.Leave_EndDate)</td>
+                    <td colspan="2">@Html.DisplayFor(model => item.Leave_Reason)</td>
+                    <td colspan="2">@Html.DisplayFor(model => item.Approval_status)</td>
+                    <td colspan="2">@Html.ActionLink("Edit", "EditLeave", "Home", new { id = item.Id }, null)</td>
+                    <td colspan="2">@Html.ActionLink("Delete", "DeleteLeave", "Home", new { id = item.Id }, null)</td>
+                </tr>
                     }
                 }
                 else
@@ -110,12 +113,13 @@
             </tbody>
             <tfoot>
 
-            <td colspan="6"></td>
-            <td colspan="4"></td>
-            <td colspan="4">Total</td>
-            <td colspan="4"></td>
-            <td colspan="4"></td>
-            <td colspan="4">12</td>
+            <td colspan="2"></td>
+            <td colspan="2"></td>
+            <td colspan="2">Total</td>
+            <td colspan="2"></td>
+            <td colspan="2"></td>
+            <td colspan="2"></td>
+            <td colspan="2">12</td>
             </tfoot>
         </table>
     </div>

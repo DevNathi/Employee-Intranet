@@ -19,6 +19,18 @@ namespace Emp_Intranet_Api.DataAccess
             return output;
 
         }
+        public LeaveModel GetLeaveById(int leaveId)
+        {
+
+            var output = _sql.LoadData<LeaveModel, dynamic>("leave.sp_FindLeaveById", new { leaveId = leaveId }, "Emp_Intranet-DB").FirstOrDefault();
+
+            return output;
+
+        }
+        public void DeleteLeaveById(int leaveId)
+        {
+            _sql.SaveData<dynamic>("leave.sp_DeleteLeaveById", new { leaveId = leaveId }, "Emp_Intranet-DB");
+        }
         public List<LeaveModel> GetAllLeave()
         {
 

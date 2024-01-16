@@ -27,6 +27,7 @@ namespace Emp_Intranet_UI.Models
         public int ManagerId { get; set; }
         public string Approval_status { get; set; }
         public int LeaveId { get; set; }
+        public LeaveBalanceModel LeaveBalance { get; set; }
 
     }
     public class LeaveStatsPerEmployee
@@ -34,5 +35,10 @@ namespace Emp_Intranet_UI.Models
         public string Leave_name { get; set; }
         public int TotalDaysTakenPerLeave { get; set; }
 
+    }
+    public class LeaveBalanceModel
+    {
+        public int LeaveTypeId { get; set; }
+        public int Balance { get; set; }
     }
 }
