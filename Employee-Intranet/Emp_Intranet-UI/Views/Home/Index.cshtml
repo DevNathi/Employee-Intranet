@@ -3,129 +3,129 @@
     ViewBag.Title = "Home Page";
     Html.RenderPartial("UpdateUser");
     Html.RenderPartial("_NewLeave");
-    Html.RenderPartial("DeleteLeave");
-
 }
 @if (Model != null)
 {
-<div class="profile-card">
-    <h2>My profile</h2>
-    <img src="#" alt="profile-picture">
-    <div class="personal-info">
-        <p>Title: </p><span>@Model.Profile.profile_title</span>
-        <p>Name: </p><span>@Model.Profile.profile_name @Model.Profile.profile_surname</span>
-        <p>Job Title: </p><span>@Model.employee.employee_jobtitle</span>
-    </div>
-    <h2>Work Space</h2>
-    <div class="personal-info">
-        <p>Start Date: </p><span>@Model.employee.employee_startdate</span>
-        <p>Employment Type: </p><span>@Model.employee.employee_contract</span>
-        <p>Department: </p><span>@Model.employee.employee_department</span>
-        <p>Reports To: </p><span>@Model.MyManager.profile_name @Model.MyManager.profile_surname</span>
-    </div>
-    <div class="colleagues">
-        <p>Same Department As:</p>
-        <ul>
-            @foreach (var item in Model.MyColleagues)
-            {
-                <li>@item.profile_name @item.profile_surname</li>
-            }
-        </ul>
-    </div>
-    <!--Open Modal - User Profile and Employee Edit-->
-    <button type="button" onclick="openEditModal()">Edit</button>
-    <h2>Active Leave</h2>
-    <div class="active-leave">
-        <div class="card-grid-leave">
-            <span>Applied</span>
-            <span>Approved</span>
-            <span>Taken</span>
-            <p>25</p>
-            <p>15</p>
-            <p>10</p>
-            <span>days</span>
-            <span>days</span>
-            <span>days</span>
+    <div class="profile-card">
+        <h2>My profile</h2>
+        <img src="#" alt="profile-picture">
+        <div class="personal-info">
+            <p>Title: </p><span>@Model.Profile.profile_title</span>
+            <p>Name: </p><span>@Model.Profile.profile_name @Model.Profile.profile_surname</span>
+            <p>Job Title: </p><span>@Model.employee.employee_jobtitle</span>
         </div>
-    </div>
-</div>
-<div class="leave-card">
-    <h2>Annual Leave</h2>
-    <div class="leave-cards">
-        @foreach (var type in Model.LeaveTypes)
-        {
-        <div class="card">
-            <h3>@Html.DisplayFor(model => type.LeaveName) leave</h3>
-            <div class="card-grid">
-                <span>Entitled</span>
+        <h2>Work Space</h2>
+        <div class="personal-info">
+            <p>Start Date: </p><span>@Model.employee.employee_startdate</span>
+            <p>Employment Type: </p><span>@Model.employee.employee_contract</span>
+            <p>Department: </p><span>@Model.employee.employee_department</span>
+            <p>Reports To: </p><span>@Model.MyManager.profile_name @Model.MyManager.profile_surname</span>
+        </div>
+        <div class="colleagues">
+            <p>Same Department As:</p>
+            <ul>
+                @foreach (var item in Model.MyColleagues)
+                {
+                    <li>@item.profile_name @item.profile_surname</li>
+                }
+            </ul>
+        </div>
+        <!--Open Modal - User Profile and Employee Edit-->
+        <button type="button" onclick="openEditModal()">Edit</button>
+        <h2>Active Leave</h2>
+        <div class="active-leave">
+            <div class="card-grid-leave">
+                <span>Applied</span>
+                <span>Approved</span>
                 <span>Taken</span>
-                <span>Remaining</span>
-                <p>@Html.DisplayFor(model => type.LeaveDays)</p>
-                <p>@Html.DisplayFor(model => type.LeaveDaysTaken)</p>
-                <p>@Html.DisplayFor(model => type.LeaveDaysRemaining)</p>
+                <p>25</p>
+                <p>15</p>
+                <p>10</p>
                 <span>days</span>
                 <span>days</span>
                 <span>days</span>
             </div>
-            <button type="button" onclick="openCreateModal(type.Id)">+</button>
-
         </div>
-        }
     </div>
-    <h2>Annual Leave History</h2>
-    <div class="leave-history">
-        <table>
-            <thead>
-            <th colspan="2">Full Name</th>
-            <th colspan="2">Leave</th>
-            <th colspan="2">Start Date</th>
-            <th colspan="2">End Date</th>
-            <th colspan="2">Reason</th>
-            <th colspan="2">Status</th>
-            <th colspan="2"></th>
+    <div class="leave-card">
+        <h2>Annual Leave</h2>
+        <div class="leave-cards">
+            @foreach (var type in Model.LeaveTypes)
+            {
+                <div class="card">
+                    <h3>@Html.DisplayFor(model => type.LeaveName) leave</h3>
+                    <div class="card-grid">
+                        <span>Entitled</span>
+                        <span>Taken</span>
+                        <span>Remaining</span>
+                        <p>@Html.DisplayFor(model => type.LeaveDays)</p>
+                        <p>@Html.DisplayFor(model => type.LeaveDaysTaken)</p>
+                        <p>@Html.DisplayFor(model => type.LeaveDaysRemaining)</p>
+                        <span>days</span>
+                        <span>days</span>
+                        <span>days</span>
+                    </div>
+                    <button type="button" onclick="openCreateModal(type.Id)">+</button>
 
-            </thead>
-            <tbody>
-                @if (Model.MyLeaveRecord != null)
-                {
-                    foreach (var item in Model.MyLeaveRecord)
+                </div>
+            }
+        </div>
+        <h2>Annual Leave History</h2>
+        <div class="leave-history">
+            <table>
+                <thead>
+                <th colspan="2">Approver</th>
+                <th colspan="2">Leave</th>
+                <th colspan="2">Start Date</th>
+                <th colspan="2">End Date</th>
+                <th colspan="2">Reason</th>
+                <th colspan="2">Status</th>
+                <th colspan="2"></th>
+                <th colspan="2"></th>
+
+                </thead>
+                <tbody>
+                    @if (Model.MyLeaveRecord != null)
                     {
-                <tr>
-                    <td colspan="2">@Model.Profile.profile_title @Model.Profile.profile_surname</td>
-                    <td colspan="2">@Html.DisplayFor(model => item.Leave_Name) </td>
-                    <td colspan="2">@Html.DisplayFor(model => item.Leave_StartDate)</td>
-                    <td colspan="2">@Html.DisplayFor(model => item.Leave_EndDate)</td>
-                    <td colspan="2">@Html.DisplayFor(model => item.Leave_Reason)</td>
-                    <td colspan="2">@Html.DisplayFor(model => item.Approval_status)</td>
-                    <td colspan="2">@Html.ActionLink("Edit", "EditLeave", "Home", new { id = item.Id }, null)</td>
-                    <td colspan="2">@Html.ActionLink("Delete", "DeleteLeave", "Home", new { id = item.Id }, null)</td>
-                </tr>
+                        foreach (var item in Model.MyLeaveRecord)
+                        {
+                            <tr>
+                                <td colspan="2">@Model.MyManager.profile_name @Model.MyManager.profile_surname</td>
+                                <td colspan="2">@Html.DisplayFor(model => item.Leave_Name) </td>
+                                <td colspan="2">@Html.DisplayFor(model => item.Leave_StartDate)</td>
+                                <td colspan="2">@Html.DisplayFor(model => item.Leave_EndDate)</td>
+                                <td colspan="2">@Html.DisplayFor(model => item.Leave_Reason)</td>
+                                <td colspan="2">@Html.DisplayFor(model => item.Approval_status)</td>
+                                <td colspan="2" class="icon-cell">@Html.ActionLink("Edit", "EditLeave", "Home", new { id = item.Id }, new { @class = "btn btn-link", title = "Edit" })</td>
+                                <td colspan="2" class="icon-cell">@Html.ActionLink("Delete", "DeleteLeave", "Home", new { id = item.Id }, new { @class = "btn btn-link ", title = "Delete" })</td>
+                            </tr>
+                        }
                     }
-                }
-                else
-                {
-                    <tr>
-                        <p>You have not taken leave yet!</p>
-                    </tr>
+                    else
+                    {
+                        <tr>
+                            <p>You have not taken leave yet!</p>
+                        </tr>
 
-                }
+                    }
 
-            </tbody>
-            <tfoot>
+                </tbody>
+                <tfoot>
 
-            <td colspan="2"></td>
-            <td colspan="2"></td>
-            <td colspan="2">Total</td>
-            <td colspan="2"></td>
-            <td colspan="2"></td>
-            <td colspan="2"></td>
-            <td colspan="2">12</td>
-            </tfoot>
-        </table>
+                <td colspan="2"></td>
+                <td colspan="2"></td>
+                <td colspan="2">Total</td>
+                <td colspan="2"></td>
+                <td colspan="2"></td>
+                <td colspan="2"></td>
+                <td colspan="2"></td>
+                <td colspan="2">12</td>
+                </tfoot>
+            </table>
+        </div>
+
     </div>
-
-</div>
-}
+    }
 else
 {
     Response.Redirect("~/Auth/Login");

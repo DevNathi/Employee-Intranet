@@ -96,6 +96,23 @@ namespace Emp_Intranet_UI.API
                
             }
         }
+        public async Task<bool> UpdateLeave(LeaveModel Leave)
+        {
+            using (HttpResponseMessage responseMessage = await _apiHelper.ApiClient.PostAsJsonAsync<LeaveModel>($"api/UpdateLeave", Leave))
+            {
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                    throw new Exception(responseMessage.ReasonPhrase);
+                }
+
+
+            }
+        }
         public async Task<bool> DeleteLeave(int Id)
         {
             using (HttpResponseMessage httpResponseMessage = await _apiHelper.ApiClient.DeleteAsync($"api/Leave/{Id}"))

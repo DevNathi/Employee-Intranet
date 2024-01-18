@@ -15,7 +15,6 @@ namespace Emp_Intranet_Api.Controllers
         LeaveData _leaveData = new LeaveData();
         [HttpGet]
         [Route("api/Leave/{leaveID}")]
-
         public IHttpActionResult GetLeaveByID(int leaveID)
         {
             var output = _leaveData.GetLeaveById(leaveID);
@@ -36,7 +35,6 @@ namespace Emp_Intranet_Api.Controllers
         /// <response code="404">If the leave with the specified ID is not found.</response>
         [HttpGet]
         [Route("api/MyLeaves/{empId}")]
-        
         public IHttpActionResult GetLeavesByUser(int empId)
         {
              var output = _leaveData.GetLeavesByEmployeeId(empId);
@@ -50,7 +48,6 @@ namespace Emp_Intranet_Api.Controllers
         }
         [HttpGet]
         [Route("api/MyLeaveStats/{empId}")]
-
         public IHttpActionResult GetStatsForEmployeePerLeave(int empId)
         {
             var output = _leaveData.GetLeaveStatsForEmployeePerLeave(empId);
@@ -81,6 +78,21 @@ namespace Emp_Intranet_Api.Controllers
             try
             {
                _leaveData.AddLeaveForUser(NewLeave);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
+        [HttpPost]
+        [Route("api/UpdateLeave")]
+        public void UpdateLeave([FromBody] LeaveModel NewLeave)
+        {
+            try
+            {
+                _leaveData.UpdateLeaveForUser(NewLeave);
 
             }
             catch (Exception ex)

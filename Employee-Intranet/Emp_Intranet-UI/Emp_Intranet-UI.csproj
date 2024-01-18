@@ -209,6 +209,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\icons\Edit.png" />
+    <Content Include="Images\icons\Plus +.png" />
+    <Content Include="Images\icons\Trash Can.png" />
+    <Content Include="Images\icons\User Male.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\Modal.js" />
     <Content Include="Unity.Mvc3.README.txt" />
@@ -243,6 +247,7 @@
     <Content Include="Views\Home\_NewLeave.cshtml" />
     <Content Include="Views\Home\View.cshtml" />
     <Content Include="Views\Home\DeleteLeave.cshtml" />
+    <Content Include="Views\Home\EditLeave.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Emp_Intranet-Api\Emp_Intranet-Api.csproj">

@@ -40,7 +40,7 @@ namespace Emp_Intranet_UI.Controllers
             var loggedInUser = Session["LoggedInUser"] as UserModel;
             if (loggedInUser != null && loggedInUser.Id > 0)
             {
-                //we pull the data from the API using our endpoints that have the API client connec
+                //we pull the data from the API using our endpoints that have the API client connection
                 var _profile = await _user.GetProfileByUser(loggedInUser.Id);
                 var _employee = await _stuff.GetEmployeeByUserId(loggedInUser.Id);
                 var _MyManager = await _stuff.GetMyManagerByDepartment(_employee.employee_department);
@@ -49,7 +49,7 @@ namespace Emp_Intranet_UI.Controllers
                 var _myStatsPerLeaveType = await _leave.GetStatsByEmployeePerLeave(_employee.Id);
                 
 
-                // Create a list of Employee instances with values
+                // Create a list of Leave Types instances with values
                 List<LeaveTypes> _leaveTypes = new List<LeaveTypes>
                 {
                     new LeaveTypes {LeaveName = "Annual", LeaveDays = 15, LeaveDaysRemaining = 0, LeaveDaysTaken = 0 },
@@ -75,6 +75,7 @@ namespace Emp_Intranet_UI.Controllers
                     //populate session values for later use
                     Session["EmployeeId"] = _employee.Id;
                     Session["MyManagerId"] = _MyManager.Id;
+                    Session["LeaveTypes"] = _leaveTypes;
                     return View(_UserDisplayModel);
                 }
             }
@@ -100,6 +101,11 @@ namespace Emp_Intranet_UI.Controllers
             return View();
            
         }
+        /// <summary>
+        /// We Post the data from the Update user form 
+        /// </summary>
+        /// <param name="updateUserModel"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> UpdateUser(HomeDisplayModel updateUserModel)
@@ -109,31 +115,35 @@ namespace Emp_Intranet_UI.Controllers
                 // Update user, profile, based on updateUserViewModel
                 var updatedProfile = await _user.UpdateProfileByUser(updateUserModel.Profile);
                 var updatedEmployee = await _stuff.UpdateEmployeeByUser(updateUserModel.employee);
-                return RedirectToAction("Index", "Home", _updateUserInfoModel); ;
-                // Handle the updated data as needed
+                return RedirectToAction("Index", "Home", _updateUserInfoModel);
+               
             }
 
             // If ModelState is not valid, return to the update form with errors
             return PartialView("UpdateUser", updateUserModel);
         }
-        //[HttpGet]
-        //public async Task<ActionResult> _NewLeave()
-        //{
-        //    var loggedInUser = Session["LoggedInUser"] as UserModel;
-        //    if (loggedInUser != null && loggedInUser.Id > 0)
-        //    {
-        //        // Fetch user and profile data based on the logged in userId
-        //        var myprofile = await _user.GetProfileByUser(loggedInUser.Id);
-        //        var myemployee = await _stuff.GetEmployeeByUserId(loggedInUser.Id);
-        //        //// populate the Display Model for the Partial View
-        //        _UserDisplayModel.Profile = myprofile;
-        //        _UserDisplayModel.employee = myemployee;
-        //        return RedirectToAction("Index", "Home", _updateUserInfoModel);
-        //    }
+        [HttpGet]
+        public async Task<ActionResult> _NewLeave(int Id)
+        {
+            var loggedInUser = Session["LoggedInUser"] as UserModel;
+            if (loggedInUser != null && loggedInUser.Id > 0)
+            {
+                //var leaveTypes = Session["LeaveType"] as LeaveTypes;
 
-        //    return View();
+                // Fetch user and profile data based on the logged in userId
+                var myprofile = await _user.GetProfileByUser(loggedInUser.Id);
+                var myemployee = await _stuff.GetEmployeeByUserId(loggedInUser.Id);
 
-        //}
+                // populate the Display Model for the Partial View
+                _UserDisplayModel.Profile = myprofile;
+                _UserDisplayModel.employee = myemployee;
+
+                return RedirectToAction("Index", "Home", _updateUserInfoModel);
+            }
+
+            return View();
+
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> _NewLeave(HomeDisplayModel newLeave)
@@ -152,12 +162,15 @@ namespace Emp_Intranet_UI.Controllers
 
                     // Check if the employee has enough leave days before applying
                     var daysRequested = CalculateDaysRequested(newLeave.MyLeaves.Leave_StartDate, newLeave.MyLeaves.Leave_EndDate);
-
-                        // Create the new leave record
+                    //if (IsLeaveDaysAvailable(daysRequested) = true)
+                    //{
+                    //    // Create the new leave record
                         await _leave.CreateNewLeave(newLeave.MyLeaves);
 
                         // Redirect to the Index page
                         return RedirectToAction("Index");
+                    //}
+                       
                     
                     //else
                     //{
@@ -178,12 +191,42 @@ namespace Emp_Intranet_UI.Controllers
             // If there are validation errors or other issues, return to the partial view with the updated model
             return PartialView("_NewLeave", newLeave);
         }
+        [HttpGet]
         public async Task<ActionResult> DeleteLeave(int id)
         {
-            LeaveModel leaveToDelete = await _leave.FindLeaveById(id);
-            _UserDisplayModel.MyLeaves = leaveToDelete;
-            return PartialView("DeleteLeave", _UserDisplayModel);
+            try
+            {
+
+                var employeeId = Convert.ToInt32(Session["EmployeeId"]);
+                var managerId = Convert.ToInt32(Session["MyManagerId"]);
+                var loggedInUser = Session["LoggedInUser"] as UserModel;
+                if (loggedInUser != null && loggedInUser.Id > 0)
+                {
+                    var _leaveToDelete = await _leave.FindLeaveById(id);
+
+                    var _profile = await _user.GetProfileByUser(loggedInUser.Id);
+                    var _employee = await _stuff.GetEmployeeByUserId(loggedInUser.Id);
+                    var _manager = await _stuff.GetMyManagerByDepartment(_employee.employee_department);
+
+                    _UserDisplayModel.Profile = _profile;
+                    _UserDisplayModel.employee = _employee;
+                    _UserDisplayModel.MyManager = _manager;
+                    _UserDisplayModel.MyLeaves = _leaveToDelete;
+                }
+                return PartialView("DeleteLeave", _UserDisplayModel);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
         }
+        /// <summary>
+        /// Delete the 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult ConfirmDeleteLeave(int id)
@@ -192,24 +235,72 @@ namespace Emp_Intranet_UI.Controllers
 
             return RedirectToAction("Index");
         }
+ /// <summary>
+ /// We get the details to show for the leave to be editted 
+ /// </summary>
+ /// <param name="Id"></param>
+ /// <returns></returns>
+        public async Task<ActionResult> EditLeave(int Id)
+        {
+            var employeeId = Convert.ToInt32(Session["EmployeeId"]);
+            var managerId = Convert.ToInt32(Session["MyManagerId"]);
+            var loggedInUser = Session["LoggedInUser"] as UserModel;
+            if (loggedInUser != null && loggedInUser.Id > 0)
+            { 
+
+                //GET THE DATA FROM THE API
+                var leaveToEdit = await _leave.FindLeaveById(Id);
+                var _profile = await _user.GetProfileByUser(loggedInUser.Id);
+                var _employee = await _stuff.GetEmployeeByUserId(loggedInUser.Id);
+                var _manager = await _stuff.GetMyManagerByDepartment(_employee.employee_department);
+
+                _UserDisplayModel.Profile = _profile;
+                _UserDisplayModel.employee = _employee;
+                _UserDisplayModel.MyManager = _manager;
+                //PASS THE DATA TO THE VIEW MODEL TO POPULATE THE VIEW WITH THE INFORMATION
+                _UserDisplayModel.MyLeaves = leaveToEdit;
+
+                
+            }
+            return PartialView("EditLeave", _UserDisplayModel);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ConfirmEditLeave(LeaveModel updateLeave)
+        {
+            if (ModelState.IsValid)
+            {
+                // Update Leave for a user
+                _leave.UpdateLeave(updateLeave);
+
+                return RedirectToAction("Index","Home", _UserDisplayModel); 
+            }
+            return RedirectToAction("Index");
+        }
         /// <summary>
         /// Calculate the number of days between the start and end dates
         /// </summary>
         /// <param name="startDate"></param>
         /// <param name="endDate"></param>
         /// <returns>Days requested for the leave</returns>
+        /// 
         private int CalculateDaysRequested(DateTime startDate, DateTime endDate)
         {
 
             return (int)(endDate - startDate).TotalDays + 1;
         }
-
-        private bool IsLeaveDaysAvailable(int availableDays, int requestedDays, int entitledDays)
+        /// <summary>
+        /// Validate if the days requested are available for the employee/user
+        /// </summary>
+        /// <param name="requestedDays"></param>
+        /// <param name="requestedLeavetype"></param>
+        /// <returns></returns>
+        private bool IsLeaveDaysAvailable(int requestedDays, string requestedLeavetype)
         {
-            if (entitledDays >= requestedDays)
-            {
-                return true;
-            }
+            //if (entitledDays >= requestedDays)
+            //{
+            //    return true;
+            //}
             return false;
         }
     }

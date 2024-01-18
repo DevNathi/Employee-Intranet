@@ -1,4 +1,25 @@
 ﻿
+.icon-cell {
+    text-align: center;
+}
+
+.edit-icon, .delete-icon {
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: inline-block;
+    width: 20px; 
+    height: 20px;
+}
+
+.edit-icon {
+    background-image: url('~/Images/icons/Edit.png');
+}
+
+.delete-icon {
+    background-image: url('~/Images/icons/Trash Can.png');
+}
+
+
 
 .text-danger {
     color: aqua;

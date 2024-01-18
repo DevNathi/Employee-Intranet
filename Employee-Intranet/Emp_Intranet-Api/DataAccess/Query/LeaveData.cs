@@ -81,5 +81,28 @@ namespace Emp_Intranet_Api.DataAccess
                 throw ex;
             }
         }
+        public void UpdateLeaveForUser(LeaveModel Leave)
+        {
+            try
+            {
+                var parameters = new
+                {
+                    Id = Leave.Id,
+                    leave_name = Leave.Leave_Name,
+                    leave_startdate =Leave .Leave_StartDate,
+                    leave_enddate = Leave.Leave_EndDate,
+                    leave_reason = Leave.Leave_Reason,
+                    employeeid = Leave.EmployeeId,
+                    managerid = Leave.ManagerId
+                };
+
+                int rowsAffected = _sql.SaveData("leave.sp_UpdateLeaveForEmployee", parameters, "Emp_Intranet-DB");
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

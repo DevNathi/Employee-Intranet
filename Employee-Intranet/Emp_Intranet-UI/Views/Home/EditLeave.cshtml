@@ -1,0 +1,67 @@
+﻿@model Emp_Intranet_UI.Models.DisplayModels.HomeDisplayModel
+
+
+
+@using (Html.BeginForm("ConfirmEditLeave", "Home",Model.MyLeaves, FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h2>Update Your Leave</h2>
+    <h4>Please change the below information to update for your leave</h4>
+    <br />
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.MyLeaves.Id)
+    @Html.HiddenFor(model => model.MyLeaves.EmployeeId)
+    @Html.HiddenFor(model => model.MyLeaves.ManagerId)
+
+    <div class="form-group">
+        Employee: @Html.DisplayFor(model => model.Profile.profile_title) @Html.DisplayFor(model => model.Profile.profile_name)
+        @Html.DisplayFor(model => model.Profile.profile_surname)
+    </div>
+    <div class="form-group">
+        Manager: @Html.DisplayFor(model => model.MyManager.profile_title) @Html.DisplayFor(model => model.MyManager.profile_name)
+        @Html.DisplayFor(model => model.MyManager.profile_surname)
+    </div>
+    <div class="form-group">
+        Leave:
+         
+            @Html.EditorFor(model => model.MyLeaves.Leave_Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.MyLeaves.Leave_Name, "", new { @class = "text-danger" })
+    
+    </div>
+
+    <div class="form-group">
+        Reason:
+         
+            @Html.EditorFor(model => model.MyLeaves.Leave_Reason, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.MyLeaves.Leave_Reason, "", new { @class = "text-danger" })
+       
+    </div>
+
+    <div class="form-group">
+        Start Date:
+        @Html.DisplayFor(model => model.MyLeaves.Leave_StartDate, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.EditorFor(model => model.MyLeaves.Leave_StartDate, new { htmlAttributes = new { @class = "form-control", type = "Date" } })
+        @Html.ValidationMessageFor(model => model.MyLeaves.Leave_StartDate, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        End Date:
+        @Html.DisplayFor(model => model.MyLeaves.Leave_EndDate, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.EditorFor(model => model.MyLeaves.Leave_EndDate, new { htmlAttributes = new { @class = "form-control", type = "Date" } })
+        @Html.ValidationMessageFor(model => model.MyLeaves.Leave_EndDate, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-actions no-color">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Update" class="btn btn-default" /> |
+            @Html.ActionLink("Back", "Index")
+        </div>
+    </div>
+</div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

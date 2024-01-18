@@ -88,6 +88,8 @@
     <Build Include="Stored Procedures\SP_Leave\leave.sp_CountOfLeaveDaysPerLeave.sql" />
     <Build Include="Stored Procedures\SP_Leave\leave.sp_FindLeaveById.sql" />
     <Build Include="Stored Procedures\SP_Leave\leave.sp_DeleteLeaveById.sql" />
+    <Build Include="Stored Procedures\SP_Leave\leave.sp_TotalLeavesPerStatusForEmployee.sql" />
+    <Build Include="Stored Procedures\SP_Leave\leave.sp_UpdateLeaveForEmployee.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DB.publish.xml" />
